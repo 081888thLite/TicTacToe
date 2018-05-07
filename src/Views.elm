@@ -60,3 +60,83 @@ mode_menu_screen humanVHumanAction humanVComputerAction computerVComputerAction 
                 ]
             ]
         ]
+
+
+game_play_screen =
+    div []
+        [ p
+            [ class "w3-display-topmiddle w3-jumbo" ]
+            [ text "TicTacToe" ]
+        , div
+            [ class "w3-display-middle w3-xxxlarge" ]
+            [ div
+                [ class "w3-cell-row" ]
+                [ div
+                    [ id "1", class "w3-button w3-container w3-cell w3-orange w3-border w3-hover-border-black" ]
+                    [ p
+                        []
+                        [ text "Cell 1" ]
+                    ]
+                , div
+                    [ class "w3-button w3-container w3-cell w3-orange w3-border w3-hover-border-black" ]
+                    [ p
+                        []
+                        [ text "Cell 2" ]
+                    ]
+                , div
+                    [ class "w3-button w3-container w3-cell w3-orange w3-border w3-hover-border-black" ]
+                    [ p
+                        []
+                        [ text "Cell 3" ]
+                    ]
+                ]
+            , div
+                [ class "w3-cell-row" ]
+                [ div
+                    [ class "w3-button w3-container w3-cell w3-orange w3-border w3-hover-border-black" ]
+                    [ p
+                        []
+                        [ text "Cell 4" ]
+                    ]
+                , div
+                    [ class "w3-button w3-container w3-cell w3-orange w3-border w3-hover-border-black" ]
+                    [ p
+                        []
+                        [ text "Cell 5" ]
+                    ]
+                , div
+                    [ class "w3-button w3-container w3-cell w3-orange w3-border w3-hover-border-black" ]
+                    [ p
+                        []
+                        [ text "Cell 6" ]
+                    ]
+                ]
+            , div
+                [ class "w3-cell-row" ]
+                [ div
+                    [ class "w3-button w3-container w3-cell w3-orange w3-border w3-hover-border-black" ]
+                    [ p
+                        []
+                        [ text "Cell 7" ]
+                    ]
+                , div
+                    [ class "w3-button w3-container w3-cell w3-orange w3-border w3-hover-border-black" ]
+                    [ p
+                        []
+                        [ text "Cell 8" ]
+                    ]
+                , div
+                    [ class "w3-button w3-container w3-cell w3-orange w3-border w3-hover-border-black" ]
+                    [ p
+                        []
+                        [ text "Cell 9" ]
+                    ]
+                ]
+            , div
+                [ class "w3-animate-fading" ]
+                [ text "Prompt player for move." ]
+            , div
+                []
+                []
+            ]
+        ]

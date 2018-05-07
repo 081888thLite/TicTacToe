@@ -67,7 +67,7 @@ modeMenuScreen =
 
 
 playScreen players =
-    div [] [ text (toString players) ]
+    div [] [ game_play_screen ]
 
 
 
