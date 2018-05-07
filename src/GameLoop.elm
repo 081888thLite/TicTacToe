@@ -2,19 +2,21 @@ module GameLoop exposing (..)
 
 import Views exposing (..)
 import Html exposing (..)
-
-
---Update
---View
+import Array exposing (..)
 
 
 main =
     beginnerProgram { model = model, view = view, update = update }
 
 
+
+--Model
+
+
 type alias GameLoop =
     { currentView : Html Msg
-    , players : Maybe List String
+    , players : { player1 : String, player2 : String }
+    , board : List String
     }
 
 
@@ -24,8 +26,13 @@ model =
 
 initialViewInGameLoop =
     { currentView = welcomeScreen
-    , players = Nothing
+    , players = { player1 = "Human", player2 = "Human" }
+    , board = List.repeat 9 ""
     }
+
+
+
+--Update
 
 
 type Msg
@@ -34,6 +41,8 @@ type Msg
     | SetPlayersHvH
     | SetPlayersHvC
     | SetPlayersCvC
+    | BeginTurns
+    | TakeTurn Int String
 
 
 update msg model =
@@ -45,13 +54,39 @@ update msg model =
             { model | currentView = modeMenuScreen }
 
         SetPlayersHvH ->
-            { model | players = Just [ "Human", "Human" ], currentView = playScreen [ "Human", "Human" ] }
+            { model | players = twoHumanPlayers, currentView = waitingToStartScreen }
 
         SetPlayersHvC ->
-            { model | players = Just [ "Human", "Computer" ], currentView = playScreen [ "Human", "Computer" ] }
+            { model | players = mixedPlayers, currentView = waitingToStartScreen }
 
         SetPlayersCvC ->
-            { model | players = Just [ "Computer", "Computer" ], currentView = playScreen [ "Computer", "Computer" ] }
+            { model | players = twoComputerPlayers, currentView = waitingToStartScreen }
+
+        BeginTurns ->
+            { model | currentView = (playScreen model.players.player1 model.board) }
+
+        TakeTurn position piece ->
+            { model | board = (markBoard position piece model.board), currentView = playScreen model.players.player2 (markBoard position piece model.board) }
+
+
+markBoard position piece board =
+    ((Array.fromList board) |> (Array.set position piece)) |> Array.toList
+
+
+twoHumanPlayers =
+    { player1 = "Human", player2 = "Human" }
+
+
+mixedPlayers =
+    { player1 = "Human", player2 = "Computer" }
+
+
+twoComputerPlayers =
+    { player1 = "Computer", player2 = "Computer" }
+
+
+
+--View
 
 
 view model =
@@ -66,8 +101,12 @@ modeMenuScreen =
     div [] [ mode_menu_screen SetPlayersHvH SetPlayersHvC SetPlayersCvC ]
 
 
-playScreen players =
-    div [] [ game_play_screen ]
+waitingToStartScreen =
+    div [] [ waiting_to_start_screen BeginTurns ]
+
+
+playScreen playerInTurn currentBoard =
+    div [] [ game_play_screen playerInTurn TakeTurn currentBoard ]
 
 
 

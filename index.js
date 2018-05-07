@@ -12416,189 +12416,44 @@ var _elm_lang$html$Html_Attributes$classList = function (list) {
 };
 var _elm_lang$html$Html_Attributes$style = _elm_lang$virtual_dom$VirtualDom$style;
 
-var _user$project$Views$game_play_screen = A2(
-	_elm_lang$html$Html$div,
-	{ctor: '[]'},
-	{
-		ctor: '::',
-		_0: A2(
-			_elm_lang$html$Html$p,
+var _user$project$Views$wait_for_computer = function (playerInTurn) {
+	return A2(_elm_lang$core$Basics_ops['++'], playerInTurn, ' is thinking...');
+};
+var _user$project$Views$prompt_for_move = function (playerInTurn) {
+	return A2(_elm_lang$core$Basics_ops['++'], playerInTurn, ' click on a cell to place your marker.');
+};
+var _user$project$Views$display_prompt = function (playerInTurn) {
+	return _elm_lang$core$Native_Utils.eq(playerInTurn, 'Human') ? _user$project$Views$prompt_for_move(playerInTurn) : _user$project$Views$wait_for_computer(playerInTurn);
+};
+var _user$project$Views$game_play_screen = F3(
+	function (playerInTurn, actionToMarkCell, currentBoard) {
+		return A2(
+			_elm_lang$html$Html$div,
+			{ctor: '[]'},
 			{
 				ctor: '::',
-				_0: _elm_lang$html$Html_Attributes$class('w3-display-topmiddle w3-jumbo'),
-				_1: {ctor: '[]'}
-			},
-			{
-				ctor: '::',
-				_0: _elm_lang$html$Html$text('TicTacToe'),
-				_1: {ctor: '[]'}
-			}),
-		_1: {
-			ctor: '::',
-			_0: A2(
-				_elm_lang$html$Html$div,
-				{
-					ctor: '::',
-					_0: _elm_lang$html$Html_Attributes$class('w3-display-middle w3-xxxlarge'),
-					_1: {ctor: '[]'}
-				},
-				{
+				_0: A2(
+					_elm_lang$html$Html$p,
+					{
+						ctor: '::',
+						_0: _elm_lang$html$Html_Attributes$class('w3-display-topmiddle w3-jumbo'),
+						_1: {ctor: '[]'}
+					},
+					{
+						ctor: '::',
+						_0: _elm_lang$html$Html$text('TicTacToe'),
+						_1: {ctor: '[]'}
+					}),
+				_1: {
 					ctor: '::',
 					_0: A2(
 						_elm_lang$html$Html$div,
 						{
 							ctor: '::',
-							_0: _elm_lang$html$Html_Attributes$class('w3-cell-row'),
+							_0: _elm_lang$html$Html_Attributes$class('w3-display-middle w3-xxxlarge'),
 							_1: {ctor: '[]'}
 						},
 						{
-							ctor: '::',
-							_0: A2(
-								_elm_lang$html$Html$div,
-								{
-									ctor: '::',
-									_0: _elm_lang$html$Html_Attributes$id('1'),
-									_1: {
-										ctor: '::',
-										_0: _elm_lang$html$Html_Attributes$class('w3-button w3-container w3-cell w3-orange w3-border w3-hover-border-black'),
-										_1: {ctor: '[]'}
-									}
-								},
-								{
-									ctor: '::',
-									_0: A2(
-										_elm_lang$html$Html$p,
-										{ctor: '[]'},
-										{
-											ctor: '::',
-											_0: _elm_lang$html$Html$text('Cell 1'),
-											_1: {ctor: '[]'}
-										}),
-									_1: {ctor: '[]'}
-								}),
-							_1: {
-								ctor: '::',
-								_0: A2(
-									_elm_lang$html$Html$div,
-									{
-										ctor: '::',
-										_0: _elm_lang$html$Html_Attributes$class('w3-button w3-container w3-cell w3-orange w3-border w3-hover-border-black'),
-										_1: {ctor: '[]'}
-									},
-									{
-										ctor: '::',
-										_0: A2(
-											_elm_lang$html$Html$p,
-											{ctor: '[]'},
-											{
-												ctor: '::',
-												_0: _elm_lang$html$Html$text('Cell 2'),
-												_1: {ctor: '[]'}
-											}),
-										_1: {ctor: '[]'}
-									}),
-								_1: {
-									ctor: '::',
-									_0: A2(
-										_elm_lang$html$Html$div,
-										{
-											ctor: '::',
-											_0: _elm_lang$html$Html_Attributes$class('w3-button w3-container w3-cell w3-orange w3-border w3-hover-border-black'),
-											_1: {ctor: '[]'}
-										},
-										{
-											ctor: '::',
-											_0: A2(
-												_elm_lang$html$Html$p,
-												{ctor: '[]'},
-												{
-													ctor: '::',
-													_0: _elm_lang$html$Html$text('Cell 3'),
-													_1: {ctor: '[]'}
-												}),
-											_1: {ctor: '[]'}
-										}),
-									_1: {ctor: '[]'}
-								}
-							}
-						}),
-					_1: {
-						ctor: '::',
-						_0: A2(
-							_elm_lang$html$Html$div,
-							{
-								ctor: '::',
-								_0: _elm_lang$html$Html_Attributes$class('w3-cell-row'),
-								_1: {ctor: '[]'}
-							},
-							{
-								ctor: '::',
-								_0: A2(
-									_elm_lang$html$Html$div,
-									{
-										ctor: '::',
-										_0: _elm_lang$html$Html_Attributes$class('w3-button w3-container w3-cell w3-orange w3-border w3-hover-border-black'),
-										_1: {ctor: '[]'}
-									},
-									{
-										ctor: '::',
-										_0: A2(
-											_elm_lang$html$Html$p,
-											{ctor: '[]'},
-											{
-												ctor: '::',
-												_0: _elm_lang$html$Html$text('Cell 4'),
-												_1: {ctor: '[]'}
-											}),
-										_1: {ctor: '[]'}
-									}),
-								_1: {
-									ctor: '::',
-									_0: A2(
-										_elm_lang$html$Html$div,
-										{
-											ctor: '::',
-											_0: _elm_lang$html$Html_Attributes$class('w3-button w3-container w3-cell w3-orange w3-border w3-hover-border-black'),
-											_1: {ctor: '[]'}
-										},
-										{
-											ctor: '::',
-											_0: A2(
-												_elm_lang$html$Html$p,
-												{ctor: '[]'},
-												{
-													ctor: '::',
-													_0: _elm_lang$html$Html$text('Cell 5'),
-													_1: {ctor: '[]'}
-												}),
-											_1: {ctor: '[]'}
-										}),
-									_1: {
-										ctor: '::',
-										_0: A2(
-											_elm_lang$html$Html$div,
-											{
-												ctor: '::',
-												_0: _elm_lang$html$Html_Attributes$class('w3-button w3-container w3-cell w3-orange w3-border w3-hover-border-black'),
-												_1: {ctor: '[]'}
-											},
-											{
-												ctor: '::',
-												_0: A2(
-													_elm_lang$html$Html$p,
-													{ctor: '[]'},
-													{
-														ctor: '::',
-														_0: _elm_lang$html$Html$text('Cell 6'),
-														_1: {ctor: '[]'}
-													}),
-												_1: {ctor: '[]'}
-											}),
-										_1: {ctor: '[]'}
-									}
-								}
-							}),
-						_1: {
 							ctor: '::',
 							_0: A2(
 								_elm_lang$html$Html$div,
@@ -12613,8 +12468,17 @@ var _user$project$Views$game_play_screen = A2(
 										_elm_lang$html$Html$div,
 										{
 											ctor: '::',
-											_0: _elm_lang$html$Html_Attributes$class('w3-button w3-container w3-cell w3-orange w3-border w3-hover-border-black'),
-											_1: {ctor: '[]'}
+											_0: _elm_lang$html$Html_Attributes$id('1'),
+											_1: {
+												ctor: '::',
+												_0: _elm_lang$html$Html_Attributes$class('w3-button w3-container w3-cell w3-orange w3-border w3-hover-border-black'),
+												_1: {
+													ctor: '::',
+													_0: _elm_lang$html$Html_Events$onClick(
+														A2(actionToMarkCell, 0, 'X')),
+													_1: {ctor: '[]'}
+												}
+											}
 										},
 										{
 											ctor: '::',
@@ -12623,7 +12487,12 @@ var _user$project$Views$game_play_screen = A2(
 												{ctor: '[]'},
 												{
 													ctor: '::',
-													_0: _elm_lang$html$Html$text('Cell 7'),
+													_0: _elm_lang$html$Html$text(
+														_elm_lang$core$Basics$toString(
+															A2(
+																_elm_lang$core$Array$get,
+																0,
+																_elm_lang$core$Array$fromList(currentBoard)))),
 													_1: {ctor: '[]'}
 												}),
 											_1: {ctor: '[]'}
@@ -12644,7 +12513,7 @@ var _user$project$Views$game_play_screen = A2(
 													{ctor: '[]'},
 													{
 														ctor: '::',
-														_0: _elm_lang$html$Html$text('Cell 8'),
+														_0: _elm_lang$html$Html$text('Cell 2'),
 														_1: {ctor: '[]'}
 													}),
 												_1: {ctor: '[]'}
@@ -12665,7 +12534,7 @@ var _user$project$Views$game_play_screen = A2(
 														{ctor: '[]'},
 														{
 															ctor: '::',
-															_0: _elm_lang$html$Html$text('Cell 9'),
+															_0: _elm_lang$html$Html$text('Cell 3'),
 															_1: {ctor: '[]'}
 														}),
 													_1: {ctor: '[]'}
@@ -12680,29 +12549,223 @@ var _user$project$Views$game_play_screen = A2(
 									_elm_lang$html$Html$div,
 									{
 										ctor: '::',
-										_0: _elm_lang$html$Html_Attributes$class('w3-animate-fading'),
+										_0: _elm_lang$html$Html_Attributes$class('w3-cell-row'),
 										_1: {ctor: '[]'}
 									},
 									{
 										ctor: '::',
-										_0: _elm_lang$html$Html$text('Prompt player for move.'),
-										_1: {ctor: '[]'}
+										_0: A2(
+											_elm_lang$html$Html$div,
+											{
+												ctor: '::',
+												_0: _elm_lang$html$Html_Attributes$class('w3-button w3-container w3-cell w3-orange w3-border w3-hover-border-black'),
+												_1: {ctor: '[]'}
+											},
+											{
+												ctor: '::',
+												_0: A2(
+													_elm_lang$html$Html$p,
+													{ctor: '[]'},
+													{
+														ctor: '::',
+														_0: _elm_lang$html$Html$text('Cell 4'),
+														_1: {ctor: '[]'}
+													}),
+												_1: {ctor: '[]'}
+											}),
+										_1: {
+											ctor: '::',
+											_0: A2(
+												_elm_lang$html$Html$div,
+												{
+													ctor: '::',
+													_0: _elm_lang$html$Html_Attributes$class('w3-button w3-container w3-cell w3-orange w3-border w3-hover-border-black'),
+													_1: {ctor: '[]'}
+												},
+												{
+													ctor: '::',
+													_0: A2(
+														_elm_lang$html$Html$p,
+														{ctor: '[]'},
+														{
+															ctor: '::',
+															_0: _elm_lang$html$Html$text('Cell 5'),
+															_1: {ctor: '[]'}
+														}),
+													_1: {ctor: '[]'}
+												}),
+											_1: {
+												ctor: '::',
+												_0: A2(
+													_elm_lang$html$Html$div,
+													{
+														ctor: '::',
+														_0: _elm_lang$html$Html_Attributes$class('w3-button w3-container w3-cell w3-orange w3-border w3-hover-border-black'),
+														_1: {ctor: '[]'}
+													},
+													{
+														ctor: '::',
+														_0: A2(
+															_elm_lang$html$Html$p,
+															{ctor: '[]'},
+															{
+																ctor: '::',
+																_0: _elm_lang$html$Html$text('Cell 6'),
+																_1: {ctor: '[]'}
+															}),
+														_1: {ctor: '[]'}
+													}),
+												_1: {ctor: '[]'}
+											}
+										}
 									}),
 								_1: {
 									ctor: '::',
 									_0: A2(
 										_elm_lang$html$Html$div,
-										{ctor: '[]'},
-										{ctor: '[]'}),
-									_1: {ctor: '[]'}
+										{
+											ctor: '::',
+											_0: _elm_lang$html$Html_Attributes$class('w3-cell-row'),
+											_1: {ctor: '[]'}
+										},
+										{
+											ctor: '::',
+											_0: A2(
+												_elm_lang$html$Html$div,
+												{
+													ctor: '::',
+													_0: _elm_lang$html$Html_Attributes$class('w3-button w3-container w3-cell w3-orange w3-border w3-hover-border-black'),
+													_1: {ctor: '[]'}
+												},
+												{
+													ctor: '::',
+													_0: A2(
+														_elm_lang$html$Html$p,
+														{ctor: '[]'},
+														{
+															ctor: '::',
+															_0: _elm_lang$html$Html$text('Cell 7'),
+															_1: {ctor: '[]'}
+														}),
+													_1: {ctor: '[]'}
+												}),
+											_1: {
+												ctor: '::',
+												_0: A2(
+													_elm_lang$html$Html$div,
+													{
+														ctor: '::',
+														_0: _elm_lang$html$Html_Attributes$class('w3-button w3-container w3-cell w3-orange w3-border w3-hover-border-black'),
+														_1: {ctor: '[]'}
+													},
+													{
+														ctor: '::',
+														_0: A2(
+															_elm_lang$html$Html$p,
+															{ctor: '[]'},
+															{
+																ctor: '::',
+																_0: _elm_lang$html$Html$text('Cell 8'),
+																_1: {ctor: '[]'}
+															}),
+														_1: {ctor: '[]'}
+													}),
+												_1: {
+													ctor: '::',
+													_0: A2(
+														_elm_lang$html$Html$div,
+														{
+															ctor: '::',
+															_0: _elm_lang$html$Html_Attributes$class('w3-button w3-container w3-cell w3-orange w3-border w3-hover-border-black'),
+															_1: {ctor: '[]'}
+														},
+														{
+															ctor: '::',
+															_0: A2(
+																_elm_lang$html$Html$p,
+																{ctor: '[]'},
+																{
+																	ctor: '::',
+																	_0: _elm_lang$html$Html$text('Cell 9'),
+																	_1: {ctor: '[]'}
+																}),
+															_1: {ctor: '[]'}
+														}),
+													_1: {ctor: '[]'}
+												}
+											}
+										}),
+									_1: {
+										ctor: '::',
+										_0: A2(
+											_elm_lang$html$Html$div,
+											{
+												ctor: '::',
+												_0: _elm_lang$html$Html_Attributes$class('w3-animate-fading'),
+												_1: {ctor: '[]'}
+											},
+											{
+												ctor: '::',
+												_0: _elm_lang$html$Html$text(
+													_user$project$Views$display_prompt(playerInTurn)),
+												_1: {ctor: '[]'}
+											}),
+										_1: {
+											ctor: '::',
+											_0: A2(
+												_elm_lang$html$Html$div,
+												{ctor: '[]'},
+												{ctor: '[]'}),
+											_1: {ctor: '[]'}
+										}
+									}
 								}
 							}
-						}
+						}),
+					_1: {ctor: '[]'}
+				}
+			});
+	});
+var _user$project$Views$waiting_to_start_screen = function (startTheGame) {
+	return A2(
+		_elm_lang$html$Html$div,
+		{
+			ctor: '::',
+			_0: _elm_lang$html$Html_Attributes$class('w3-display-middle w3-xxxlarge'),
+			_1: {
+				ctor: '::',
+				_0: _elm_lang$html$Html_Events$onClick(startTheGame),
+				_1: {ctor: '[]'}
+			}
+		},
+		{
+			ctor: '::',
+			_0: A2(
+				_elm_lang$html$Html$div,
+				{
+					ctor: '::',
+					_0: _elm_lang$html$Html_Attributes$id('1'),
+					_1: {
+						ctor: '::',
+						_0: _elm_lang$html$Html_Attributes$class('w3-button w3-container w3-cell w3-orange w3-border w3-hover-border-black'),
+						_1: {ctor: '[]'}
 					}
+				},
+				{
+					ctor: '::',
+					_0: A2(
+						_elm_lang$html$Html$p,
+						{ctor: '[]'},
+						{
+							ctor: '::',
+							_0: _elm_lang$html$Html$text('Start Game'),
+							_1: {ctor: '[]'}
+						}),
+					_1: {ctor: '[]'}
 				}),
 			_1: {ctor: '[]'}
-		}
-	});
+		});
+};
 var _user$project$Views$mode_menu_screen = F3(
 	function (humanVHumanAction, humanVComputerAction, computerVComputerAction) {
 		return A2(
@@ -12877,16 +12940,6 @@ var _user$project$Views$welcome_screen = function (actionOnClick) {
 		});
 };
 
-var _user$project$GameLoop$playScreen = function (players) {
-	return A2(
-		_elm_lang$html$Html$div,
-		{ctor: '[]'},
-		{
-			ctor: '::',
-			_0: _user$project$Views$game_play_screen,
-			_1: {ctor: '[]'}
-		});
-};
 var _user$project$GameLoop$view = function (model) {
 	return A2(
 		_elm_lang$html$Html$div,
@@ -12897,9 +12950,45 @@ var _user$project$GameLoop$view = function (model) {
 			_1: {ctor: '[]'}
 		});
 };
-var _user$project$GameLoop$GameLoop = F2(
+var _user$project$GameLoop$twoComputerPlayers = {player1: 'Computer', player2: 'Computer'};
+var _user$project$GameLoop$mixedPlayers = {player1: 'Human', player2: 'Computer'};
+var _user$project$GameLoop$twoHumanPlayers = {player1: 'Human', player2: 'Human'};
+var _user$project$GameLoop$markBoard = F3(
+	function (position, piece, board) {
+		return _elm_lang$core$Array$toList(
+			A3(
+				_elm_lang$core$Array$set,
+				position,
+				piece,
+				_elm_lang$core$Array$fromList(board)));
+	});
+var _user$project$GameLoop$GameLoop = F3(
+	function (a, b, c) {
+		return {currentView: a, players: b, board: c};
+	});
+var _user$project$GameLoop$TakeTurn = F2(
 	function (a, b) {
-		return {currentView: a, players: b};
+		return {ctor: 'TakeTurn', _0: a, _1: b};
+	});
+var _user$project$GameLoop$playScreen = F2(
+	function (playerInTurn, currentBoard) {
+		return A2(
+			_elm_lang$html$Html$div,
+			{ctor: '[]'},
+			{
+				ctor: '::',
+				_0: A3(_user$project$Views$game_play_screen, playerInTurn, _user$project$GameLoop$TakeTurn, currentBoard),
+				_1: {ctor: '[]'}
+			});
+	});
+var _user$project$GameLoop$BeginTurns = {ctor: 'BeginTurns'};
+var _user$project$GameLoop$waitingToStartScreen = A2(
+	_elm_lang$html$Html$div,
+	{ctor: '[]'},
+	{
+		ctor: '::',
+		_0: _user$project$Views$waiting_to_start_screen(_user$project$GameLoop$BeginTurns),
+		_1: {ctor: '[]'}
 	});
 var _user$project$GameLoop$SetPlayersCvC = {ctor: 'SetPlayersCvC'};
 var _user$project$GameLoop$SetPlayersHvC = {ctor: 'SetPlayersHvC'};
@@ -12921,7 +13010,11 @@ var _user$project$GameLoop$welcomeScreen = A2(
 		_0: _user$project$Views$welcome_screen(_user$project$GameLoop$SetMode),
 		_1: {ctor: '[]'}
 	});
-var _user$project$GameLoop$initialViewInGameLoop = {currentView: _user$project$GameLoop$welcomeScreen, players: _elm_lang$core$Maybe$Nothing};
+var _user$project$GameLoop$initialViewInGameLoop = {
+	currentView: _user$project$GameLoop$welcomeScreen,
+	players: {player1: 'Human', player2: 'Human'},
+	board: A2(_elm_lang$core$List$repeat, 9, '')
+};
 var _user$project$GameLoop$model = _user$project$GameLoop$initialViewInGameLoop;
 var _user$project$GameLoop$update = F2(
 	function (msg, model) {
@@ -12938,77 +13031,32 @@ var _user$project$GameLoop$update = F2(
 			case 'SetPlayersHvH':
 				return _elm_lang$core$Native_Utils.update(
 					model,
-					{
-						players: _elm_lang$core$Maybe$Just(
-							{
-								ctor: '::',
-								_0: 'Human',
-								_1: {
-									ctor: '::',
-									_0: 'Human',
-									_1: {ctor: '[]'}
-								}
-							}),
-						currentView: _user$project$GameLoop$playScreen(
-							{
-								ctor: '::',
-								_0: 'Human',
-								_1: {
-									ctor: '::',
-									_0: 'Human',
-									_1: {ctor: '[]'}
-								}
-							})
-					});
+					{players: _user$project$GameLoop$twoHumanPlayers, currentView: _user$project$GameLoop$waitingToStartScreen});
 			case 'SetPlayersHvC':
 				return _elm_lang$core$Native_Utils.update(
 					model,
-					{
-						players: _elm_lang$core$Maybe$Just(
-							{
-								ctor: '::',
-								_0: 'Human',
-								_1: {
-									ctor: '::',
-									_0: 'Computer',
-									_1: {ctor: '[]'}
-								}
-							}),
-						currentView: _user$project$GameLoop$playScreen(
-							{
-								ctor: '::',
-								_0: 'Human',
-								_1: {
-									ctor: '::',
-									_0: 'Computer',
-									_1: {ctor: '[]'}
-								}
-							})
-					});
-			default:
+					{players: _user$project$GameLoop$mixedPlayers, currentView: _user$project$GameLoop$waitingToStartScreen});
+			case 'SetPlayersCvC':
+				return _elm_lang$core$Native_Utils.update(
+					model,
+					{players: _user$project$GameLoop$twoComputerPlayers, currentView: _user$project$GameLoop$waitingToStartScreen});
+			case 'BeginTurns':
 				return _elm_lang$core$Native_Utils.update(
 					model,
 					{
-						players: _elm_lang$core$Maybe$Just(
-							{
-								ctor: '::',
-								_0: 'Computer',
-								_1: {
-									ctor: '::',
-									_0: 'Computer',
-									_1: {ctor: '[]'}
-								}
-							}),
-						currentView: _user$project$GameLoop$playScreen(
-							{
-								ctor: '::',
-								_0: 'Computer',
-								_1: {
-									ctor: '::',
-									_0: 'Computer',
-									_1: {ctor: '[]'}
-								}
-							})
+						currentView: A2(_user$project$GameLoop$playScreen, model.players.player1, model.board)
+					});
+			default:
+				var _p2 = _p0._0;
+				var _p1 = _p0._1;
+				return _elm_lang$core$Native_Utils.update(
+					model,
+					{
+						board: A3(_user$project$GameLoop$markBoard, _p2, _p1, model.board),
+						currentView: A2(
+							_user$project$GameLoop$playScreen,
+							model.players.player2,
+							A3(_user$project$GameLoop$markBoard, _p2, _p1, model.board))
 					});
 		}
 	});
@@ -13026,7 +13074,7 @@ var _user$project$Main$main = _elm_lang$html$Html$beginnerProgram(
 var Elm = {};
 Elm['Main'] = Elm['Main'] || {};
 if (typeof _user$project$Main$main !== 'undefined') {
-    _user$project$Main$main(Elm['Main'], 'Main', {"types":{"unions":{"GameLoop.Msg":{"args":[],"tags":{"BeginPlay":[],"SetMode":[],"SetPlayersCvC":[],"SetPlayersHvH":[],"SetPlayersHvC":[]}}},"aliases":{},"message":"GameLoop.Msg"},"versions":{"elm":"0.18.0"}});
+    _user$project$Main$main(Elm['Main'], 'Main', {"types":{"unions":{"GameLoop.Msg":{"args":[],"tags":{"BeginPlay":[],"TakeTurn":["Int","String"],"SetMode":[],"SetPlayersCvC":[],"SetPlayersHvH":[],"SetPlayersHvC":[],"BeginTurns":[]}}},"aliases":{},"message":"GameLoop.Msg"},"versions":{"elm":"0.18.0"}});
 }
 
 if (typeof define === "function" && define['amd'])

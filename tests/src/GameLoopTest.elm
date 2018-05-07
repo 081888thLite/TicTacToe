@@ -16,7 +16,7 @@ gameLoopTest : Test
 gameLoopTest =
     describe "GameLoop"
         [ describe "BeginPlay..."
-            [ test "The initialViewInGameLoop, displays the welcomeScreen." <|
+            [ test "Displays the welcomeScreen." <|
                 let
                     gameLoop =
                         GameLoop.initialViewInGameLoop
@@ -57,5 +57,75 @@ gameLoopTest =
                         |> Query.fromHtml
                         |> Event.simulate (Event.click)
                         |> Event.expect (SetPlayersCvC)
+            ]
+        , describe "BeginTurns..."
+            [ test "Begins the first turn with prompt for the first player." <|
+                let
+                    gameLoopAtStart =
+                        GameLoop.initialViewInGameLoop
+
+                    gameLoopWithPlayersSetHvC =
+                        update SetPlayersHvC gameLoopAtStart
+
+                    gameLoop =
+                        update BeginTurns gameLoopWithPlayersSetHvC
+                in
+                    \() -> Expect.equal (playScreen "Human") gameLoop.currentView
+            , test "Begins the first turn with an empty board." <|
+                let
+                    gameLoopAtStart =
+                        GameLoop.initialViewInGameLoop
+
+                    gameLoopWithPlayersSetHvC =
+                        update SetPlayersHvC gameLoopAtStart
+
+                    gameLoop =
+                        update BeginTurns gameLoopWithPlayersSetHvC
+
+                    newBoard =
+                        List.repeat 9 ""
+                in
+                    \() -> Expect.equal newBoard gameLoop.board
+            ]
+        , describe "TakeTurn..."
+            [ test "Updates the board." <|
+                let
+                    gameLoopAtStart =
+                        GameLoop.initialViewInGameLoop
+
+                    gameLoop =
+                        update (TakeTurn 0 "X") gameLoopAtStart
+                in
+                    \() -> Expect.equal [ "X", "", "", "", "", "", "", "", "" ] gameLoop.board
+            , test "begins the first turn with an empty board." <|
+                let
+                    gameLoopAtStart =
+                        GameLoop.initialViewInGameLoop
+
+                    gameLoopWithPlayersSetHvC =
+                        update SetPlayersHvC gameLoopAtStart
+
+                    gameLoop =
+                        update BeginTurns gameLoopWithPlayersSetHvC
+
+                    newBoard =
+                        List.repeat 9 ""
+                in
+                    \() -> Expect.equal newBoard gameLoop.board
+
+            --, test "When the playerInTurn is a Human a prompt for a move is displayed." <|
+            --    \() ->
+            --        Html.input [ onClick SetPlayersHvH ] []
+            --            |> Query.fromHtml
+            --            |> Event.simulate (Event.click)
+            --            |> Query.fromHtml
+            --            |> Query.contains [ div [] [ "Human click on a cell to place your marker." ] ]
+            --, test "When the playerInTurn is a Computer a prompt to wait is displayed." <|
+            --    \() ->
+            --        Html.input [ onClick SetPlayersHvC ] []
+            --            |> Query.fromHtml
+            --            |> Event.simulate (Event.click)
+            --            |> Query.fromHtml
+            --            |> Query.contains [ div [] [ "The computer player is thinking..." ] ]
             ]
         ]

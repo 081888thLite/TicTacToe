@@ -3,14 +3,7 @@ module Views exposing (..)
 import Html exposing (..)
 import Html.Events exposing (..)
 import Html.Attributes exposing (..)
-
-
-welcome_view_greeting =
-    "Welcome to tic tac toe."
-
-
-welcome_view_prompt =
-    "Hit the Next button to set the Game Mode"
+import Array exposing (..)
 
 
 welcome_screen actionOnClick =
@@ -28,6 +21,14 @@ welcome_screen actionOnClick =
             ]
             [ text "Next" ]
         ]
+
+
+welcome_view_greeting =
+    "Welcome to tic tac toe."
+
+
+welcome_view_prompt =
+    "Hit the Next button to set the Game Mode"
 
 
 mode_menu_screen humanVHumanAction humanVComputerAction computerVComputerAction =
@@ -62,7 +63,19 @@ mode_menu_screen humanVHumanAction humanVComputerAction computerVComputerAction 
         ]
 
 
-game_play_screen =
+waiting_to_start_screen startTheGame =
+    div
+        [ class "w3-display-middle w3-xxxlarge"
+        , onClick (startTheGame)
+        ]
+        [ div [ id "1", class "w3-button w3-container w3-cell w3-orange w3-border w3-hover-border-black" ]
+            [ p []
+                [ text "Start Game" ]
+            ]
+        ]
+
+
+game_play_screen playerInTurn actionToMarkCell currentBoard =
     div []
         [ p
             [ class "w3-display-topmiddle w3-jumbo" ]
@@ -72,10 +85,10 @@ game_play_screen =
             [ div
                 [ class "w3-cell-row" ]
                 [ div
-                    [ id "1", class "w3-button w3-container w3-cell w3-orange w3-border w3-hover-border-black" ]
+                    [ id "1", class "w3-button w3-container w3-cell w3-orange w3-border w3-hover-border-black", onClick (actionToMarkCell 0 "X") ]
                     [ p
                         []
-                        [ text "Cell 1" ]
+                        [ text (toString ((Array.get 0 (currentBoard |> Array.fromList)))) ]
                     ]
                 , div
                     [ class "w3-button w3-container w3-cell w3-orange w3-border w3-hover-border-black" ]
@@ -134,9 +147,24 @@ game_play_screen =
                 ]
             , div
                 [ class "w3-animate-fading" ]
-                [ text "Prompt player for move." ]
+                [ text (display_prompt playerInTurn) ]
             , div
                 []
                 []
             ]
         ]
+
+
+display_prompt playerInTurn =
+    if playerInTurn == "Human" then
+        prompt_for_move playerInTurn
+    else
+        wait_for_computer playerInTurn
+
+
+prompt_for_move playerInTurn =
+    playerInTurn ++ " click on a cell to place your marker."
+
+
+wait_for_computer playerInTurn =
+    playerInTurn ++ " is thinking..."
