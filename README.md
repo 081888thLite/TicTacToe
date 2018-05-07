@@ -16,7 +16,13 @@ git clone https://github.com/081888thLite/TicTacToe.git
 cd TicTacToe
 ```
 
-3. Start up reactor:
+4. Run `elm-make` to install packages and compile application.
+[--debug is optional but nifty](http://elm-lang.org/blog/the-perfect-bug-report)
+```
+elm-make src/Main.elm --output index.js --debug
+```
+
+3. Start up `elm-reactor`:
 ```
 elm-reactor
 ```
