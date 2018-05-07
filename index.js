@@ -14078,102 +14078,117 @@ var _rundis$elm_bootstrap$Bootstrap_Grid$col = F2(
 			{options: options, children: children});
 	});
 
-var _user$project$Views$mode_menu_screen = A2(
-	_elm_lang$html$Html$div,
-	{ctor: '[]'},
-	{
-		ctor: '::',
-		_0: A2(
+var _user$project$Views$mode_menu_screen = F3(
+	function (humanVHumanAction, humanVComputerAction, computerVComputerAction) {
+		return A2(
 			_elm_lang$html$Html$div,
-			{
-				ctor: '::',
-				_0: _elm_lang$html$Html_Attributes$class('w3-margin'),
-				_1: {ctor: '[]'}
-			},
+			{ctor: '[]'},
 			{
 				ctor: '::',
 				_0: A2(
-					_elm_lang$html$Html$h1,
+					_elm_lang$html$Html$div,
 					{
 						ctor: '::',
-						_0: _elm_lang$html$Html_Attributes$class('w3-display-topmiddle w3-xxxlarge'),
+						_0: _elm_lang$html$Html_Attributes$class('w3-margin'),
 						_1: {ctor: '[]'}
 					},
 					{
 						ctor: '::',
-						_0: _elm_lang$html$Html$text('Set Mode'),
+						_0: A2(
+							_elm_lang$html$Html$h1,
+							{
+								ctor: '::',
+								_0: _elm_lang$html$Html_Attributes$class('w3-display-topmiddle w3-xxxlarge'),
+								_1: {ctor: '[]'}
+							},
+							{
+								ctor: '::',
+								_0: _elm_lang$html$Html$text('Set Mode'),
+								_1: {ctor: '[]'}
+							}),
 						_1: {ctor: '[]'}
 					}),
-				_1: {ctor: '[]'}
-			}),
-		_1: {
-			ctor: '::',
-			_0: A2(
-				_elm_lang$html$Html$div,
-				{
-					ctor: '::',
-					_0: _elm_lang$html$Html_Attributes$class('w3-display-middle'),
-					_1: {ctor: '[]'}
-				},
-				{
+				_1: {
 					ctor: '::',
 					_0: A2(
 						_elm_lang$html$Html$div,
 						{
 							ctor: '::',
-							_0: _elm_lang$html$Html_Attributes$class('w3-bar'),
+							_0: _elm_lang$html$Html_Attributes$class('w3-display-middle'),
 							_1: {ctor: '[]'}
 						},
 						{
 							ctor: '::',
 							_0: A2(
-								_elm_lang$html$Html$button,
+								_elm_lang$html$Html$div,
 								{
 									ctor: '::',
-									_0: _elm_lang$html$Html_Attributes$class('w3-large w3-btn w3-ripple w3-orange'),
+									_0: _elm_lang$html$Html_Attributes$class('w3-bar'),
 									_1: {ctor: '[]'}
 								},
 								{
-									ctor: '::',
-									_0: _elm_lang$html$Html$text('Human vs. Human'),
-									_1: {ctor: '[]'}
-								}),
-							_1: {
-								ctor: '::',
-								_0: A2(
-									_elm_lang$html$Html$button,
-									{
-										ctor: '::',
-										_0: _elm_lang$html$Html_Attributes$class('w3-large w3-btn w3-ripple w3-orange'),
-										_1: {ctor: '[]'}
-									},
-									{
-										ctor: '::',
-										_0: _elm_lang$html$Html$text('Human vs. Computer'),
-										_1: {ctor: '[]'}
-									}),
-								_1: {
 									ctor: '::',
 									_0: A2(
 										_elm_lang$html$Html$button,
 										{
 											ctor: '::',
 											_0: _elm_lang$html$Html_Attributes$class('w3-large w3-btn w3-ripple w3-orange'),
-											_1: {ctor: '[]'}
+											_1: {
+												ctor: '::',
+												_0: _elm_lang$html$Html_Events$onClick(humanVHumanAction),
+												_1: {ctor: '[]'}
+											}
 										},
 										{
 											ctor: '::',
-											_0: _elm_lang$html$Html$text('Computer vs. Computer'),
+											_0: _elm_lang$html$Html$text('Human vs. Human'),
 											_1: {ctor: '[]'}
 										}),
-									_1: {ctor: '[]'}
-								}
-							}
+									_1: {
+										ctor: '::',
+										_0: A2(
+											_elm_lang$html$Html$button,
+											{
+												ctor: '::',
+												_0: _elm_lang$html$Html_Attributes$class('w3-large w3-btn w3-ripple w3-orange'),
+												_1: {
+													ctor: '::',
+													_0: _elm_lang$html$Html_Events$onClick(humanVComputerAction),
+													_1: {ctor: '[]'}
+												}
+											},
+											{
+												ctor: '::',
+												_0: _elm_lang$html$Html$text('Human vs. Computer'),
+												_1: {ctor: '[]'}
+											}),
+										_1: {
+											ctor: '::',
+											_0: A2(
+												_elm_lang$html$Html$button,
+												{
+													ctor: '::',
+													_0: _elm_lang$html$Html_Attributes$class('w3-large w3-btn w3-ripple w3-orange'),
+													_1: {
+														ctor: '::',
+														_0: _elm_lang$html$Html_Events$onClick(computerVComputerAction),
+														_1: {ctor: '[]'}
+													}
+												},
+												{
+													ctor: '::',
+													_0: _elm_lang$html$Html$text('Computer vs. Computer'),
+													_1: {ctor: '[]'}
+												}),
+											_1: {ctor: '[]'}
+										}
+									}
+								}),
+							_1: {ctor: '[]'}
 						}),
 					_1: {ctor: '[]'}
-				}),
-			_1: {ctor: '[]'}
-		}
+				}
+			});
 	});
 var _user$project$Views$welcome_view_prompt = 'Hit the Next button to set the Game Mode';
 var _user$project$Views$welcome_view_greeting = 'Welcome to tic tac toe.';
@@ -14237,14 +14252,17 @@ var _user$project$Views$welcome_screen = function (actionOnClick) {
 		});
 };
 
-var _user$project$GameLoop$viewModeMenu = A2(
-	_elm_lang$html$Html$div,
-	{ctor: '[]'},
-	{
-		ctor: '::',
-		_0: _user$project$Views$mode_menu_screen,
-		_1: {ctor: '[]'}
-	});
+var _user$project$GameLoop$playScreen = function (players) {
+	return A2(
+		_elm_lang$html$Html$div,
+		{ctor: '[]'},
+		{
+			ctor: '::',
+			_0: _elm_lang$html$Html$text(
+				_elm_lang$core$Basics$toString(players)),
+			_1: {ctor: '[]'}
+		});
+};
 var _user$project$GameLoop$view = function (model) {
 	return A2(
 		_elm_lang$html$Html$div,
@@ -14255,11 +14273,23 @@ var _user$project$GameLoop$view = function (model) {
 			_1: {ctor: '[]'}
 		});
 };
-var _user$project$GameLoop$GameLoop = function (a) {
-	return {currentView: a};
-};
+var _user$project$GameLoop$GameLoop = F2(
+	function (a, b) {
+		return {currentView: a, players: b};
+	});
+var _user$project$GameLoop$SetPlayersCvC = {ctor: 'SetPlayersCvC'};
+var _user$project$GameLoop$SetPlayersHvC = {ctor: 'SetPlayersHvC'};
+var _user$project$GameLoop$SetPlayersHvH = {ctor: 'SetPlayersHvH'};
+var _user$project$GameLoop$modeMenuScreen = A2(
+	_elm_lang$html$Html$div,
+	{ctor: '[]'},
+	{
+		ctor: '::',
+		_0: A3(_user$project$Views$mode_menu_screen, _user$project$GameLoop$SetPlayersHvH, _user$project$GameLoop$SetPlayersHvC, _user$project$GameLoop$SetPlayersCvC),
+		_1: {ctor: '[]'}
+	});
 var _user$project$GameLoop$SetMode = {ctor: 'SetMode'};
-var _user$project$GameLoop$viewWelcomeScreen = A2(
+var _user$project$GameLoop$welcomeScreen = A2(
 	_elm_lang$html$Html$div,
 	{ctor: '[]'},
 	{
@@ -14267,19 +14297,95 @@ var _user$project$GameLoop$viewWelcomeScreen = A2(
 		_0: _user$project$Views$welcome_screen(_user$project$GameLoop$SetMode),
 		_1: {ctor: '[]'}
 	});
-var _user$project$GameLoop$initialViewInGameLoop = {currentView: _user$project$GameLoop$viewWelcomeScreen};
+var _user$project$GameLoop$initialViewInGameLoop = {currentView: _user$project$GameLoop$welcomeScreen, players: _elm_lang$core$Maybe$Nothing};
 var _user$project$GameLoop$model = _user$project$GameLoop$initialViewInGameLoop;
 var _user$project$GameLoop$update = F2(
 	function (msg, model) {
 		var _p0 = msg;
-		if (_p0.ctor === 'BeginPlay') {
-			return _elm_lang$core$Native_Utils.update(
-				model,
-				{currentView: _user$project$GameLoop$viewWelcomeScreen});
-		} else {
-			return _elm_lang$core$Native_Utils.update(
-				model,
-				{currentView: _user$project$GameLoop$viewModeMenu});
+		switch (_p0.ctor) {
+			case 'BeginPlay':
+				return _elm_lang$core$Native_Utils.update(
+					model,
+					{currentView: _user$project$GameLoop$welcomeScreen});
+			case 'SetMode':
+				return _elm_lang$core$Native_Utils.update(
+					model,
+					{currentView: _user$project$GameLoop$modeMenuScreen});
+			case 'SetPlayersHvH':
+				return _elm_lang$core$Native_Utils.update(
+					model,
+					{
+						players: _elm_lang$core$Maybe$Just(
+							{
+								ctor: '::',
+								_0: 'Human',
+								_1: {
+									ctor: '::',
+									_0: 'Human',
+									_1: {ctor: '[]'}
+								}
+							}),
+						currentView: _user$project$GameLoop$playScreen(
+							{
+								ctor: '::',
+								_0: 'Human',
+								_1: {
+									ctor: '::',
+									_0: 'Human',
+									_1: {ctor: '[]'}
+								}
+							})
+					});
+			case 'SetPlayersHvC':
+				return _elm_lang$core$Native_Utils.update(
+					model,
+					{
+						players: _elm_lang$core$Maybe$Just(
+							{
+								ctor: '::',
+								_0: 'Human',
+								_1: {
+									ctor: '::',
+									_0: 'Computer',
+									_1: {ctor: '[]'}
+								}
+							}),
+						currentView: _user$project$GameLoop$playScreen(
+							{
+								ctor: '::',
+								_0: 'Human',
+								_1: {
+									ctor: '::',
+									_0: 'Computer',
+									_1: {ctor: '[]'}
+								}
+							})
+					});
+			default:
+				return _elm_lang$core$Native_Utils.update(
+					model,
+					{
+						players: _elm_lang$core$Maybe$Just(
+							{
+								ctor: '::',
+								_0: 'Computer',
+								_1: {
+									ctor: '::',
+									_0: 'Computer',
+									_1: {ctor: '[]'}
+								}
+							}),
+						currentView: _user$project$GameLoop$playScreen(
+							{
+								ctor: '::',
+								_0: 'Computer',
+								_1: {
+									ctor: '::',
+									_0: 'Computer',
+									_1: {ctor: '[]'}
+								}
+							})
+					});
 		}
 	});
 var _user$project$GameLoop$main = _elm_lang$html$Html$beginnerProgram(

@@ -30,7 +30,7 @@ welcome_screen actionOnClick =
         ]
 
 
-mode_menu_screen =
+mode_menu_screen humanVHumanAction humanVComputerAction computerVComputerAction =
     div []
         [ div
             [ class "w3-margin" ]
@@ -43,13 +43,19 @@ mode_menu_screen =
             [ div
                 [ class "w3-bar" ]
                 [ button
-                    [ class "w3-large w3-btn w3-ripple w3-orange" ]
+                    [ class "w3-large w3-btn w3-ripple w3-orange"
+                    , onClick (humanVHumanAction)
+                    ]
                     [ text "Human vs. Human" ]
                 , button
-                    [ class "w3-large w3-btn w3-ripple w3-orange" ]
+                    [ class "w3-large w3-btn w3-ripple w3-orange"
+                    , onClick (humanVComputerAction)
+                    ]
                     [ text "Human vs. Computer" ]
                 , button
-                    [ class "w3-large w3-btn w3-ripple w3-orange" ]
+                    [ class "w3-large w3-btn w3-ripple w3-orange"
+                    , onClick (computerVComputerAction)
+                    ]
                     [ text "Computer vs. Computer" ]
                 ]
             ]

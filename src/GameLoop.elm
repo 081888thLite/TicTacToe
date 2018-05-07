@@ -13,7 +13,9 @@ main =
 
 
 type alias GameLoop =
-    { currentView : Html Msg }
+    { currentView : Html Msg
+    , players : Maybe List String
+    }
 
 
 model =
@@ -21,34 +23,51 @@ model =
 
 
 initialViewInGameLoop =
-    { currentView = viewWelcomeScreen
+    { currentView = welcomeScreen
+    , players = Nothing
     }
 
 
 type Msg
     = BeginPlay
     | SetMode
+    | SetPlayersHvH
+    | SetPlayersHvC
+    | SetPlayersCvC
 
 
 update msg model =
     case msg of
         BeginPlay ->
-            { model | currentView = viewWelcomeScreen }
+            { model | currentView = welcomeScreen }
 
         SetMode ->
-            { model | currentView = viewModeMenu }
+            { model | currentView = modeMenuScreen }
+
+        SetPlayersHvH ->
+            { model | players = Just [ "Human", "Human" ], currentView = playScreen [ "Human", "Human" ] }
+
+        SetPlayersHvC ->
+            { model | players = Just [ "Human", "Computer" ], currentView = playScreen [ "Human", "Computer" ] }
+
+        SetPlayersCvC ->
+            { model | players = Just [ "Computer", "Computer" ], currentView = playScreen [ "Computer", "Computer" ] }
 
 
 view model =
     div [] [ model.currentView ]
 
 
-viewWelcomeScreen =
+welcomeScreen =
     div [] [ welcome_screen SetMode ]
 
 
-viewModeMenu =
-    div [] [ mode_menu_screen ]
+modeMenuScreen =
+    div [] [ mode_menu_screen SetPlayersHvH SetPlayersHvC SetPlayersCvC ]
+
+
+playScreen players =
+    div [] [ text (toString players) ]
 
 
 
