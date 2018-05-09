@@ -22,7 +22,12 @@ import Html.Attributes exposing (..)
 
 
 main =
-    beginnerProgram { model = model, view = view, update = update }
+    program
+        { init = GameLoop.init
+        , view = GameLoop.view
+        , update = GameLoop.update
+        , subscriptions = GameLoop.subscriptions
+        }
 
 
 
@@ -30,25 +35,11 @@ main =
 --    { players : List Player
 --    , board : Array String
 --    }
---type Player
---    = Human
---    | Computer
---type alias Human =
---    Player
---        { name : String
---        , piece : String
---        }
---type alias Computer =
---    Player
---        { name : String
---        , piece : String
---        , difficulty : String
---        }
 -- MODEL
 
 
 model =
-    GameLoop.model
+    GameLoop
 
 
 

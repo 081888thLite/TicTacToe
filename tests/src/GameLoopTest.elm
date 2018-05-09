@@ -35,8 +35,11 @@ gameLoopTest =
                     gameLoopAtStart =
                         GameLoop.initialViewInGameLoop
 
-                    gameLoop =
+                    returned =
                         update SetMode gameLoopAtStart
+
+                    ( gameLoop, command ) =
+                        returned
                 in
                     \() -> Expect.equal modeMenuScreen gameLoop.currentView
             , test "When the user hits the `Human Vs. Human` button the Players are set to Human Human." <|
@@ -67,10 +70,16 @@ gameLoopTest =
                     gameLoopWithPlayersSetHvC =
                         update SetPlayersHvC gameLoopAtStart
 
-                    gameLoop =
-                        update BeginTurns gameLoopWithPlayersSetHvC
+                    ( gameLoopAfterPlayersSet, commandRun ) =
+                        gameLoopWithPlayersSetHvC
+
+                    gameLoopPromptingForMove =
+                        update BeginTurns gameLoopAfterPlayersSet
+
+                    ( gameLoop, command ) =
+                        gameLoopPromptingForMove
                 in
-                    \() -> Expect.equal (playScreen "Human") gameLoop.currentView
+                    \() -> Expect.equal (playScreen "X" gameLoop.board) gameLoop.currentView
             , test "Begins the first turn with an empty board." <|
                 let
                     gameLoopAtStart =
@@ -79,8 +88,11 @@ gameLoopTest =
                     gameLoopWithPlayersSetHvC =
                         update SetPlayersHvC gameLoopAtStart
 
-                    gameLoop =
-                        update BeginTurns gameLoopWithPlayersSetHvC
+                    ( gameLoop, command ) =
+                        gameLoopWithPlayersSetHvC
+
+                    gameLoopAtFirstTurn =
+                        update BeginTurns gameLoop
 
                     newBoard =
                         List.repeat 9 ""
@@ -93,8 +105,11 @@ gameLoopTest =
                     gameLoopAtStart =
                         GameLoop.initialViewInGameLoop
 
-                    gameLoop =
+                    model =
                         update (TakeTurn 0 "X") gameLoopAtStart
+
+                    ( gameLoop, cmd ) =
+                        model
                 in
                     \() -> Expect.equal [ "X", "", "", "", "", "", "", "", "" ] gameLoop.board
             , test "begins the first turn with an empty board." <|
@@ -102,16 +117,40 @@ gameLoopTest =
                     gameLoopAtStart =
                         GameLoop.initialViewInGameLoop
 
-                    gameLoopWithPlayersSetHvC =
-                        update SetPlayersHvC gameLoopAtStart
-
-                    gameLoop =
-                        update BeginTurns gameLoopWithPlayersSetHvC
-
                     newBoard =
                         List.repeat 9 ""
                 in
-                    \() -> Expect.equal newBoard gameLoop.board
+                    \() -> Expect.equal newBoard gameLoopAtStart.board
+            , test "getPlayerInTurn returns Player2 when one move has been made" <|
+                let
+                    gameLoopAtStart =
+                        GameLoop.initialViewInGameLoop
+
+                    model =
+                        update (TakeTurn 0 "X") gameLoopAtStart
+
+                    ( gameLoop, cmd ) =
+                        model
+                in
+                    \() -> Expect.equal (getPlayerInTurn gameLoop) "O"
+            , test "getPlayerInTurn returns Player1 when two moves have been made" <|
+                let
+                    gameLoopAtStart =
+                        GameLoop.initialViewInGameLoop
+
+                    modelAfterOneMove =
+                        update (TakeTurn 0 "X") gameLoopAtStart
+
+                    ( gameLoopAfterFirstMove, cmd1 ) =
+                        modelAfterOneMove
+
+                    modelAfterTwoMoves =
+                        update (TakeTurn 8 "O") gameLoopAfterFirstMove
+
+                    ( gameLoop, cmd2 ) =
+                        modelAfterTwoMoves
+                in
+                    \() -> Expect.equal (getPlayerInTurn gameLoop) "X"
 
             --, test "When the playerInTurn is a Human a prompt for a move is displayed." <|
             --    \() ->

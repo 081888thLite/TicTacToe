@@ -6,27 +6,45 @@ import Array exposing (..)
 
 
 main =
-    beginnerProgram { model = model, view = view, update = update }
+    program
+        { init = init
+        , view = view
+        , update = update
+        , subscriptions = subscriptions
+        }
 
 
 
---Model
+--model
+
+
+type PlayerKind
+    = Human
+    | Computer
+
+
+type alias Player =
+    { name : String
+    , piece : String
+    , kind : PlayerKind
+    }
 
 
 type alias GameLoop =
     { currentView : Html Msg
-    , players : { player1 : String, player2 : String }
+    , players : { player1 : Player, player2 : Player }
     , board : List String
     }
 
 
-model =
-    initialViewInGameLoop
+init : ( GameLoop, Cmd Msg )
+init =
+    ( initialViewInGameLoop, Cmd.none )
 
 
 initialViewInGameLoop =
     { currentView = welcomeScreen
-    , players = { player1 = "Human", player2 = "Human" }
+    , players = { player1 = Player "Player1" "X" Human, player2 = Player "Player2" "O" Human }
     , board = List.repeat 9 ""
     }
 
@@ -45,28 +63,46 @@ type Msg
     | TakeTurn Int String
 
 
-update msg model =
+update : Msg -> GameLoop -> ( GameLoop, Cmd Msg )
+update msg gameLoop =
     case msg of
         BeginPlay ->
-            { model | currentView = welcomeScreen }
+            ( { gameLoop | currentView = welcomeScreen }, Cmd.none )
 
         SetMode ->
-            { model | currentView = modeMenuScreen }
+            ( { gameLoop | currentView = modeMenuScreen }
+            , Cmd.none
+            )
 
         SetPlayersHvH ->
-            { model | players = twoHumanPlayers, currentView = waitingToStartScreen }
+            ( { gameLoop | players = twoHumanPlayers, currentView = waitingToStartScreen }
+            , Cmd.none
+            )
 
         SetPlayersHvC ->
-            { model | players = mixedPlayers, currentView = waitingToStartScreen }
+            ( { gameLoop | players = mixedPlayers, currentView = waitingToStartScreen }
+            , Cmd.none
+            )
 
         SetPlayersCvC ->
-            { model | players = twoComputerPlayers, currentView = waitingToStartScreen }
+            ( { gameLoop | players = twoComputerPlayers, currentView = waitingToStartScreen }
+            , Cmd.none
+            )
 
         BeginTurns ->
-            { model | currentView = (playScreen model.players.player1 model.board) }
+            ( { gameLoop | currentView = (playScreen gameLoop.players.player1.piece gameLoop.board) }
+            , Cmd.none
+            )
 
         TakeTurn position piece ->
-            { model | board = (markBoard position piece model.board), currentView = playScreen model.players.player2 (markBoard position piece model.board) }
+            ( { gameLoop
+                | board = (markBoard position piece gameLoop.board)
+                , currentView =
+                    playScreen (getPlayerInTurn gameLoop) <|
+                        (markBoard position piece gameLoop.board)
+              }
+            , Cmd.none
+            )
 
 
 markBoard position piece board =
@@ -74,15 +110,23 @@ markBoard position piece board =
 
 
 twoHumanPlayers =
-    { player1 = "Human", player2 = "Human" }
+    { player1 = Player "Player1" "X" Human, player2 = Player "Player2" "O" Human }
 
 
 mixedPlayers =
-    { player1 = "Human", player2 = "Computer" }
+    { player1 = Player "Player1" "X" Human, player2 = Player "Player2" "O" Computer }
 
 
 twoComputerPlayers =
-    { player1 = "Computer", player2 = "Computer" }
+    { player1 = Player "Player1" "X" Computer, player2 = Player "Player2" "O" Computer }
+
+
+getPlayerInTurn : GameLoop -> String
+getPlayerInTurn gameLoop =
+    if (((List.filter (\cellValue -> (cellValue /= "")) gameLoop.board) |> List.length) % 2) == 0 then
+        gameLoop.players.player1.piece
+    else
+        gameLoop.players.player2.piece
 
 
 
@@ -109,13 +153,12 @@ playScreen playerInTurn currentBoard =
     div [] [ game_play_screen playerInTurn TakeTurn currentBoard ]
 
 
+subscriptions : GameLoop -> Sub Msg
+subscriptions model =
+    Sub.none
 
---"When a game begins the user is presented with the
---    welcome_view"
---2. 6:30 "When the user hits the "Set Mode" button they are
---    presented the mode_menu"
---3. 7:30 "When the user checks a box selecting the game mode the
---    players and strategies are set"
+
+
 --4. 8:30 "When the user hits the "Start Game" button a turn_loop
 --    is started in the desired mode with an empty board and
 --    player 1 in turn."

@@ -12475,7 +12475,7 @@ var _user$project$Views$game_play_screen = F3(
 												_1: {
 													ctor: '::',
 													_0: _elm_lang$html$Html_Events$onClick(
-														A2(actionToMarkCell, 0, 'X')),
+														A2(actionToMarkCell, 0, playerInTurn)),
 													_1: {ctor: '[]'}
 												}
 											}
@@ -12503,8 +12503,17 @@ var _user$project$Views$game_play_screen = F3(
 											_elm_lang$html$Html$div,
 											{
 												ctor: '::',
-												_0: _elm_lang$html$Html_Attributes$class('w3-button w3-container w3-cell w3-orange w3-border w3-hover-border-black'),
-												_1: {ctor: '[]'}
+												_0: _elm_lang$html$Html_Attributes$id('2'),
+												_1: {
+													ctor: '::',
+													_0: _elm_lang$html$Html_Attributes$class('w3-button w3-container w3-cell w3-orange w3-border w3-hover-border-black'),
+													_1: {
+														ctor: '::',
+														_0: _elm_lang$html$Html_Events$onClick(
+															A2(actionToMarkCell, 1, playerInTurn)),
+														_1: {ctor: '[]'}
+													}
+												}
 											},
 											{
 												ctor: '::',
@@ -12513,7 +12522,12 @@ var _user$project$Views$game_play_screen = F3(
 													{ctor: '[]'},
 													{
 														ctor: '::',
-														_0: _elm_lang$html$Html$text('Cell 2'),
+														_0: _elm_lang$html$Html$text(
+															_elm_lang$core$Basics$toString(
+																A2(
+																	_elm_lang$core$Array$get,
+																	1,
+																	_elm_lang$core$Array$fromList(currentBoard)))),
 														_1: {ctor: '[]'}
 													}),
 												_1: {ctor: '[]'}
@@ -12524,8 +12538,17 @@ var _user$project$Views$game_play_screen = F3(
 												_elm_lang$html$Html$div,
 												{
 													ctor: '::',
-													_0: _elm_lang$html$Html_Attributes$class('w3-button w3-container w3-cell w3-orange w3-border w3-hover-border-black'),
-													_1: {ctor: '[]'}
+													_0: _elm_lang$html$Html_Attributes$id('3'),
+													_1: {
+														ctor: '::',
+														_0: _elm_lang$html$Html_Attributes$class('w3-button w3-container w3-cell w3-orange w3-border w3-hover-border-black'),
+														_1: {
+															ctor: '::',
+															_0: _elm_lang$html$Html_Events$onClick(
+																A2(actionToMarkCell, 2, playerInTurn)),
+															_1: {ctor: '[]'}
+														}
+													}
 												},
 												{
 													ctor: '::',
@@ -12534,7 +12557,12 @@ var _user$project$Views$game_play_screen = F3(
 														{ctor: '[]'},
 														{
 															ctor: '::',
-															_0: _elm_lang$html$Html$text('Cell 3'),
+															_0: _elm_lang$html$Html$text(
+																_elm_lang$core$Basics$toString(
+																	A2(
+																		_elm_lang$core$Array$get,
+																		2,
+																		_elm_lang$core$Array$fromList(currentBoard)))),
 															_1: {ctor: '[]'}
 														}),
 													_1: {ctor: '[]'}
@@ -12940,6 +12968,9 @@ var _user$project$Views$welcome_screen = function (actionOnClick) {
 		});
 };
 
+var _user$project$GameLoop$subscriptions = function (model) {
+	return _elm_lang$core$Platform_Sub$none;
+};
 var _user$project$GameLoop$view = function (model) {
 	return A2(
 		_elm_lang$html$Html$div,
@@ -12950,9 +12981,20 @@ var _user$project$GameLoop$view = function (model) {
 			_1: {ctor: '[]'}
 		});
 };
-var _user$project$GameLoop$twoComputerPlayers = {player1: 'Computer', player2: 'Computer'};
-var _user$project$GameLoop$mixedPlayers = {player1: 'Human', player2: 'Computer'};
-var _user$project$GameLoop$twoHumanPlayers = {player1: 'Human', player2: 'Human'};
+var _user$project$GameLoop$getPlayerInTurn = function (gameLoop) {
+	return _elm_lang$core$Native_Utils.eq(
+		A2(
+			_elm_lang$core$Basics_ops['%'],
+			_elm_lang$core$List$length(
+				A2(
+					_elm_lang$core$List$filter,
+					function (cellValue) {
+						return !_elm_lang$core$Native_Utils.eq(cellValue, '');
+					},
+					gameLoop.board)),
+			2),
+		0) ? gameLoop.players.player1.piece : gameLoop.players.player2.piece;
+};
 var _user$project$GameLoop$markBoard = F3(
 	function (position, piece, board) {
 		return _elm_lang$core$Array$toList(
@@ -12962,10 +13004,28 @@ var _user$project$GameLoop$markBoard = F3(
 				piece,
 				_elm_lang$core$Array$fromList(board)));
 	});
+var _user$project$GameLoop$Player = F3(
+	function (a, b, c) {
+		return {name: a, piece: b, kind: c};
+	});
 var _user$project$GameLoop$GameLoop = F3(
 	function (a, b, c) {
 		return {currentView: a, players: b, board: c};
 	});
+var _user$project$GameLoop$Computer = {ctor: 'Computer'};
+var _user$project$GameLoop$twoComputerPlayers = {
+	player1: A3(_user$project$GameLoop$Player, 'Player1', 'X', _user$project$GameLoop$Computer),
+	player2: A3(_user$project$GameLoop$Player, 'Player2', 'O', _user$project$GameLoop$Computer)
+};
+var _user$project$GameLoop$Human = {ctor: 'Human'};
+var _user$project$GameLoop$twoHumanPlayers = {
+	player1: A3(_user$project$GameLoop$Player, 'Player1', 'X', _user$project$GameLoop$Human),
+	player2: A3(_user$project$GameLoop$Player, 'Player2', 'O', _user$project$GameLoop$Human)
+};
+var _user$project$GameLoop$mixedPlayers = {
+	player1: A3(_user$project$GameLoop$Player, 'Player1', 'X', _user$project$GameLoop$Human),
+	player2: A3(_user$project$GameLoop$Player, 'Player2', 'O', _user$project$GameLoop$Computer)
+};
 var _user$project$GameLoop$TakeTurn = F2(
 	function (a, b) {
 		return {ctor: 'TakeTurn', _0: a, _1: b};
@@ -13012,64 +13072,95 @@ var _user$project$GameLoop$welcomeScreen = A2(
 	});
 var _user$project$GameLoop$initialViewInGameLoop = {
 	currentView: _user$project$GameLoop$welcomeScreen,
-	players: {player1: 'Human', player2: 'Human'},
+	players: {
+		player1: A3(_user$project$GameLoop$Player, 'Player1', 'X', _user$project$GameLoop$Human),
+		player2: A3(_user$project$GameLoop$Player, 'Player2', 'O', _user$project$GameLoop$Human)
+	},
 	board: A2(_elm_lang$core$List$repeat, 9, '')
 };
-var _user$project$GameLoop$model = _user$project$GameLoop$initialViewInGameLoop;
+var _user$project$GameLoop$init = {ctor: '_Tuple2', _0: _user$project$GameLoop$initialViewInGameLoop, _1: _elm_lang$core$Platform_Cmd$none};
 var _user$project$GameLoop$update = F2(
-	function (msg, model) {
+	function (msg, gameLoop) {
 		var _p0 = msg;
 		switch (_p0.ctor) {
 			case 'BeginPlay':
-				return _elm_lang$core$Native_Utils.update(
-					model,
-					{currentView: _user$project$GameLoop$welcomeScreen});
+				return {
+					ctor: '_Tuple2',
+					_0: _elm_lang$core$Native_Utils.update(
+						gameLoop,
+						{currentView: _user$project$GameLoop$welcomeScreen}),
+					_1: _elm_lang$core$Platform_Cmd$none
+				};
 			case 'SetMode':
-				return _elm_lang$core$Native_Utils.update(
-					model,
-					{currentView: _user$project$GameLoop$modeMenuScreen});
+				return {
+					ctor: '_Tuple2',
+					_0: _elm_lang$core$Native_Utils.update(
+						gameLoop,
+						{currentView: _user$project$GameLoop$modeMenuScreen}),
+					_1: _elm_lang$core$Platform_Cmd$none
+				};
 			case 'SetPlayersHvH':
-				return _elm_lang$core$Native_Utils.update(
-					model,
-					{players: _user$project$GameLoop$twoHumanPlayers, currentView: _user$project$GameLoop$waitingToStartScreen});
+				return {
+					ctor: '_Tuple2',
+					_0: _elm_lang$core$Native_Utils.update(
+						gameLoop,
+						{players: _user$project$GameLoop$twoHumanPlayers, currentView: _user$project$GameLoop$waitingToStartScreen}),
+					_1: _elm_lang$core$Platform_Cmd$none
+				};
 			case 'SetPlayersHvC':
-				return _elm_lang$core$Native_Utils.update(
-					model,
-					{players: _user$project$GameLoop$mixedPlayers, currentView: _user$project$GameLoop$waitingToStartScreen});
+				return {
+					ctor: '_Tuple2',
+					_0: _elm_lang$core$Native_Utils.update(
+						gameLoop,
+						{players: _user$project$GameLoop$mixedPlayers, currentView: _user$project$GameLoop$waitingToStartScreen}),
+					_1: _elm_lang$core$Platform_Cmd$none
+				};
 			case 'SetPlayersCvC':
-				return _elm_lang$core$Native_Utils.update(
-					model,
-					{players: _user$project$GameLoop$twoComputerPlayers, currentView: _user$project$GameLoop$waitingToStartScreen});
+				return {
+					ctor: '_Tuple2',
+					_0: _elm_lang$core$Native_Utils.update(
+						gameLoop,
+						{players: _user$project$GameLoop$twoComputerPlayers, currentView: _user$project$GameLoop$waitingToStartScreen}),
+					_1: _elm_lang$core$Platform_Cmd$none
+				};
 			case 'BeginTurns':
-				return _elm_lang$core$Native_Utils.update(
-					model,
-					{
-						currentView: A2(_user$project$GameLoop$playScreen, model.players.player1, model.board)
-					});
+				return {
+					ctor: '_Tuple2',
+					_0: _elm_lang$core$Native_Utils.update(
+						gameLoop,
+						{
+							currentView: A2(_user$project$GameLoop$playScreen, gameLoop.players.player1.piece, gameLoop.board)
+						}),
+					_1: _elm_lang$core$Platform_Cmd$none
+				};
 			default:
 				var _p2 = _p0._0;
 				var _p1 = _p0._1;
-				return _elm_lang$core$Native_Utils.update(
-					model,
-					{
-						board: A3(_user$project$GameLoop$markBoard, _p2, _p1, model.board),
-						currentView: A2(
-							_user$project$GameLoop$playScreen,
-							model.players.player2,
-							A3(_user$project$GameLoop$markBoard, _p2, _p1, model.board))
-					});
+				return {
+					ctor: '_Tuple2',
+					_0: _elm_lang$core$Native_Utils.update(
+						gameLoop,
+						{
+							board: A3(_user$project$GameLoop$markBoard, _p2, _p1, gameLoop.board),
+							currentView: A2(
+								_user$project$GameLoop$playScreen,
+								_user$project$GameLoop$getPlayerInTurn(gameLoop),
+								A3(_user$project$GameLoop$markBoard, _p2, _p1, gameLoop.board))
+						}),
+					_1: _elm_lang$core$Platform_Cmd$none
+				};
 		}
 	});
-var _user$project$GameLoop$main = _elm_lang$html$Html$beginnerProgram(
-	{model: _user$project$GameLoop$model, view: _user$project$GameLoop$view, update: _user$project$GameLoop$update})();
+var _user$project$GameLoop$main = _elm_lang$html$Html$program(
+	{init: _user$project$GameLoop$init, view: _user$project$GameLoop$view, update: _user$project$GameLoop$update, subscriptions: _user$project$GameLoop$subscriptions})();
 var _user$project$GameLoop$BeginPlay = {ctor: 'BeginPlay'};
 
 var _user$project$Prompt$toSetUpPlayers = 'Set the game mode by choosing each player\'s type:';
 var _user$project$Prompt$String = {ctor: 'String'};
 
-var _user$project$Main$model = _user$project$GameLoop$model;
-var _user$project$Main$main = _elm_lang$html$Html$beginnerProgram(
-	{model: _user$project$Main$model, view: _user$project$GameLoop$view, update: _user$project$GameLoop$update})();
+var _user$project$Main$model = _user$project$GameLoop$GameLoop;
+var _user$project$Main$main = _elm_lang$html$Html$program(
+	{init: _user$project$GameLoop$init, view: _user$project$GameLoop$view, update: _user$project$GameLoop$update, subscriptions: _user$project$GameLoop$subscriptions})();
 
 var Elm = {};
 Elm['Main'] = Elm['Main'] || {};

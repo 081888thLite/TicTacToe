@@ -85,22 +85,31 @@ game_play_screen playerInTurn actionToMarkCell currentBoard =
             [ div
                 [ class "w3-cell-row" ]
                 [ div
-                    [ id "1", class "w3-button w3-container w3-cell w3-orange w3-border w3-hover-border-black", onClick (actionToMarkCell 0 "X") ]
+                    [ id "1"
+                    , class "w3-button w3-container w3-cell w3-orange w3-border w3-hover-border-black"
+                    , onClick (actionToMarkCell 0 playerInTurn)
+                    ]
                     [ p
                         []
                         [ text (toString ((Array.get 0 (currentBoard |> Array.fromList)))) ]
                     ]
                 , div
-                    [ class "w3-button w3-container w3-cell w3-orange w3-border w3-hover-border-black" ]
+                    [ id "2"
+                    , class "w3-button w3-container w3-cell w3-orange w3-border w3-hover-border-black"
+                    , onClick (actionToMarkCell 1 playerInTurn)
+                    ]
                     [ p
                         []
-                        [ text "Cell 2" ]
+                        [ text (toString ((Array.get 1 (currentBoard |> Array.fromList)))) ]
                     ]
                 , div
-                    [ class "w3-button w3-container w3-cell w3-orange w3-border w3-hover-border-black" ]
+                    [ id "3"
+                    , class "w3-button w3-container w3-cell w3-orange w3-border w3-hover-border-black"
+                    , onClick (actionToMarkCell 2 playerInTurn)
+                    ]
                     [ p
                         []
-                        [ text "Cell 3" ]
+                        [ text (toString ((Array.get 2 (currentBoard |> Array.fromList)))) ]
                     ]
                 ]
             , div
