@@ -12416,6 +12416,137 @@ var _elm_lang$html$Html_Attributes$classList = function (list) {
 };
 var _elm_lang$html$Html_Attributes$style = _elm_lang$virtual_dom$VirtualDom$style;
 
+var _elm_lang$core$Set$foldr = F3(
+	function (f, b, _p0) {
+		var _p1 = _p0;
+		return A3(
+			_elm_lang$core$Dict$foldr,
+			F3(
+				function (k, _p2, b) {
+					return A2(f, k, b);
+				}),
+			b,
+			_p1._0);
+	});
+var _elm_lang$core$Set$foldl = F3(
+	function (f, b, _p3) {
+		var _p4 = _p3;
+		return A3(
+			_elm_lang$core$Dict$foldl,
+			F3(
+				function (k, _p5, b) {
+					return A2(f, k, b);
+				}),
+			b,
+			_p4._0);
+	});
+var _elm_lang$core$Set$toList = function (_p6) {
+	var _p7 = _p6;
+	return _elm_lang$core$Dict$keys(_p7._0);
+};
+var _elm_lang$core$Set$size = function (_p8) {
+	var _p9 = _p8;
+	return _elm_lang$core$Dict$size(_p9._0);
+};
+var _elm_lang$core$Set$member = F2(
+	function (k, _p10) {
+		var _p11 = _p10;
+		return A2(_elm_lang$core$Dict$member, k, _p11._0);
+	});
+var _elm_lang$core$Set$isEmpty = function (_p12) {
+	var _p13 = _p12;
+	return _elm_lang$core$Dict$isEmpty(_p13._0);
+};
+var _elm_lang$core$Set$Set_elm_builtin = function (a) {
+	return {ctor: 'Set_elm_builtin', _0: a};
+};
+var _elm_lang$core$Set$empty = _elm_lang$core$Set$Set_elm_builtin(_elm_lang$core$Dict$empty);
+var _elm_lang$core$Set$singleton = function (k) {
+	return _elm_lang$core$Set$Set_elm_builtin(
+		A2(
+			_elm_lang$core$Dict$singleton,
+			k,
+			{ctor: '_Tuple0'}));
+};
+var _elm_lang$core$Set$insert = F2(
+	function (k, _p14) {
+		var _p15 = _p14;
+		return _elm_lang$core$Set$Set_elm_builtin(
+			A3(
+				_elm_lang$core$Dict$insert,
+				k,
+				{ctor: '_Tuple0'},
+				_p15._0));
+	});
+var _elm_lang$core$Set$fromList = function (xs) {
+	return A3(_elm_lang$core$List$foldl, _elm_lang$core$Set$insert, _elm_lang$core$Set$empty, xs);
+};
+var _elm_lang$core$Set$map = F2(
+	function (f, s) {
+		return _elm_lang$core$Set$fromList(
+			A2(
+				_elm_lang$core$List$map,
+				f,
+				_elm_lang$core$Set$toList(s)));
+	});
+var _elm_lang$core$Set$remove = F2(
+	function (k, _p16) {
+		var _p17 = _p16;
+		return _elm_lang$core$Set$Set_elm_builtin(
+			A2(_elm_lang$core$Dict$remove, k, _p17._0));
+	});
+var _elm_lang$core$Set$union = F2(
+	function (_p19, _p18) {
+		var _p20 = _p19;
+		var _p21 = _p18;
+		return _elm_lang$core$Set$Set_elm_builtin(
+			A2(_elm_lang$core$Dict$union, _p20._0, _p21._0));
+	});
+var _elm_lang$core$Set$intersect = F2(
+	function (_p23, _p22) {
+		var _p24 = _p23;
+		var _p25 = _p22;
+		return _elm_lang$core$Set$Set_elm_builtin(
+			A2(_elm_lang$core$Dict$intersect, _p24._0, _p25._0));
+	});
+var _elm_lang$core$Set$diff = F2(
+	function (_p27, _p26) {
+		var _p28 = _p27;
+		var _p29 = _p26;
+		return _elm_lang$core$Set$Set_elm_builtin(
+			A2(_elm_lang$core$Dict$diff, _p28._0, _p29._0));
+	});
+var _elm_lang$core$Set$filter = F2(
+	function (p, _p30) {
+		var _p31 = _p30;
+		return _elm_lang$core$Set$Set_elm_builtin(
+			A2(
+				_elm_lang$core$Dict$filter,
+				F2(
+					function (k, _p32) {
+						return p(k);
+					}),
+				_p31._0));
+	});
+var _elm_lang$core$Set$partition = F2(
+	function (p, _p33) {
+		var _p34 = _p33;
+		var _p35 = A2(
+			_elm_lang$core$Dict$partition,
+			F2(
+				function (k, _p36) {
+					return p(k);
+				}),
+			_p34._0);
+		var p1 = _p35._0;
+		var p2 = _p35._1;
+		return {
+			ctor: '_Tuple2',
+			_0: _elm_lang$core$Set$Set_elm_builtin(p1),
+			_1: _elm_lang$core$Set$Set_elm_builtin(p2)
+		};
+	});
+
 var _user$project$Views$wait_for_computer = function (playerInTurn) {
 	return A2(_elm_lang$core$Basics_ops['++'], playerInTurn, ' is thinking...');
 };
@@ -12425,6 +12556,15 @@ var _user$project$Views$prompt_for_move = function (playerInTurn) {
 var _user$project$Views$display_prompt = function (playerInTurn) {
 	return _elm_lang$core$Native_Utils.eq(playerInTurn, 'Human') ? _user$project$Views$prompt_for_move(playerInTurn) : _user$project$Views$wait_for_computer(playerInTurn);
 };
+var _user$project$Views$makeDisplayable = function (justElement) {
+	var _p0 = justElement;
+	if (_p0.ctor === 'Just') {
+		var _p1 = _p0._0;
+		return _elm_lang$core$Native_Utils.eq(_p1, '') ? '_' : _p1;
+	} else {
+		return '';
+	}
+};
 var _user$project$Views$game_play_screen = F3(
 	function (playerInTurn, actionToMarkCell, currentBoard) {
 		return A2(
@@ -12433,10 +12573,10 @@ var _user$project$Views$game_play_screen = F3(
 			{
 				ctor: '::',
 				_0: A2(
-					_elm_lang$html$Html$p,
+					_elm_lang$html$Html$div,
 					{
 						ctor: '::',
-						_0: _elm_lang$html$Html_Attributes$class('w3-display-topmiddle w3-jumbo'),
+						_0: _elm_lang$html$Html_Attributes$class('w3-display-topmiddle w3-jumbo w3-margin'),
 						_1: {ctor: '[]'}
 					},
 					{
@@ -12474,9 +12614,18 @@ var _user$project$Views$game_play_screen = F3(
 												_0: _elm_lang$html$Html_Attributes$class('w3-button w3-container w3-cell w3-orange w3-border w3-hover-border-black'),
 												_1: {
 													ctor: '::',
-													_0: _elm_lang$html$Html_Events$onClick(
-														A2(actionToMarkCell, 0, playerInTurn)),
-													_1: {ctor: '[]'}
+													_0: _elm_lang$html$Html_Attributes$style(
+														{
+															ctor: '::',
+															_0: {ctor: '_Tuple2', _0: 'width', _1: '33%'},
+															_1: {ctor: '[]'}
+														}),
+													_1: {
+														ctor: '::',
+														_0: _elm_lang$html$Html_Events$onClick(
+															A2(actionToMarkCell, 0, playerInTurn)),
+														_1: {ctor: '[]'}
+													}
 												}
 											}
 										},
@@ -12488,7 +12637,7 @@ var _user$project$Views$game_play_screen = F3(
 												{
 													ctor: '::',
 													_0: _elm_lang$html$Html$text(
-														_elm_lang$core$Basics$toString(
+														_user$project$Views$makeDisplayable(
 															A2(
 																_elm_lang$core$Array$get,
 																0,
@@ -12509,9 +12658,18 @@ var _user$project$Views$game_play_screen = F3(
 													_0: _elm_lang$html$Html_Attributes$class('w3-button w3-container w3-cell w3-orange w3-border w3-hover-border-black'),
 													_1: {
 														ctor: '::',
-														_0: _elm_lang$html$Html_Events$onClick(
-															A2(actionToMarkCell, 1, playerInTurn)),
-														_1: {ctor: '[]'}
+														_0: _elm_lang$html$Html_Attributes$style(
+															{
+																ctor: '::',
+																_0: {ctor: '_Tuple2', _0: 'width', _1: '33%'},
+																_1: {ctor: '[]'}
+															}),
+														_1: {
+															ctor: '::',
+															_0: _elm_lang$html$Html_Events$onClick(
+																A2(actionToMarkCell, 1, playerInTurn)),
+															_1: {ctor: '[]'}
+														}
 													}
 												}
 											},
@@ -12523,7 +12681,7 @@ var _user$project$Views$game_play_screen = F3(
 													{
 														ctor: '::',
 														_0: _elm_lang$html$Html$text(
-															_elm_lang$core$Basics$toString(
+															_user$project$Views$makeDisplayable(
 																A2(
 																	_elm_lang$core$Array$get,
 																	1,
@@ -12544,9 +12702,18 @@ var _user$project$Views$game_play_screen = F3(
 														_0: _elm_lang$html$Html_Attributes$class('w3-button w3-container w3-cell w3-orange w3-border w3-hover-border-black'),
 														_1: {
 															ctor: '::',
-															_0: _elm_lang$html$Html_Events$onClick(
-																A2(actionToMarkCell, 2, playerInTurn)),
-															_1: {ctor: '[]'}
+															_0: _elm_lang$html$Html_Attributes$style(
+																{
+																	ctor: '::',
+																	_0: {ctor: '_Tuple2', _0: 'width', _1: '33%'},
+																	_1: {ctor: '[]'}
+																}),
+															_1: {
+																ctor: '::',
+																_0: _elm_lang$html$Html_Events$onClick(
+																	A2(actionToMarkCell, 2, playerInTurn)),
+																_1: {ctor: '[]'}
+															}
 														}
 													}
 												},
@@ -12558,7 +12725,7 @@ var _user$project$Views$game_play_screen = F3(
 														{
 															ctor: '::',
 															_0: _elm_lang$html$Html$text(
-																_elm_lang$core$Basics$toString(
+																_user$project$Views$makeDisplayable(
 																	A2(
 																		_elm_lang$core$Array$get,
 																		2,
@@ -12586,8 +12753,26 @@ var _user$project$Views$game_play_screen = F3(
 											_elm_lang$html$Html$div,
 											{
 												ctor: '::',
-												_0: _elm_lang$html$Html_Attributes$class('w3-button w3-container w3-cell w3-orange w3-border w3-hover-border-black'),
-												_1: {ctor: '[]'}
+												_0: _elm_lang$html$Html_Attributes$id('4'),
+												_1: {
+													ctor: '::',
+													_0: _elm_lang$html$Html_Attributes$class('w3-button w3-container w3-cell w3-orange w3-border w3-hover-border-black'),
+													_1: {
+														ctor: '::',
+														_0: _elm_lang$html$Html_Attributes$style(
+															{
+																ctor: '::',
+																_0: {ctor: '_Tuple2', _0: 'width', _1: '33%'},
+																_1: {ctor: '[]'}
+															}),
+														_1: {
+															ctor: '::',
+															_0: _elm_lang$html$Html_Events$onClick(
+																A2(actionToMarkCell, 3, playerInTurn)),
+															_1: {ctor: '[]'}
+														}
+													}
+												}
 											},
 											{
 												ctor: '::',
@@ -12596,7 +12781,12 @@ var _user$project$Views$game_play_screen = F3(
 													{ctor: '[]'},
 													{
 														ctor: '::',
-														_0: _elm_lang$html$Html$text('Cell 4'),
+														_0: _elm_lang$html$Html$text(
+															_user$project$Views$makeDisplayable(
+																A2(
+																	_elm_lang$core$Array$get,
+																	3,
+																	_elm_lang$core$Array$fromList(currentBoard)))),
 														_1: {ctor: '[]'}
 													}),
 												_1: {ctor: '[]'}
@@ -12607,8 +12797,26 @@ var _user$project$Views$game_play_screen = F3(
 												_elm_lang$html$Html$div,
 												{
 													ctor: '::',
-													_0: _elm_lang$html$Html_Attributes$class('w3-button w3-container w3-cell w3-orange w3-border w3-hover-border-black'),
-													_1: {ctor: '[]'}
+													_0: _elm_lang$html$Html_Attributes$id('5'),
+													_1: {
+														ctor: '::',
+														_0: _elm_lang$html$Html_Attributes$class('w3-button w3-container w3-cell w3-orange w3-border w3-hover-border-black'),
+														_1: {
+															ctor: '::',
+															_0: _elm_lang$html$Html_Attributes$style(
+																{
+																	ctor: '::',
+																	_0: {ctor: '_Tuple2', _0: 'width', _1: '33%'},
+																	_1: {ctor: '[]'}
+																}),
+															_1: {
+																ctor: '::',
+																_0: _elm_lang$html$Html_Events$onClick(
+																	A2(actionToMarkCell, 4, playerInTurn)),
+																_1: {ctor: '[]'}
+															}
+														}
+													}
 												},
 												{
 													ctor: '::',
@@ -12617,7 +12825,12 @@ var _user$project$Views$game_play_screen = F3(
 														{ctor: '[]'},
 														{
 															ctor: '::',
-															_0: _elm_lang$html$Html$text('Cell 5'),
+															_0: _elm_lang$html$Html$text(
+																_user$project$Views$makeDisplayable(
+																	A2(
+																		_elm_lang$core$Array$get,
+																		4,
+																		_elm_lang$core$Array$fromList(currentBoard)))),
 															_1: {ctor: '[]'}
 														}),
 													_1: {ctor: '[]'}
@@ -12628,8 +12841,26 @@ var _user$project$Views$game_play_screen = F3(
 													_elm_lang$html$Html$div,
 													{
 														ctor: '::',
-														_0: _elm_lang$html$Html_Attributes$class('w3-button w3-container w3-cell w3-orange w3-border w3-hover-border-black'),
-														_1: {ctor: '[]'}
+														_0: _elm_lang$html$Html_Attributes$id('6'),
+														_1: {
+															ctor: '::',
+															_0: _elm_lang$html$Html_Attributes$class('w3-button w3-container w3-cell w3-orange w3-border w3-hover-border-black'),
+															_1: {
+																ctor: '::',
+																_0: _elm_lang$html$Html_Attributes$style(
+																	{
+																		ctor: '::',
+																		_0: {ctor: '_Tuple2', _0: 'width', _1: '33%'},
+																		_1: {ctor: '[]'}
+																	}),
+																_1: {
+																	ctor: '::',
+																	_0: _elm_lang$html$Html_Events$onClick(
+																		A2(actionToMarkCell, 5, playerInTurn)),
+																	_1: {ctor: '[]'}
+																}
+															}
+														}
 													},
 													{
 														ctor: '::',
@@ -12638,7 +12869,12 @@ var _user$project$Views$game_play_screen = F3(
 															{ctor: '[]'},
 															{
 																ctor: '::',
-																_0: _elm_lang$html$Html$text('Cell 6'),
+																_0: _elm_lang$html$Html$text(
+																	_user$project$Views$makeDisplayable(
+																		A2(
+																			_elm_lang$core$Array$get,
+																			5,
+																			_elm_lang$core$Array$fromList(currentBoard)))),
 																_1: {ctor: '[]'}
 															}),
 														_1: {ctor: '[]'}
@@ -12662,8 +12898,26 @@ var _user$project$Views$game_play_screen = F3(
 												_elm_lang$html$Html$div,
 												{
 													ctor: '::',
-													_0: _elm_lang$html$Html_Attributes$class('w3-button w3-container w3-cell w3-orange w3-border w3-hover-border-black'),
-													_1: {ctor: '[]'}
+													_0: _elm_lang$html$Html_Attributes$id('7'),
+													_1: {
+														ctor: '::',
+														_0: _elm_lang$html$Html_Attributes$class('w3-button w3-container w3-cell w3-orange w3-border w3-hover-border-black'),
+														_1: {
+															ctor: '::',
+															_0: _elm_lang$html$Html_Attributes$style(
+																{
+																	ctor: '::',
+																	_0: {ctor: '_Tuple2', _0: 'width', _1: '33%'},
+																	_1: {ctor: '[]'}
+																}),
+															_1: {
+																ctor: '::',
+																_0: _elm_lang$html$Html_Events$onClick(
+																	A2(actionToMarkCell, 6, playerInTurn)),
+																_1: {ctor: '[]'}
+															}
+														}
+													}
 												},
 												{
 													ctor: '::',
@@ -12672,7 +12926,12 @@ var _user$project$Views$game_play_screen = F3(
 														{ctor: '[]'},
 														{
 															ctor: '::',
-															_0: _elm_lang$html$Html$text('Cell 7'),
+															_0: _elm_lang$html$Html$text(
+																_user$project$Views$makeDisplayable(
+																	A2(
+																		_elm_lang$core$Array$get,
+																		6,
+																		_elm_lang$core$Array$fromList(currentBoard)))),
 															_1: {ctor: '[]'}
 														}),
 													_1: {ctor: '[]'}
@@ -12683,8 +12942,26 @@ var _user$project$Views$game_play_screen = F3(
 													_elm_lang$html$Html$div,
 													{
 														ctor: '::',
-														_0: _elm_lang$html$Html_Attributes$class('w3-button w3-container w3-cell w3-orange w3-border w3-hover-border-black'),
-														_1: {ctor: '[]'}
+														_0: _elm_lang$html$Html_Attributes$id('8'),
+														_1: {
+															ctor: '::',
+															_0: _elm_lang$html$Html_Attributes$class('w3-button w3-container w3-cell w3-orange w3-border w3-hover-border-black'),
+															_1: {
+																ctor: '::',
+																_0: _elm_lang$html$Html_Attributes$style(
+																	{
+																		ctor: '::',
+																		_0: {ctor: '_Tuple2', _0: 'width', _1: '33%'},
+																		_1: {ctor: '[]'}
+																	}),
+																_1: {
+																	ctor: '::',
+																	_0: _elm_lang$html$Html_Events$onClick(
+																		A2(actionToMarkCell, 7, playerInTurn)),
+																	_1: {ctor: '[]'}
+																}
+															}
+														}
 													},
 													{
 														ctor: '::',
@@ -12693,7 +12970,12 @@ var _user$project$Views$game_play_screen = F3(
 															{ctor: '[]'},
 															{
 																ctor: '::',
-																_0: _elm_lang$html$Html$text('Cell 8'),
+																_0: _elm_lang$html$Html$text(
+																	_user$project$Views$makeDisplayable(
+																		A2(
+																			_elm_lang$core$Array$get,
+																			7,
+																			_elm_lang$core$Array$fromList(currentBoard)))),
 																_1: {ctor: '[]'}
 															}),
 														_1: {ctor: '[]'}
@@ -12704,8 +12986,26 @@ var _user$project$Views$game_play_screen = F3(
 														_elm_lang$html$Html$div,
 														{
 															ctor: '::',
-															_0: _elm_lang$html$Html_Attributes$class('w3-button w3-container w3-cell w3-orange w3-border w3-hover-border-black'),
-															_1: {ctor: '[]'}
+															_0: _elm_lang$html$Html_Attributes$id('9'),
+															_1: {
+																ctor: '::',
+																_0: _elm_lang$html$Html_Attributes$class('w3-button w3-container w3-cell w3-orange w3-border w3-hover-border-black'),
+																_1: {
+																	ctor: '::',
+																	_0: _elm_lang$html$Html_Attributes$style(
+																		{
+																			ctor: '::',
+																			_0: {ctor: '_Tuple2', _0: 'width', _1: '33%'},
+																			_1: {ctor: '[]'}
+																		}),
+																	_1: {
+																		ctor: '::',
+																		_0: _elm_lang$html$Html_Events$onClick(
+																			A2(actionToMarkCell, 8, playerInTurn)),
+																		_1: {ctor: '[]'}
+																	}
+																}
+															}
 														},
 														{
 															ctor: '::',
@@ -12714,7 +13014,12 @@ var _user$project$Views$game_play_screen = F3(
 																{ctor: '[]'},
 																{
 																	ctor: '::',
-																	_0: _elm_lang$html$Html$text('Cell 9'),
+																	_0: _elm_lang$html$Html$text(
+																		_user$project$Views$makeDisplayable(
+																			A2(
+																				_elm_lang$core$Array$get,
+																				8,
+																				_elm_lang$core$Array$fromList(currentBoard)))),
 																	_1: {ctor: '[]'}
 																}),
 															_1: {ctor: '[]'}
@@ -12971,6 +13276,17 @@ var _user$project$Views$welcome_screen = function (actionOnClick) {
 var _user$project$GameLoop$subscriptions = function (model) {
 	return _elm_lang$core$Platform_Sub$none;
 };
+var _user$project$GameLoop$playScreen = F3(
+	function (playerInTurn, actionOnClick, currentBoard) {
+		return A2(
+			_elm_lang$html$Html$div,
+			{ctor: '[]'},
+			{
+				ctor: '::',
+				_0: A3(_user$project$Views$game_play_screen, playerInTurn, actionOnClick, currentBoard),
+				_1: {ctor: '[]'}
+			});
+	});
 var _user$project$GameLoop$view = function (model) {
 	return A2(
 		_elm_lang$html$Html$div,
@@ -13004,13 +13320,238 @@ var _user$project$GameLoop$markBoard = F3(
 				piece,
 				_elm_lang$core$Array$fromList(board)));
 	});
+var _user$project$GameLoop$justValue = function (justElement) {
+	var _p0 = justElement;
+	if (_p0.ctor === 'Just') {
+		return _p0._0;
+	} else {
+		return '';
+	}
+};
+var _user$project$GameLoop$uniqueHelp = F2(
+	function (existing, remaining) {
+		uniqueHelp:
+		while (true) {
+			var _p1 = remaining;
+			if (_p1.ctor === '[]') {
+				return {ctor: '[]'};
+			} else {
+				var _p3 = _p1._1;
+				var _p2 = _p1._0;
+				if (A2(_elm_lang$core$Set$member, _p2, existing)) {
+					var _v2 = existing,
+						_v3 = _p3;
+					existing = _v2;
+					remaining = _v3;
+					continue uniqueHelp;
+				} else {
+					return {
+						ctor: '::',
+						_0: _p2,
+						_1: A2(
+							_user$project$GameLoop$uniqueHelp,
+							A2(_elm_lang$core$Set$insert, _p2, existing),
+							_p3)
+					};
+				}
+			}
+		}
+	});
+var _user$project$GameLoop$unique = function (list) {
+	return A2(_user$project$GameLoop$uniqueHelp, _elm_lang$core$Set$empty, list);
+};
+var _user$project$GameLoop$getAt = F2(
+	function (xs, index) {
+		return _elm_lang$core$List$head(
+			A2(_elm_lang$core$List$drop, index, xs));
+	});
+var _user$project$GameLoop$isBoardWon = function (board) {
+	var winningCombos = {
+		ctor: '::',
+		_0: {
+			ctor: '::',
+			_0: _user$project$GameLoop$justValue(
+				A2(_user$project$GameLoop$getAt, board, 0)),
+			_1: {
+				ctor: '::',
+				_0: _user$project$GameLoop$justValue(
+					A2(_user$project$GameLoop$getAt, board, 1)),
+				_1: {
+					ctor: '::',
+					_0: _user$project$GameLoop$justValue(
+						A2(_user$project$GameLoop$getAt, board, 2)),
+					_1: {ctor: '[]'}
+				}
+			}
+		},
+		_1: {
+			ctor: '::',
+			_0: {
+				ctor: '::',
+				_0: _user$project$GameLoop$justValue(
+					A2(_user$project$GameLoop$getAt, board, 0)),
+				_1: {
+					ctor: '::',
+					_0: _user$project$GameLoop$justValue(
+						A2(_user$project$GameLoop$getAt, board, 3)),
+					_1: {
+						ctor: '::',
+						_0: _user$project$GameLoop$justValue(
+							A2(_user$project$GameLoop$getAt, board, 6)),
+						_1: {ctor: '[]'}
+					}
+				}
+			},
+			_1: {
+				ctor: '::',
+				_0: {
+					ctor: '::',
+					_0: _user$project$GameLoop$justValue(
+						A2(_user$project$GameLoop$getAt, board, 0)),
+					_1: {
+						ctor: '::',
+						_0: _user$project$GameLoop$justValue(
+							A2(_user$project$GameLoop$getAt, board, 4)),
+						_1: {
+							ctor: '::',
+							_0: _user$project$GameLoop$justValue(
+								A2(_user$project$GameLoop$getAt, board, 8)),
+							_1: {ctor: '[]'}
+						}
+					}
+				},
+				_1: {
+					ctor: '::',
+					_0: {
+						ctor: '::',
+						_0: _user$project$GameLoop$justValue(
+							A2(_user$project$GameLoop$getAt, board, 3)),
+						_1: {
+							ctor: '::',
+							_0: _user$project$GameLoop$justValue(
+								A2(_user$project$GameLoop$getAt, board, 4)),
+							_1: {
+								ctor: '::',
+								_0: _user$project$GameLoop$justValue(
+									A2(_user$project$GameLoop$getAt, board, 5)),
+								_1: {ctor: '[]'}
+							}
+						}
+					},
+					_1: {
+						ctor: '::',
+						_0: {
+							ctor: '::',
+							_0: _user$project$GameLoop$justValue(
+								A2(_user$project$GameLoop$getAt, board, 1)),
+							_1: {
+								ctor: '::',
+								_0: _user$project$GameLoop$justValue(
+									A2(_user$project$GameLoop$getAt, board, 4)),
+								_1: {
+									ctor: '::',
+									_0: _user$project$GameLoop$justValue(
+										A2(_user$project$GameLoop$getAt, board, 7)),
+									_1: {ctor: '[]'}
+								}
+							}
+						},
+						_1: {
+							ctor: '::',
+							_0: {
+								ctor: '::',
+								_0: _user$project$GameLoop$justValue(
+									A2(_user$project$GameLoop$getAt, board, 6)),
+								_1: {
+									ctor: '::',
+									_0: _user$project$GameLoop$justValue(
+										A2(_user$project$GameLoop$getAt, board, 4)),
+									_1: {
+										ctor: '::',
+										_0: _user$project$GameLoop$justValue(
+											A2(_user$project$GameLoop$getAt, board, 2)),
+										_1: {ctor: '[]'}
+									}
+								}
+							},
+							_1: {
+								ctor: '::',
+								_0: {
+									ctor: '::',
+									_0: _user$project$GameLoop$justValue(
+										A2(_user$project$GameLoop$getAt, board, 6)),
+									_1: {
+										ctor: '::',
+										_0: _user$project$GameLoop$justValue(
+											A2(_user$project$GameLoop$getAt, board, 7)),
+										_1: {
+											ctor: '::',
+											_0: _user$project$GameLoop$justValue(
+												A2(_user$project$GameLoop$getAt, board, 8)),
+											_1: {ctor: '[]'}
+										}
+									}
+								},
+								_1: {
+									ctor: '::',
+									_0: {
+										ctor: '::',
+										_0: _user$project$GameLoop$justValue(
+											A2(_user$project$GameLoop$getAt, board, 2)),
+										_1: {
+											ctor: '::',
+											_0: _user$project$GameLoop$justValue(
+												A2(_user$project$GameLoop$getAt, board, 5)),
+											_1: {
+												ctor: '::',
+												_0: _user$project$GameLoop$justValue(
+													A2(_user$project$GameLoop$getAt, board, 8)),
+												_1: {ctor: '[]'}
+											}
+										}
+									},
+									_1: {ctor: '[]'}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	};
+	var isWon = A2(
+		_elm_lang$core$List$any,
+		function (row) {
+			return _elm_lang$core$Native_Utils.eq(
+				_user$project$GameLoop$unique(row),
+				{ctor: '[]'});
+		},
+		winningCombos);
+	return isWon ? {ctor: '_Tuple3', _0: true, _1: 'X', _2: board} : {ctor: '_Tuple3', _0: false, _1: '', _2: board};
+};
+var _user$project$GameLoop$split = F2(
+	function (i, list) {
+		var _p4 = A2(_elm_lang$core$List$take, i, list);
+		if (_p4.ctor === '[]') {
+			return {ctor: '[]'};
+		} else {
+			return {
+				ctor: '::',
+				_0: _p4,
+				_1: A2(
+					_user$project$GameLoop$split,
+					i,
+					A2(_elm_lang$core$List$drop, i, list))
+			};
+		}
+	});
 var _user$project$GameLoop$Player = F3(
 	function (a, b, c) {
 		return {name: a, piece: b, kind: c};
 	});
-var _user$project$GameLoop$GameLoop = F3(
-	function (a, b, c) {
-		return {currentView: a, players: b, board: c};
+var _user$project$GameLoop$GameLoop = F4(
+	function (a, b, c, d) {
+		return {currentView: a, players: b, board: c, winner: d};
 	});
 var _user$project$GameLoop$Computer = {ctor: 'Computer'};
 var _user$project$GameLoop$twoComputerPlayers = {
@@ -13026,20 +13567,19 @@ var _user$project$GameLoop$mixedPlayers = {
 	player1: A3(_user$project$GameLoop$Player, 'Player1', 'X', _user$project$GameLoop$Human),
 	player2: A3(_user$project$GameLoop$Player, 'Player2', 'O', _user$project$GameLoop$Computer)
 };
+var _user$project$GameLoop$DoNotSetWinner = {ctor: 'DoNotSetWinner'};
+var _user$project$GameLoop$SetWinner = function (a) {
+	return {ctor: 'SetWinner', _0: a};
+};
+var _user$project$GameLoop$CheckForWin = {ctor: 'CheckForWin'};
+var _user$project$GameLoop$InvalidMove = {ctor: 'InvalidMove'};
+var _user$project$GameLoop$ValidateMove = F2(
+	function (a, b) {
+		return {ctor: 'ValidateMove', _0: a, _1: b};
+	});
 var _user$project$GameLoop$TakeTurn = F2(
 	function (a, b) {
 		return {ctor: 'TakeTurn', _0: a, _1: b};
-	});
-var _user$project$GameLoop$playScreen = F2(
-	function (playerInTurn, currentBoard) {
-		return A2(
-			_elm_lang$html$Html$div,
-			{ctor: '[]'},
-			{
-				ctor: '::',
-				_0: A3(_user$project$Views$game_play_screen, playerInTurn, _user$project$GameLoop$TakeTurn, currentBoard),
-				_1: {ctor: '[]'}
-			});
 	});
 var _user$project$GameLoop$BeginTurns = {ctor: 'BeginTurns'};
 var _user$project$GameLoop$waitingToStartScreen = A2(
@@ -13076,13 +13616,14 @@ var _user$project$GameLoop$initialViewInGameLoop = {
 		player1: A3(_user$project$GameLoop$Player, 'Player1', 'X', _user$project$GameLoop$Human),
 		player2: A3(_user$project$GameLoop$Player, 'Player2', 'O', _user$project$GameLoop$Human)
 	},
-	board: A2(_elm_lang$core$List$repeat, 9, '')
+	board: A2(_elm_lang$core$List$repeat, 9, ''),
+	winner: _elm_lang$core$Maybe$Nothing
 };
 var _user$project$GameLoop$init = {ctor: '_Tuple2', _0: _user$project$GameLoop$initialViewInGameLoop, _1: _elm_lang$core$Platform_Cmd$none};
 var _user$project$GameLoop$update = F2(
 	function (msg, gameLoop) {
-		var _p0 = msg;
-		switch (_p0.ctor) {
+		var _p5 = msg;
+		switch (_p5.ctor) {
 			case 'BeginPlay':
 				return {
 					ctor: '_Tuple2',
@@ -13129,27 +13670,106 @@ var _user$project$GameLoop$update = F2(
 					_0: _elm_lang$core$Native_Utils.update(
 						gameLoop,
 						{
-							currentView: A2(_user$project$GameLoop$playScreen, gameLoop.players.player1.piece, gameLoop.board)
+							currentView: A3(
+								_user$project$GameLoop$playScreen,
+								_user$project$GameLoop$getPlayerInTurn(gameLoop),
+								_user$project$GameLoop$TakeTurn,
+								gameLoop.board)
 						}),
 					_1: _elm_lang$core$Platform_Cmd$none
 				};
-			default:
-				var _p2 = _p0._0;
-				var _p1 = _p0._1;
+			case 'TakeTurn':
+				var _p7 = _p5._0;
+				var _p6 = _p5._1;
 				return {
 					ctor: '_Tuple2',
 					_0: _elm_lang$core$Native_Utils.update(
 						gameLoop,
 						{
-							board: A3(_user$project$GameLoop$markBoard, _p2, _p1, gameLoop.board),
-							currentView: A2(
+							board: A3(_user$project$GameLoop$markBoard, _p7, _p6, gameLoop.board),
+							currentView: A3(
 								_user$project$GameLoop$playScreen,
 								_user$project$GameLoop$getPlayerInTurn(gameLoop),
-								A3(_user$project$GameLoop$markBoard, _p2, _p1, gameLoop.board))
+								_user$project$GameLoop$ValidateMove,
+								A3(_user$project$GameLoop$markBoard, _p7, _p6, gameLoop.board))
 						}),
 					_1: _elm_lang$core$Platform_Cmd$none
 				};
+			case 'ValidateMove':
+				return A3(_user$project$GameLoop$runValidation, _p5._0, gameLoop, _p5._1);
+			case 'InvalidMove':
+				return {ctor: '_Tuple2', _0: gameLoop, _1: _elm_lang$core$Platform_Cmd$none};
+			case 'CheckForWin':
+				return _user$project$GameLoop$checkBoardForWinningCombination(gameLoop);
+			case 'SetWinner':
+				return {
+					ctor: '_Tuple2',
+					_0: _elm_lang$core$Native_Utils.update(
+						gameLoop,
+						{
+							winner: _elm_lang$core$Maybe$Just(_p5._0)
+						}),
+					_1: _elm_lang$core$Platform_Cmd$none
+				};
+			default:
+				return {ctor: '_Tuple2', _0: gameLoop, _1: _elm_lang$core$Platform_Cmd$none};
 		}
+	});
+var _user$project$GameLoop$checkBoardForWinningCombination = function (gameLoop) {
+	var board = gameLoop.board;
+	return _elm_lang$core$Native_Utils.eq(
+		gameLoop.board,
+		{
+			ctor: '::',
+			_0: 'X',
+			_1: {
+				ctor: '::',
+				_0: 'X',
+				_1: {
+					ctor: '::',
+					_0: 'X',
+					_1: {
+						ctor: '::',
+						_0: '',
+						_1: {
+							ctor: '::',
+							_0: '',
+							_1: {
+								ctor: '::',
+								_0: '',
+								_1: {
+									ctor: '::',
+									_0: '',
+									_1: {
+										ctor: '::',
+										_0: '',
+										_1: {
+											ctor: '::',
+											_0: '',
+											_1: {ctor: '[]'}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}) ? A2(
+		_user$project$GameLoop$update,
+		_user$project$GameLoop$SetWinner(gameLoop.players.player1),
+		gameLoop) : A2(_user$project$GameLoop$update, _user$project$GameLoop$DoNotSetWinner, gameLoop);
+};
+var _user$project$GameLoop$runValidation = F3(
+	function (position, gameLoop, piece) {
+		var currentBoardAsArray = _elm_lang$core$Array$fromList(gameLoop.board);
+		var currentValueAtPosition = A2(_elm_lang$core$Array$get, position, currentBoardAsArray);
+		return _elm_lang$core$Native_Utils.eq(
+			currentValueAtPosition,
+			_elm_lang$core$Maybe$Just('')) ? A2(
+			_user$project$GameLoop$update,
+			A2(_user$project$GameLoop$TakeTurn, position, piece),
+			gameLoop) : A2(_user$project$GameLoop$update, _user$project$GameLoop$InvalidMove, gameLoop);
 	});
 var _user$project$GameLoop$main = _elm_lang$html$Html$program(
 	{init: _user$project$GameLoop$init, view: _user$project$GameLoop$view, update: _user$project$GameLoop$update, subscriptions: _user$project$GameLoop$subscriptions})();
@@ -13165,7 +13785,7 @@ var _user$project$Main$main = _elm_lang$html$Html$program(
 var Elm = {};
 Elm['Main'] = Elm['Main'] || {};
 if (typeof _user$project$Main$main !== 'undefined') {
-    _user$project$Main$main(Elm['Main'], 'Main', {"types":{"unions":{"GameLoop.Msg":{"args":[],"tags":{"BeginPlay":[],"TakeTurn":["Int","String"],"SetMode":[],"SetPlayersCvC":[],"SetPlayersHvH":[],"SetPlayersHvC":[],"BeginTurns":[]}}},"aliases":{},"message":"GameLoop.Msg"},"versions":{"elm":"0.18.0"}});
+    _user$project$Main$main(Elm['Main'], 'Main', {"types":{"unions":{"GameLoop.PlayerKind":{"args":[],"tags":{"Computer":[],"Human":[]}},"GameLoop.Msg":{"args":[],"tags":{"CheckForWin":[],"DoNotSetWinner":[],"BeginPlay":[],"TakeTurn":["Int","String"],"SetMode":[],"SetPlayersCvC":[],"SetPlayersHvH":[],"ValidateMove":["Int","String"],"SetPlayersHvC":[],"InvalidMove":[],"SetWinner":["GameLoop.Player"],"BeginTurns":[]}}},"aliases":{"GameLoop.Player":{"args":[],"type":"{ name : String, piece : String, kind : GameLoop.PlayerKind }"}},"message":"GameLoop.Msg"},"versions":{"elm":"0.18.0"}});
 }
 
 if (typeof define === "function" && define['amd'])

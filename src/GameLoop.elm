@@ -3,6 +3,7 @@ module GameLoop exposing (..)
 import Views exposing (..)
 import Html exposing (..)
 import Array exposing (..)
+import Set exposing (..)
 
 
 main =
@@ -34,6 +35,7 @@ type alias GameLoop =
     { currentView : Html Msg
     , players : { player1 : Player, player2 : Player }
     , board : List String
+    , winner : Maybe Player
     }
 
 
@@ -46,6 +48,7 @@ initialViewInGameLoop =
     { currentView = welcomeScreen
     , players = { player1 = Player "Player1" "X" Human, player2 = Player "Player2" "O" Human }
     , board = List.repeat 9 ""
+    , winner = Nothing
     }
 
 
@@ -61,6 +64,11 @@ type Msg
     | SetPlayersCvC
     | BeginTurns
     | TakeTurn Int String
+    | ValidateMove Int String
+    | InvalidMove
+    | CheckForWin
+    | SetWinner Player
+    | DoNotSetWinner
 
 
 update : Msg -> GameLoop -> ( GameLoop, Cmd Msg )
@@ -90,7 +98,7 @@ update msg gameLoop =
             )
 
         BeginTurns ->
-            ( { gameLoop | currentView = (playScreen gameLoop.players.player1.piece gameLoop.board) }
+            ( { gameLoop | currentView = (playScreen (getPlayerInTurn gameLoop) TakeTurn gameLoop.board) }
             , Cmd.none
             )
 
@@ -98,11 +106,131 @@ update msg gameLoop =
             ( { gameLoop
                 | board = (markBoard position piece gameLoop.board)
                 , currentView =
-                    playScreen (getPlayerInTurn gameLoop) <|
-                        (markBoard position piece gameLoop.board)
+                    playScreen (getPlayerInTurn gameLoop) ValidateMove (markBoard position piece gameLoop.board)
               }
             , Cmd.none
             )
+
+        ValidateMove position piece ->
+            (runValidation position gameLoop piece)
+
+        InvalidMove ->
+            ( gameLoop, Cmd.none )
+
+        CheckForWin ->
+            (checkBoardForWinningCombination gameLoop)
+
+        SetWinner player ->
+            ( { gameLoop | winner = Just player }, Cmd.none )
+
+        DoNotSetWinner ->
+            ( gameLoop, Cmd.none )
+
+
+checkBoardForWinningCombination gameLoop =
+    let
+        board =
+            gameLoop.board
+    in
+        if gameLoop.board == [ "X", "X", "X", "", "", "", "", "", "" ] then
+            update (SetWinner gameLoop.players.player1) gameLoop
+        else
+            update DoNotSetWinner gameLoop
+
+
+
+--getValuesFromMaybeListOfStrings : Maybe List String -> List String
+--getValuesFromMaybeListOfStrings maybeListOfStrings =
+--    case maybeListOfStrings of
+--        Just (Just (List String)) ->
+--            List String
+--        Nothing ->
+--            Nothing
+--isRowWon : List (Maybe String) -> Bool
+--isRowWon row =
+--    let
+--        pieceToCheckFor =
+--            List.head row
+--    in
+--        List.all (\cellValue -> cellValue == pieceToCheckFor) row
+
+
+split : Int -> List String -> List (List String)
+split i list =
+    case List.take i list of
+        [] ->
+            []
+
+        listHead ->
+            listHead :: split i (List.drop i list)
+
+
+getAt : List a -> Int -> Maybe a
+getAt xs index =
+    List.head <| List.drop index xs
+
+
+
+--rowIsWon : List a -> Bool
+--rowIsWon row =
+--    let
+--        [ x, y, z ] =
+--            [ getAt row 0, getAt row 1, getAt row 2 ]
+--    in
+--        x == y && y == z
+
+
+justValue justElement =
+    case justElement of
+        Just element ->
+            element
+
+        Nothing ->
+            ""
+
+
+isBoardWon board =
+    let
+        winningCombos =
+            [ [ justValue (getAt board 0), justValue (getAt board 1), justValue (getAt board 2) ]
+            , [ justValue (getAt board 0), justValue (getAt board 3), justValue (getAt board 6) ]
+            , [ justValue (getAt board 0), justValue (getAt board 4), justValue (getAt board 8) ]
+            , [ justValue (getAt board 3), justValue (getAt board 4), justValue (getAt board 5) ]
+            , [ justValue (getAt board 1), justValue (getAt board 4), justValue (getAt board 7) ]
+            , [ justValue (getAt board 6), justValue (getAt board 4), justValue (getAt board 2) ]
+            , [ justValue (getAt board 6), justValue (getAt board 7), justValue (getAt board 8) ]
+            , [ justValue (getAt board 2), justValue (getAt board 5), justValue (getAt board 8) ]
+            ]
+
+        isWonByO =
+            List.any (\row -> row == [ "O", "O", "O" ]) winningCombos
+
+        isWonByX =
+            List.any (\row -> row == [ "X", "X", "X" ]) winningCombos
+    in
+        case ( isWonByX, isWonByO ) of
+            ( True, _ ) ->
+                ( True, "X", board )
+
+            ( _, True ) ->
+                ( True, "O", board )
+
+            ( False, False ) ->
+                ( False, "", board )
+
+
+runValidation position gameLoop piece =
+    let
+        currentBoardAsArray =
+            gameLoop.board |> Array.fromList
+
+        currentValueAtPosition =
+            currentBoardAsArray |> Array.get position
+    in
+        if currentValueAtPosition == Just "" then
+            update (TakeTurn position piece) gameLoop
+        else
+            update InvalidMove gameLoop
 
 
 markBoard position piece board =
@@ -149,8 +277,8 @@ waitingToStartScreen =
     div [] [ waiting_to_start_screen BeginTurns ]
 
 
-playScreen playerInTurn currentBoard =
-    div [] [ game_play_screen playerInTurn TakeTurn currentBoard ]
+playScreen playerInTurn actionOnClick currentBoard =
+    div [] [ game_play_screen playerInTurn actionOnClick currentBoard ]
 
 
 subscriptions : GameLoop -> Sub Msg

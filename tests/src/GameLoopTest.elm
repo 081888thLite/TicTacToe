@@ -79,7 +79,7 @@ gameLoopTest =
                     ( gameLoop, command ) =
                         gameLoopPromptingForMove
                 in
-                    \() -> Expect.equal (playScreen "X" gameLoop.board) gameLoop.currentView
+                    \() -> Expect.equal (playScreen "X" GameLoop.TakeTurn gameLoop.board) gameLoop.currentView
             , test "Begins the first turn with an empty board." <|
                 let
                     gameLoopAtStart =
@@ -121,6 +121,12 @@ gameLoopTest =
                         List.repeat 9 ""
                 in
                     \() -> Expect.equal newBoard gameLoopAtStart.board
+            , test "getPlayerInTurn returns Player1 when no moves have been made" <|
+                let
+                    gameLoopAtStart =
+                        GameLoop.initialViewInGameLoop
+                in
+                    \() -> Expect.equal (getPlayerInTurn gameLoopAtStart) "X"
             , test "getPlayerInTurn returns Player2 when one move has been made" <|
                 let
                     gameLoopAtStart =
@@ -150,7 +156,117 @@ gameLoopTest =
                     ( gameLoop, cmd2 ) =
                         modelAfterTwoMoves
                 in
-                    \() -> Expect.equal (getPlayerInTurn gameLoop) "X"
+                    \() -> Expect.equal "X" (getPlayerInTurn gameLoop)
+            ]
+        , describe "ValidateMove"
+            [ test "does not update the board when user clicks on a cell that is already taken" <|
+                let
+                    gameLoopAtStart =
+                        GameLoop.initialViewInGameLoop
+
+                    modelAfterOneMove =
+                        update (TakeTurn 0 "X") gameLoopAtStart
+
+                    ( gameLoopAfterFirstMove, cmd1 ) =
+                        modelAfterOneMove
+
+                    modelAfterValidation =
+                        update (ValidateMove 0 "O") gameLoopAfterFirstMove
+
+                    ( gameLoopAfterInvalidSecondMove, cmd2 ) =
+                        modelAfterValidation
+                in
+                    \() -> Expect.equal gameLoopAfterFirstMove gameLoopAfterInvalidSecondMove
+            , test "does update the board when user clicks on a cell that is vacant" <|
+                let
+                    gameLoopAtStart =
+                        GameLoop.initialViewInGameLoop
+
+                    modelAfterOneMove =
+                        update (TakeTurn 0 "X") gameLoopAtStart
+
+                    ( gameLoopAfterFirstMove, cmd1 ) =
+                        modelAfterOneMove
+
+                    modelAfterValidation =
+                        update (ValidateMove 1 "O") gameLoopAfterFirstMove
+
+                    ( gameLoopAfterValidSecondMove, cmd2 ) =
+                        modelAfterValidation
+                in
+                    \() -> Expect.notEqual gameLoopAfterFirstMove gameLoopAfterValidSecondMove
+            , test "runValidation returns TakeTurn for move on vacant cell" <|
+                let
+                    gameLoopAtStart =
+                        GameLoop.initialViewInGameLoop
+
+                    gameLoopAfterValidMove =
+                        (update (TakeTurn 5 "X") gameLoopAtStart)
+                in
+                    \() -> Expect.equal gameLoopAfterValidMove (GameLoop.runValidation 5 gameLoopAtStart "X")
+            ]
+        , describe "CheckForWin"
+            [ test "sets winner when board has winning combination" <|
+                let
+                    gameLoopAtStart =
+                        GameLoop.initialViewInGameLoop
+
+                    gameLoopWithWinningBoard =
+                        { gameLoopAtStart | board = [ "X", "X", "X", "", "", "", "", "", "" ] }
+
+                    ( gameLoopAfterCheckingForWinner, cmd1 ) =
+                        update CheckForWin gameLoopWithWinningBoard
+                in
+                    \() -> Expect.equal (Just gameLoopWithWinningBoard.players.player1) gameLoopWithWinningBoard.winner
+            , describe "Win Possibilities"
+                [ test "isBoardWon returns (True, winningPiece, board) if board matches win combination" <|
+                    let
+                        wonBoardFirstRowX =
+                            [ "X", "X", "X", "", "", "", "", "", "" ]
+
+                        wonBoardFirstRowO =
+                            [ "O", "O", "O", "", "", "", "", "", "" ]
+
+                        wonBoardSecondRowX =
+                            [ "", "", "", "X", "X", "X", "", "", "" ]
+
+                        wonBoardThirdRowO =
+                            [ "", "", "", "X", "X", "", "O", "O", "O" ]
+
+                        wonBoardFirstColX =
+                            [ "X", "", "", "X", "O", "O", "X", "", "" ]
+
+                        wonBoardDTLRO =
+                            [ "O", "X", "", "X", "O", "O", "", "", "O" ]
+
+                        expected =
+                            [ ( True, "X", wonBoardFirstRowX )
+                            , ( True, "O", wonBoardFirstRowO )
+                            , ( True, "X", wonBoardSecondRowX )
+                            , ( True, "O", wonBoardThirdRowO )
+                            , ( True, "X", wonBoardFirstColX )
+                            , ( True, "O", wonBoardDTLRO )
+                            ]
+
+                        actual =
+                            [ (isBoardWon wonBoardFirstRowX)
+                            , (isBoardWon wonBoardFirstRowO)
+                            , (isBoardWon wonBoardSecondRowX)
+                            , (isBoardWon wonBoardThirdRowO)
+                            , (isBoardWon wonBoardFirstColX)
+                            , (isBoardWon wonBoardDTLRO)
+                            ]
+                    in
+                        \() ->
+                            Expect.equal expected actual
+                , test "isBoardWon returns (False, \"\", board) if board does not match a win combination" <|
+                    let
+                        unWonBoard =
+                            [ "", "", "", "", "X", "", "", "", "O" ]
+                    in
+                        \() ->
+                            Expect.equal ( False, "", unWonBoard ) (isBoardWon unWonBoard)
+                ]
 
             --, test "When the playerInTurn is a Human a prompt for a move is displayed." <|
             --    \() ->
