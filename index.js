@@ -12547,1537 +12547,558 @@ var _elm_lang$core$Set$partition = F2(
 		};
 	});
 
-var _elm_lang$html$Html_Keyed$node = _elm_lang$virtual_dom$VirtualDom$keyedNode;
-var _elm_lang$html$Html_Keyed$ol = _elm_lang$html$Html_Keyed$node('ol');
-var _elm_lang$html$Html_Keyed$ul = _elm_lang$html$Html_Keyed$node('ul');
-
-var _rundis$elm_bootstrap$Bootstrap_Grid_Internal$horizontalAlignOption = function (align) {
-	var _p0 = align;
-	switch (_p0.ctor) {
-		case 'Left':
-			return 'start';
-		case 'Center':
-			return 'center';
-		case 'Right':
-			return 'end';
-		case 'Around':
-			return 'around';
-		default:
-			return 'between';
-	}
+var _user$project$Views$wait_for_computer = function (playerInTurn) {
+	return A2(_elm_lang$core$Basics_ops['++'], playerInTurn, ' is thinking...');
 };
-var _rundis$elm_bootstrap$Bootstrap_Grid_Internal$verticalAlignOption = function (align) {
-	var _p1 = align;
-	switch (_p1.ctor) {
-		case 'Top':
-			return 'start';
-		case 'Middle':
-			return 'center';
-		default:
-			return 'end';
-	}
+var _user$project$Views$prompt_for_move = function (playerInTurn) {
+	return A2(_elm_lang$core$Basics_ops['++'], playerInTurn, ' click on a cell to place your marker.');
 };
-var _rundis$elm_bootstrap$Bootstrap_Grid_Internal$moveCountOption = function (size) {
-	var _p2 = size;
-	switch (_p2.ctor) {
-		case 'Move0':
-			return '0';
-		case 'Move1':
-			return '1';
-		case 'Move2':
-			return '2';
-		case 'Move3':
-			return '3';
-		case 'Move4':
-			return '4';
-		case 'Move5':
-			return '5';
-		case 'Move6':
-			return '6';
-		case 'Move7':
-			return '7';
-		case 'Move8':
-			return '8';
-		case 'Move9':
-			return '9';
-		case 'Move10':
-			return '10';
-		case 'Move11':
-			return '11';
-		default:
-			return '12';
-	}
+var _user$project$Views$display_prompt = function (playerInTurn) {
+	return _elm_lang$core$Native_Utils.eq(playerInTurn, 'Human') ? _user$project$Views$prompt_for_move(playerInTurn) : _user$project$Views$wait_for_computer(playerInTurn);
 };
-var _rundis$elm_bootstrap$Bootstrap_Grid_Internal$offsetCountOption = function (size) {
-	var _p3 = size;
-	switch (_p3.ctor) {
-		case 'Offset0':
-			return '0';
-		case 'Offset1':
-			return '1';
-		case 'Offset2':
-			return '2';
-		case 'Offset3':
-			return '3';
-		case 'Offset4':
-			return '4';
-		case 'Offset5':
-			return '5';
-		case 'Offset6':
-			return '6';
-		case 'Offset7':
-			return '7';
-		case 'Offset8':
-			return '8';
-		case 'Offset9':
-			return '9';
-		case 'Offset10':
-			return '10';
-		default:
-			return '11';
-	}
-};
-var _rundis$elm_bootstrap$Bootstrap_Grid_Internal$columnCountOption = function (size) {
-	var _p4 = size;
-	switch (_p4.ctor) {
-		case 'Col':
-			return _elm_lang$core$Maybe$Nothing;
-		case 'Col1':
-			return _elm_lang$core$Maybe$Just('1');
-		case 'Col2':
-			return _elm_lang$core$Maybe$Just('2');
-		case 'Col3':
-			return _elm_lang$core$Maybe$Just('3');
-		case 'Col4':
-			return _elm_lang$core$Maybe$Just('4');
-		case 'Col5':
-			return _elm_lang$core$Maybe$Just('5');
-		case 'Col6':
-			return _elm_lang$core$Maybe$Just('6');
-		case 'Col7':
-			return _elm_lang$core$Maybe$Just('7');
-		case 'Col8':
-			return _elm_lang$core$Maybe$Just('8');
-		case 'Col9':
-			return _elm_lang$core$Maybe$Just('9');
-		case 'Col10':
-			return _elm_lang$core$Maybe$Just('10');
-		case 'Col11':
-			return _elm_lang$core$Maybe$Just('11');
-		case 'Col12':
-			return _elm_lang$core$Maybe$Just('12');
-		default:
-			return _elm_lang$core$Maybe$Just('auto');
-	}
-};
-var _rundis$elm_bootstrap$Bootstrap_Grid_Internal$screenSizeOption = function (size) {
-	var _p5 = size;
-	switch (_p5.ctor) {
-		case 'XS':
-			return _elm_lang$core$Maybe$Nothing;
-		case 'SM':
-			return _elm_lang$core$Maybe$Just('sm');
-		case 'MD':
-			return _elm_lang$core$Maybe$Just('md');
-		case 'LG':
-			return _elm_lang$core$Maybe$Just('lg');
-		default:
-			return _elm_lang$core$Maybe$Just('xl');
-	}
-};
-var _rundis$elm_bootstrap$Bootstrap_Grid_Internal$screenSizeToPartialString = function (screenSize) {
-	var _p6 = _rundis$elm_bootstrap$Bootstrap_Grid_Internal$screenSizeOption(screenSize);
-	if (_p6.ctor === 'Just') {
-		return A2(
-			_elm_lang$core$Basics_ops['++'],
-			'-',
-			A2(_elm_lang$core$Basics_ops['++'], _p6._0, '-'));
+var _user$project$Views$makeDisplayable = function (justElement) {
+	var _p0 = justElement;
+	if (_p0.ctor === 'Just') {
+		var _p1 = _p0._0;
+		return _elm_lang$core$Native_Utils.eq(_p1, '') ? '_' : _p1;
 	} else {
-		return '-';
+		return '';
 	}
 };
-var _rundis$elm_bootstrap$Bootstrap_Grid_Internal$hAlignClass = function (_p7) {
-	var _p8 = _p7;
-	return _elm_lang$html$Html_Attributes$class(
-		A2(
-			_elm_lang$core$Basics_ops['++'],
-			'justify-content-',
-			A2(
-				_elm_lang$core$Basics_ops['++'],
-				A2(
-					_elm_lang$core$Maybe$withDefault,
-					'',
-					A2(
-						_elm_lang$core$Maybe$map,
-						function (v) {
-							return A2(_elm_lang$core$Basics_ops['++'], v, '-');
-						},
-						_rundis$elm_bootstrap$Bootstrap_Grid_Internal$screenSizeOption(_p8.screenSize))),
-				_rundis$elm_bootstrap$Bootstrap_Grid_Internal$horizontalAlignOption(_p8.align))));
-};
-var _rundis$elm_bootstrap$Bootstrap_Grid_Internal$hAlignsToAttributes = function (aligns) {
-	var align = function (a) {
-		return A2(_elm_lang$core$Maybe$map, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$hAlignClass, a);
-	};
-	return A2(
-		_elm_lang$core$List$filterMap,
-		_elm_lang$core$Basics$identity,
-		A2(_elm_lang$core$List$map, align, aligns));
-};
-var _rundis$elm_bootstrap$Bootstrap_Grid_Internal$vAlignClass = F2(
-	function (prefix, _p9) {
-		var _p10 = _p9;
-		return _elm_lang$html$Html_Attributes$class(
-			A2(
-				_elm_lang$core$Basics_ops['++'],
-				prefix,
-				A2(
-					_elm_lang$core$Basics_ops['++'],
-					A2(
-						_elm_lang$core$Maybe$withDefault,
-						'',
-						A2(
-							_elm_lang$core$Maybe$map,
-							function (v) {
-								return A2(_elm_lang$core$Basics_ops['++'], v, '-');
-							},
-							_rundis$elm_bootstrap$Bootstrap_Grid_Internal$screenSizeOption(_p10.screenSize))),
-					_rundis$elm_bootstrap$Bootstrap_Grid_Internal$verticalAlignOption(_p10.align))));
-	});
-var _rundis$elm_bootstrap$Bootstrap_Grid_Internal$vAlignsToAttributes = F2(
-	function (prefix, aligns) {
-		var align = function (a) {
-			return A2(
-				_elm_lang$core$Maybe$map,
-				_rundis$elm_bootstrap$Bootstrap_Grid_Internal$vAlignClass(prefix),
-				a);
-		};
+var _user$project$Views$game_play_screen = F3(
+	function (playerInTurn, actionToMarkCell, currentBoard) {
 		return A2(
-			_elm_lang$core$List$filterMap,
-			_elm_lang$core$Basics$identity,
-			A2(_elm_lang$core$List$map, align, aligns));
-	});
-var _rundis$elm_bootstrap$Bootstrap_Grid_Internal$pushesToAttributes = function (pushes) {
-	var push = function (m) {
-		var _p11 = m;
-		if (_p11.ctor === 'Just') {
-			return _elm_lang$core$Maybe$Just(
-				_elm_lang$html$Html_Attributes$class(
-					A2(
-						_elm_lang$core$Basics_ops['++'],
-						'push',
-						A2(
-							_elm_lang$core$Basics_ops['++'],
-							_rundis$elm_bootstrap$Bootstrap_Grid_Internal$screenSizeToPartialString(_p11._0.screenSize),
-							_rundis$elm_bootstrap$Bootstrap_Grid_Internal$moveCountOption(_p11._0.moveCount)))));
-		} else {
-			return _elm_lang$core$Maybe$Nothing;
-		}
-	};
-	return A2(
-		_elm_lang$core$List$filterMap,
-		_elm_lang$core$Basics$identity,
-		A2(_elm_lang$core$List$map, push, pushes));
-};
-var _rundis$elm_bootstrap$Bootstrap_Grid_Internal$pullsToAttributes = function (pulls) {
-	var pull = function (m) {
-		var _p12 = m;
-		if (_p12.ctor === 'Just') {
-			return _elm_lang$core$Maybe$Just(
-				_elm_lang$html$Html_Attributes$class(
-					A2(
-						_elm_lang$core$Basics_ops['++'],
-						'pull',
-						A2(
-							_elm_lang$core$Basics_ops['++'],
-							_rundis$elm_bootstrap$Bootstrap_Grid_Internal$screenSizeToPartialString(_p12._0.screenSize),
-							_rundis$elm_bootstrap$Bootstrap_Grid_Internal$moveCountOption(_p12._0.moveCount)))));
-		} else {
-			return _elm_lang$core$Maybe$Nothing;
-		}
-	};
-	return A2(
-		_elm_lang$core$List$filterMap,
-		_elm_lang$core$Basics$identity,
-		A2(_elm_lang$core$List$map, pull, pulls));
-};
-var _rundis$elm_bootstrap$Bootstrap_Grid_Internal$offsetClass = function (_p13) {
-	var _p14 = _p13;
-	return _elm_lang$html$Html_Attributes$class(
-		A2(
-			_elm_lang$core$Basics_ops['++'],
-			'offset',
-			A2(
-				_elm_lang$core$Basics_ops['++'],
-				_rundis$elm_bootstrap$Bootstrap_Grid_Internal$screenSizeToPartialString(_p14.screenSize),
-				_rundis$elm_bootstrap$Bootstrap_Grid_Internal$offsetCountOption(_p14.offsetCount))));
-};
-var _rundis$elm_bootstrap$Bootstrap_Grid_Internal$offsetsToAttributes = function (offsets) {
-	var offset = function (m) {
-		return A2(_elm_lang$core$Maybe$map, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$offsetClass, m);
-	};
-	return A2(
-		_elm_lang$core$List$filterMap,
-		_elm_lang$core$Basics$identity,
-		A2(_elm_lang$core$List$map, offset, offsets));
-};
-var _rundis$elm_bootstrap$Bootstrap_Grid_Internal$colWidthClass = function (_p15) {
-	var _p16 = _p15;
-	return _elm_lang$html$Html_Attributes$class(
-		A2(
-			_elm_lang$core$Basics_ops['++'],
-			'col',
-			A2(
-				_elm_lang$core$Basics_ops['++'],
-				A2(
-					_elm_lang$core$Maybe$withDefault,
-					'',
-					A2(
-						_elm_lang$core$Maybe$map,
-						function (v) {
-							return A2(_elm_lang$core$Basics_ops['++'], '-', v);
-						},
-						_rundis$elm_bootstrap$Bootstrap_Grid_Internal$screenSizeOption(_p16.screenSize))),
-				A2(
-					_elm_lang$core$Maybe$withDefault,
-					'',
-					A2(
-						_elm_lang$core$Maybe$map,
-						function (v) {
-							return A2(_elm_lang$core$Basics_ops['++'], '-', v);
-						},
-						_rundis$elm_bootstrap$Bootstrap_Grid_Internal$columnCountOption(_p16.columnCount))))));
-};
-var _rundis$elm_bootstrap$Bootstrap_Grid_Internal$colWidthsToAttributes = function (widths) {
-	var width = function (w) {
-		return A2(_elm_lang$core$Maybe$map, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$colWidthClass, w);
-	};
-	return A2(
-		_elm_lang$core$List$filterMap,
-		_elm_lang$core$Basics$identity,
-		A2(_elm_lang$core$List$map, width, widths));
-};
-var _rundis$elm_bootstrap$Bootstrap_Grid_Internal$defaultRowOptions = {
-	attributes: {ctor: '[]'},
-	vAlignXs: _elm_lang$core$Maybe$Nothing,
-	vAlignSm: _elm_lang$core$Maybe$Nothing,
-	vAlignMd: _elm_lang$core$Maybe$Nothing,
-	vAlignLg: _elm_lang$core$Maybe$Nothing,
-	vAlignXl: _elm_lang$core$Maybe$Nothing,
-	hAlignXs: _elm_lang$core$Maybe$Nothing,
-	hAlignSm: _elm_lang$core$Maybe$Nothing,
-	hAlignMd: _elm_lang$core$Maybe$Nothing,
-	hAlignLg: _elm_lang$core$Maybe$Nothing,
-	hAlignXl: _elm_lang$core$Maybe$Nothing
-};
-var _rundis$elm_bootstrap$Bootstrap_Grid_Internal$defaultColOptions = {
-	attributes: {ctor: '[]'},
-	widthXs: _elm_lang$core$Maybe$Nothing,
-	widthSm: _elm_lang$core$Maybe$Nothing,
-	widthMd: _elm_lang$core$Maybe$Nothing,
-	widthLg: _elm_lang$core$Maybe$Nothing,
-	widthXl: _elm_lang$core$Maybe$Nothing,
-	offsetXs: _elm_lang$core$Maybe$Nothing,
-	offsetSm: _elm_lang$core$Maybe$Nothing,
-	offsetMd: _elm_lang$core$Maybe$Nothing,
-	offsetLg: _elm_lang$core$Maybe$Nothing,
-	offsetXl: _elm_lang$core$Maybe$Nothing,
-	pullXs: _elm_lang$core$Maybe$Nothing,
-	pullSm: _elm_lang$core$Maybe$Nothing,
-	pullMd: _elm_lang$core$Maybe$Nothing,
-	pullLg: _elm_lang$core$Maybe$Nothing,
-	pullXl: _elm_lang$core$Maybe$Nothing,
-	pushXs: _elm_lang$core$Maybe$Nothing,
-	pushSm: _elm_lang$core$Maybe$Nothing,
-	pushMd: _elm_lang$core$Maybe$Nothing,
-	pushLg: _elm_lang$core$Maybe$Nothing,
-	pushXl: _elm_lang$core$Maybe$Nothing,
-	alignXs: _elm_lang$core$Maybe$Nothing,
-	alignSm: _elm_lang$core$Maybe$Nothing,
-	alignMd: _elm_lang$core$Maybe$Nothing,
-	alignLg: _elm_lang$core$Maybe$Nothing,
-	alignXl: _elm_lang$core$Maybe$Nothing
-};
-var _rundis$elm_bootstrap$Bootstrap_Grid_Internal$applyRowHAlign = F2(
-	function (align, options) {
-		var _p17 = align.screenSize;
-		switch (_p17.ctor) {
-			case 'XS':
-				return _elm_lang$core$Native_Utils.update(
-					options,
-					{
-						hAlignXs: _elm_lang$core$Maybe$Just(align)
-					});
-			case 'SM':
-				return _elm_lang$core$Native_Utils.update(
-					options,
-					{
-						hAlignSm: _elm_lang$core$Maybe$Just(align)
-					});
-			case 'MD':
-				return _elm_lang$core$Native_Utils.update(
-					options,
-					{
-						hAlignMd: _elm_lang$core$Maybe$Just(align)
-					});
-			case 'LG':
-				return _elm_lang$core$Native_Utils.update(
-					options,
-					{
-						hAlignLg: _elm_lang$core$Maybe$Just(align)
-					});
-			default:
-				return _elm_lang$core$Native_Utils.update(
-					options,
-					{
-						hAlignXl: _elm_lang$core$Maybe$Just(align)
-					});
-		}
-	});
-var _rundis$elm_bootstrap$Bootstrap_Grid_Internal$applyRowVAlign = F2(
-	function (align, options) {
-		var _p18 = align.screenSize;
-		switch (_p18.ctor) {
-			case 'XS':
-				return _elm_lang$core$Native_Utils.update(
-					options,
-					{
-						vAlignXs: _elm_lang$core$Maybe$Just(align)
-					});
-			case 'SM':
-				return _elm_lang$core$Native_Utils.update(
-					options,
-					{
-						vAlignSm: _elm_lang$core$Maybe$Just(align)
-					});
-			case 'MD':
-				return _elm_lang$core$Native_Utils.update(
-					options,
-					{
-						vAlignMd: _elm_lang$core$Maybe$Just(align)
-					});
-			case 'LG':
-				return _elm_lang$core$Native_Utils.update(
-					options,
-					{
-						vAlignLg: _elm_lang$core$Maybe$Just(align)
-					});
-			default:
-				return _elm_lang$core$Native_Utils.update(
-					options,
-					{
-						vAlignXl: _elm_lang$core$Maybe$Just(align)
-					});
-		}
-	});
-var _rundis$elm_bootstrap$Bootstrap_Grid_Internal$applyRowOption = F2(
-	function (modifier, options) {
-		var _p19 = modifier;
-		switch (_p19.ctor) {
-			case 'RowAttrs':
-				return _elm_lang$core$Native_Utils.update(
-					options,
-					{
-						attributes: A2(_elm_lang$core$Basics_ops['++'], options.attributes, _p19._0)
-					});
-			case 'RowVAlign':
-				return A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$applyRowVAlign, _p19._0, options);
-			default:
-				return A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$applyRowHAlign, _p19._0, options);
-		}
-	});
-var _rundis$elm_bootstrap$Bootstrap_Grid_Internal$applyColAlign = F2(
-	function (align, options) {
-		var _p20 = align.screenSize;
-		switch (_p20.ctor) {
-			case 'XS':
-				return _elm_lang$core$Native_Utils.update(
-					options,
-					{
-						alignXs: _elm_lang$core$Maybe$Just(align)
-					});
-			case 'SM':
-				return _elm_lang$core$Native_Utils.update(
-					options,
-					{
-						alignSm: _elm_lang$core$Maybe$Just(align)
-					});
-			case 'MD':
-				return _elm_lang$core$Native_Utils.update(
-					options,
-					{
-						alignMd: _elm_lang$core$Maybe$Just(align)
-					});
-			case 'LG':
-				return _elm_lang$core$Native_Utils.update(
-					options,
-					{
-						alignLg: _elm_lang$core$Maybe$Just(align)
-					});
-			default:
-				return _elm_lang$core$Native_Utils.update(
-					options,
-					{
-						alignXl: _elm_lang$core$Maybe$Just(align)
-					});
-		}
-	});
-var _rundis$elm_bootstrap$Bootstrap_Grid_Internal$applyColPush = F2(
-	function (push, options) {
-		var _p21 = push.screenSize;
-		switch (_p21.ctor) {
-			case 'XS':
-				return _elm_lang$core$Native_Utils.update(
-					options,
-					{
-						pushXs: _elm_lang$core$Maybe$Just(push)
-					});
-			case 'SM':
-				return _elm_lang$core$Native_Utils.update(
-					options,
-					{
-						pushSm: _elm_lang$core$Maybe$Just(push)
-					});
-			case 'MD':
-				return _elm_lang$core$Native_Utils.update(
-					options,
-					{
-						pushMd: _elm_lang$core$Maybe$Just(push)
-					});
-			case 'LG':
-				return _elm_lang$core$Native_Utils.update(
-					options,
-					{
-						pushLg: _elm_lang$core$Maybe$Just(push)
-					});
-			default:
-				return _elm_lang$core$Native_Utils.update(
-					options,
-					{
-						pushXl: _elm_lang$core$Maybe$Just(push)
-					});
-		}
-	});
-var _rundis$elm_bootstrap$Bootstrap_Grid_Internal$applyColPull = F2(
-	function (pull, options) {
-		var _p22 = pull.screenSize;
-		switch (_p22.ctor) {
-			case 'XS':
-				return _elm_lang$core$Native_Utils.update(
-					options,
-					{
-						pullXs: _elm_lang$core$Maybe$Just(pull)
-					});
-			case 'SM':
-				return _elm_lang$core$Native_Utils.update(
-					options,
-					{
-						pullSm: _elm_lang$core$Maybe$Just(pull)
-					});
-			case 'MD':
-				return _elm_lang$core$Native_Utils.update(
-					options,
-					{
-						pullMd: _elm_lang$core$Maybe$Just(pull)
-					});
-			case 'LG':
-				return _elm_lang$core$Native_Utils.update(
-					options,
-					{
-						pullLg: _elm_lang$core$Maybe$Just(pull)
-					});
-			default:
-				return _elm_lang$core$Native_Utils.update(
-					options,
-					{
-						pullXl: _elm_lang$core$Maybe$Just(pull)
-					});
-		}
-	});
-var _rundis$elm_bootstrap$Bootstrap_Grid_Internal$applyColOffset = F2(
-	function (offset, options) {
-		var _p23 = offset.screenSize;
-		switch (_p23.ctor) {
-			case 'XS':
-				return _elm_lang$core$Native_Utils.update(
-					options,
-					{
-						offsetXs: _elm_lang$core$Maybe$Just(offset)
-					});
-			case 'SM':
-				return _elm_lang$core$Native_Utils.update(
-					options,
-					{
-						offsetSm: _elm_lang$core$Maybe$Just(offset)
-					});
-			case 'MD':
-				return _elm_lang$core$Native_Utils.update(
-					options,
-					{
-						offsetMd: _elm_lang$core$Maybe$Just(offset)
-					});
-			case 'LG':
-				return _elm_lang$core$Native_Utils.update(
-					options,
-					{
-						offsetLg: _elm_lang$core$Maybe$Just(offset)
-					});
-			default:
-				return _elm_lang$core$Native_Utils.update(
-					options,
-					{
-						offsetXl: _elm_lang$core$Maybe$Just(offset)
-					});
-		}
-	});
-var _rundis$elm_bootstrap$Bootstrap_Grid_Internal$applyColWidth = F2(
-	function (width, options) {
-		var _p24 = width.screenSize;
-		switch (_p24.ctor) {
-			case 'XS':
-				return _elm_lang$core$Native_Utils.update(
-					options,
-					{
-						widthXs: _elm_lang$core$Maybe$Just(width)
-					});
-			case 'SM':
-				return _elm_lang$core$Native_Utils.update(
-					options,
-					{
-						widthSm: _elm_lang$core$Maybe$Just(width)
-					});
-			case 'MD':
-				return _elm_lang$core$Native_Utils.update(
-					options,
-					{
-						widthMd: _elm_lang$core$Maybe$Just(width)
-					});
-			case 'LG':
-				return _elm_lang$core$Native_Utils.update(
-					options,
-					{
-						widthLg: _elm_lang$core$Maybe$Just(width)
-					});
-			default:
-				return _elm_lang$core$Native_Utils.update(
-					options,
-					{
-						widthXl: _elm_lang$core$Maybe$Just(width)
-					});
-		}
-	});
-var _rundis$elm_bootstrap$Bootstrap_Grid_Internal$applyColOption = F2(
-	function (modifier, options) {
-		var _p25 = modifier;
-		switch (_p25.ctor) {
-			case 'ColAttrs':
-				return _elm_lang$core$Native_Utils.update(
-					options,
-					{
-						attributes: A2(_elm_lang$core$Basics_ops['++'], options.attributes, _p25._0)
-					});
-			case 'ColWidth':
-				return A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$applyColWidth, _p25._0, options);
-			case 'ColOffset':
-				return A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$applyColOffset, _p25._0, options);
-			case 'ColPull':
-				return A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$applyColPull, _p25._0, options);
-			case 'ColPush':
-				return A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$applyColPush, _p25._0, options);
-			default:
-				return A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$applyColAlign, _p25._0, options);
-		}
-	});
-var _rundis$elm_bootstrap$Bootstrap_Grid_Internal$rowAttributes = function (modifiers) {
-	var options = A3(_elm_lang$core$List$foldl, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$applyRowOption, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$defaultRowOptions, modifiers);
-	return A2(
-		_elm_lang$core$Basics_ops['++'],
-		{
-			ctor: '::',
-			_0: _elm_lang$html$Html_Attributes$class('row'),
-			_1: {ctor: '[]'}
-		},
-		A2(
-			_elm_lang$core$Basics_ops['++'],
-			A2(
-				_rundis$elm_bootstrap$Bootstrap_Grid_Internal$vAlignsToAttributes,
-				'align-items-',
-				{
-					ctor: '::',
-					_0: options.vAlignXs,
-					_1: {
-						ctor: '::',
-						_0: options.vAlignSm,
-						_1: {
-							ctor: '::',
-							_0: options.vAlignMd,
-							_1: {
-								ctor: '::',
-								_0: options.vAlignLg,
-								_1: {
-									ctor: '::',
-									_0: options.vAlignXl,
-									_1: {ctor: '[]'}
-								}
-							}
-						}
-					}
-				}),
-			A2(
-				_elm_lang$core$Basics_ops['++'],
-				_rundis$elm_bootstrap$Bootstrap_Grid_Internal$hAlignsToAttributes(
-					{
-						ctor: '::',
-						_0: options.hAlignXs,
-						_1: {
-							ctor: '::',
-							_0: options.hAlignSm,
-							_1: {
-								ctor: '::',
-								_0: options.hAlignMd,
-								_1: {
-									ctor: '::',
-									_0: options.hAlignLg,
-									_1: {
-										ctor: '::',
-										_0: options.hAlignXl,
-										_1: {ctor: '[]'}
-									}
-								}
-							}
-						}
-					}),
-				options.attributes)));
-};
-var _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Width = F2(
-	function (a, b) {
-		return {screenSize: a, columnCount: b};
-	});
-var _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Offset = F2(
-	function (a, b) {
-		return {screenSize: a, offsetCount: b};
-	});
-var _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Pull = F2(
-	function (a, b) {
-		return {screenSize: a, moveCount: b};
-	});
-var _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Push = F2(
-	function (a, b) {
-		return {screenSize: a, moveCount: b};
-	});
-var _rundis$elm_bootstrap$Bootstrap_Grid_Internal$VAlign = F2(
-	function (a, b) {
-		return {screenSize: a, align: b};
-	});
-var _rundis$elm_bootstrap$Bootstrap_Grid_Internal$HAlign = F2(
-	function (a, b) {
-		return {screenSize: a, align: b};
-	});
-var _rundis$elm_bootstrap$Bootstrap_Grid_Internal$ColOptions = function (a) {
-	return function (b) {
-		return function (c) {
-			return function (d) {
-				return function (e) {
-					return function (f) {
-						return function (g) {
-							return function (h) {
-								return function (i) {
-									return function (j) {
-										return function (k) {
-											return function (l) {
-												return function (m) {
-													return function (n) {
-														return function (o) {
-															return function (p) {
-																return function (q) {
-																	return function (r) {
-																		return function (s) {
-																			return function (t) {
-																				return function (u) {
-																					return function (v) {
-																						return function (w) {
-																							return function (x) {
-																								return function (y) {
-																									return function (z) {
-																										return {attributes: a, widthXs: b, widthSm: c, widthMd: d, widthLg: e, widthXl: f, offsetXs: g, offsetSm: h, offsetMd: i, offsetLg: j, offsetXl: k, pullXs: l, pullSm: m, pullMd: n, pullLg: o, pullXl: p, pushXs: q, pushSm: r, pushMd: s, pushLg: t, pushXl: u, alignXs: v, alignSm: w, alignMd: x, alignLg: y, alignXl: z};
-																									};
-																								};
-																							};
-																						};
-																					};
-																				};
-																			};
-																		};
-																	};
-																};
-															};
-														};
-													};
-												};
-											};
-										};
-									};
-								};
-							};
-						};
-					};
-				};
-			};
-		};
-	};
-};
-var _rundis$elm_bootstrap$Bootstrap_Grid_Internal$RowOptions = function (a) {
-	return function (b) {
-		return function (c) {
-			return function (d) {
-				return function (e) {
-					return function (f) {
-						return function (g) {
-							return function (h) {
-								return function (i) {
-									return function (j) {
-										return function (k) {
-											return {attributes: a, vAlignXs: b, vAlignSm: c, vAlignMd: d, vAlignLg: e, vAlignXl: f, hAlignXs: g, hAlignSm: h, hAlignMd: i, hAlignLg: j, hAlignXl: k};
-										};
-									};
-								};
-							};
-						};
-					};
-				};
-			};
-		};
-	};
-};
-var _rundis$elm_bootstrap$Bootstrap_Grid_Internal$ColAttrs = function (a) {
-	return {ctor: 'ColAttrs', _0: a};
-};
-var _rundis$elm_bootstrap$Bootstrap_Grid_Internal$ColAlign = function (a) {
-	return {ctor: 'ColAlign', _0: a};
-};
-var _rundis$elm_bootstrap$Bootstrap_Grid_Internal$colVAlign = F2(
-	function (size, align) {
-		return _rundis$elm_bootstrap$Bootstrap_Grid_Internal$ColAlign(
-			A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$VAlign, size, align));
-	});
-var _rundis$elm_bootstrap$Bootstrap_Grid_Internal$ColPush = function (a) {
-	return {ctor: 'ColPush', _0: a};
-};
-var _rundis$elm_bootstrap$Bootstrap_Grid_Internal$push = F2(
-	function (size, count) {
-		return _rundis$elm_bootstrap$Bootstrap_Grid_Internal$ColPush(
-			A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$Push, size, count));
-	});
-var _rundis$elm_bootstrap$Bootstrap_Grid_Internal$ColPull = function (a) {
-	return {ctor: 'ColPull', _0: a};
-};
-var _rundis$elm_bootstrap$Bootstrap_Grid_Internal$pull = F2(
-	function (size, count) {
-		return _rundis$elm_bootstrap$Bootstrap_Grid_Internal$ColPull(
-			A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$Pull, size, count));
-	});
-var _rundis$elm_bootstrap$Bootstrap_Grid_Internal$ColOffset = function (a) {
-	return {ctor: 'ColOffset', _0: a};
-};
-var _rundis$elm_bootstrap$Bootstrap_Grid_Internal$offset = F2(
-	function (size, count) {
-		return _rundis$elm_bootstrap$Bootstrap_Grid_Internal$ColOffset(
-			A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$Offset, size, count));
-	});
-var _rundis$elm_bootstrap$Bootstrap_Grid_Internal$ColWidth = function (a) {
-	return {ctor: 'ColWidth', _0: a};
-};
-var _rundis$elm_bootstrap$Bootstrap_Grid_Internal$width = F2(
-	function (size, count) {
-		return _rundis$elm_bootstrap$Bootstrap_Grid_Internal$ColWidth(
-			A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$Width, size, count));
-	});
-var _rundis$elm_bootstrap$Bootstrap_Grid_Internal$RowAttrs = function (a) {
-	return {ctor: 'RowAttrs', _0: a};
-};
-var _rundis$elm_bootstrap$Bootstrap_Grid_Internal$RowHAlign = function (a) {
-	return {ctor: 'RowHAlign', _0: a};
-};
-var _rundis$elm_bootstrap$Bootstrap_Grid_Internal$rowHAlign = F2(
-	function (size, align) {
-		return _rundis$elm_bootstrap$Bootstrap_Grid_Internal$RowHAlign(
-			A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$HAlign, size, align));
-	});
-var _rundis$elm_bootstrap$Bootstrap_Grid_Internal$RowVAlign = function (a) {
-	return {ctor: 'RowVAlign', _0: a};
-};
-var _rundis$elm_bootstrap$Bootstrap_Grid_Internal$rowVAlign = F2(
-	function (size, align) {
-		return _rundis$elm_bootstrap$Bootstrap_Grid_Internal$RowVAlign(
-			A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$VAlign, size, align));
-	});
-var _rundis$elm_bootstrap$Bootstrap_Grid_Internal$XL = {ctor: 'XL'};
-var _rundis$elm_bootstrap$Bootstrap_Grid_Internal$LG = {ctor: 'LG'};
-var _rundis$elm_bootstrap$Bootstrap_Grid_Internal$MD = {ctor: 'MD'};
-var _rundis$elm_bootstrap$Bootstrap_Grid_Internal$SM = {ctor: 'SM'};
-var _rundis$elm_bootstrap$Bootstrap_Grid_Internal$XS = {ctor: 'XS'};
-var _rundis$elm_bootstrap$Bootstrap_Grid_Internal$ColAuto = {ctor: 'ColAuto'};
-var _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Col12 = {ctor: 'Col12'};
-var _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Col11 = {ctor: 'Col11'};
-var _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Col10 = {ctor: 'Col10'};
-var _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Col9 = {ctor: 'Col9'};
-var _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Col8 = {ctor: 'Col8'};
-var _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Col7 = {ctor: 'Col7'};
-var _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Col6 = {ctor: 'Col6'};
-var _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Col5 = {ctor: 'Col5'};
-var _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Col4 = {ctor: 'Col4'};
-var _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Col3 = {ctor: 'Col3'};
-var _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Col2 = {ctor: 'Col2'};
-var _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Col1 = {ctor: 'Col1'};
-var _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Col = {ctor: 'Col'};
-var _rundis$elm_bootstrap$Bootstrap_Grid_Internal$colAttributes = function (modifiers) {
-	var options = A3(_elm_lang$core$List$foldl, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$applyColOption, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$defaultColOptions, modifiers);
-	var shouldAddDefaultXs = _elm_lang$core$Native_Utils.eq(
-		_elm_lang$core$List$length(
-			A2(
-				_elm_lang$core$List$filterMap,
-				_elm_lang$core$Basics$identity,
-				{
-					ctor: '::',
-					_0: options.widthXs,
-					_1: {
-						ctor: '::',
-						_0: options.widthSm,
-						_1: {
-							ctor: '::',
-							_0: options.widthMd,
-							_1: {
-								ctor: '::',
-								_0: options.widthLg,
-								_1: {
-									ctor: '::',
-									_0: options.widthXl,
-									_1: {ctor: '[]'}
-								}
-							}
-						}
-					}
-				})),
-		0);
-	return A2(
-		_elm_lang$core$Basics_ops['++'],
-		_rundis$elm_bootstrap$Bootstrap_Grid_Internal$colWidthsToAttributes(
+			_elm_lang$html$Html$div,
+			{ctor: '[]'},
 			{
 				ctor: '::',
-				_0: shouldAddDefaultXs ? _elm_lang$core$Maybe$Just(
-					A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$Width, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$XS, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Col)) : options.widthXs,
-				_1: {
-					ctor: '::',
-					_0: options.widthSm,
-					_1: {
-						ctor: '::',
-						_0: options.widthMd,
-						_1: {
-							ctor: '::',
-							_0: options.widthLg,
-							_1: {
-								ctor: '::',
-								_0: options.widthXl,
-								_1: {ctor: '[]'}
-							}
-						}
-					}
-				}
-			}),
-		A2(
-			_elm_lang$core$Basics_ops['++'],
-			_rundis$elm_bootstrap$Bootstrap_Grid_Internal$offsetsToAttributes(
-				{
-					ctor: '::',
-					_0: options.offsetXs,
-					_1: {
-						ctor: '::',
-						_0: options.offsetSm,
-						_1: {
-							ctor: '::',
-							_0: options.offsetMd,
-							_1: {
-								ctor: '::',
-								_0: options.offsetLg,
-								_1: {
-									ctor: '::',
-									_0: options.offsetXl,
-									_1: {ctor: '[]'}
-								}
-							}
-						}
-					}
-				}),
-			A2(
-				_elm_lang$core$Basics_ops['++'],
-				_rundis$elm_bootstrap$Bootstrap_Grid_Internal$pullsToAttributes(
+				_0: A2(
+					_elm_lang$html$Html$div,
 					{
 						ctor: '::',
-						_0: options.pullXs,
-						_1: {
-							ctor: '::',
-							_0: options.pullSm,
-							_1: {
-								ctor: '::',
-								_0: options.pullMd,
-								_1: {
-									ctor: '::',
-									_0: options.pullLg,
-									_1: {
-										ctor: '::',
-										_0: options.pullXl,
-										_1: {ctor: '[]'}
-									}
-								}
-							}
-						}
+						_0: _elm_lang$html$Html_Attributes$class('w3-display-topmiddle w3-jumbo w3-margin'),
+						_1: {ctor: '[]'}
+					},
+					{
+						ctor: '::',
+						_0: _elm_lang$html$Html$text('TicTacToe'),
+						_1: {ctor: '[]'}
 					}),
-				A2(
-					_elm_lang$core$Basics_ops['++'],
-					_rundis$elm_bootstrap$Bootstrap_Grid_Internal$pushesToAttributes(
+				_1: {
+					ctor: '::',
+					_0: A2(
+						_elm_lang$html$Html$div,
 						{
 							ctor: '::',
-							_0: options.pushXs,
-							_1: {
-								ctor: '::',
-								_0: options.pushSm,
-								_1: {
+							_0: _elm_lang$html$Html_Attributes$class('w3-display-middle w3-xxxlarge'),
+							_1: {ctor: '[]'}
+						},
+						{
+							ctor: '::',
+							_0: A2(
+								_elm_lang$html$Html$div,
+								{
 									ctor: '::',
-									_0: options.pushMd,
+									_0: _elm_lang$html$Html_Attributes$class('w3-cell-row'),
+									_1: {ctor: '[]'}
+								},
+								{
+									ctor: '::',
+									_0: A2(
+										_elm_lang$html$Html$div,
+										{
+											ctor: '::',
+											_0: _elm_lang$html$Html_Attributes$id('1'),
+											_1: {
+												ctor: '::',
+												_0: _elm_lang$html$Html_Attributes$class('w3-button w3-container w3-cell w3-orange w3-border w3-hover-border-black'),
+												_1: {
+													ctor: '::',
+													_0: _elm_lang$html$Html_Attributes$style(
+														{
+															ctor: '::',
+															_0: {ctor: '_Tuple2', _0: 'width', _1: '33%'},
+															_1: {ctor: '[]'}
+														}),
+													_1: {
+														ctor: '::',
+														_0: _elm_lang$html$Html_Events$onClick(
+															A2(actionToMarkCell, 0, playerInTurn)),
+														_1: {ctor: '[]'}
+													}
+												}
+											}
+										},
+										{
+											ctor: '::',
+											_0: A2(
+												_elm_lang$html$Html$p,
+												{ctor: '[]'},
+												{
+													ctor: '::',
+													_0: _elm_lang$html$Html$text(
+														_user$project$Views$makeDisplayable(
+															A2(
+																_elm_lang$core$Array$get,
+																0,
+																_elm_lang$core$Array$fromList(currentBoard)))),
+													_1: {ctor: '[]'}
+												}),
+											_1: {ctor: '[]'}
+										}),
 									_1: {
 										ctor: '::',
-										_0: options.pushLg,
+										_0: A2(
+											_elm_lang$html$Html$div,
+											{
+												ctor: '::',
+												_0: _elm_lang$html$Html_Attributes$id('2'),
+												_1: {
+													ctor: '::',
+													_0: _elm_lang$html$Html_Attributes$class('w3-button w3-container w3-cell w3-orange w3-border w3-hover-border-black'),
+													_1: {
+														ctor: '::',
+														_0: _elm_lang$html$Html_Attributes$style(
+															{
+																ctor: '::',
+																_0: {ctor: '_Tuple2', _0: 'width', _1: '33%'},
+																_1: {ctor: '[]'}
+															}),
+														_1: {
+															ctor: '::',
+															_0: _elm_lang$html$Html_Events$onClick(
+																A2(actionToMarkCell, 1, playerInTurn)),
+															_1: {ctor: '[]'}
+														}
+													}
+												}
+											},
+											{
+												ctor: '::',
+												_0: A2(
+													_elm_lang$html$Html$p,
+													{ctor: '[]'},
+													{
+														ctor: '::',
+														_0: _elm_lang$html$Html$text(
+															_user$project$Views$makeDisplayable(
+																A2(
+																	_elm_lang$core$Array$get,
+																	1,
+																	_elm_lang$core$Array$fromList(currentBoard)))),
+														_1: {ctor: '[]'}
+													}),
+												_1: {ctor: '[]'}
+											}),
 										_1: {
 											ctor: '::',
-											_0: options.pushXl,
+											_0: A2(
+												_elm_lang$html$Html$div,
+												{
+													ctor: '::',
+													_0: _elm_lang$html$Html_Attributes$id('3'),
+													_1: {
+														ctor: '::',
+														_0: _elm_lang$html$Html_Attributes$class('w3-button w3-container w3-cell w3-orange w3-border w3-hover-border-black'),
+														_1: {
+															ctor: '::',
+															_0: _elm_lang$html$Html_Attributes$style(
+																{
+																	ctor: '::',
+																	_0: {ctor: '_Tuple2', _0: 'width', _1: '33%'},
+																	_1: {ctor: '[]'}
+																}),
+															_1: {
+																ctor: '::',
+																_0: _elm_lang$html$Html_Events$onClick(
+																	A2(actionToMarkCell, 2, playerInTurn)),
+																_1: {ctor: '[]'}
+															}
+														}
+													}
+												},
+												{
+													ctor: '::',
+													_0: A2(
+														_elm_lang$html$Html$p,
+														{ctor: '[]'},
+														{
+															ctor: '::',
+															_0: _elm_lang$html$Html$text(
+																_user$project$Views$makeDisplayable(
+																	A2(
+																		_elm_lang$core$Array$get,
+																		2,
+																		_elm_lang$core$Array$fromList(currentBoard)))),
+															_1: {ctor: '[]'}
+														}),
+													_1: {ctor: '[]'}
+												}),
+											_1: {ctor: '[]'}
+										}
+									}
+								}),
+							_1: {
+								ctor: '::',
+								_0: A2(
+									_elm_lang$html$Html$div,
+									{
+										ctor: '::',
+										_0: _elm_lang$html$Html_Attributes$class('w3-cell-row'),
+										_1: {ctor: '[]'}
+									},
+									{
+										ctor: '::',
+										_0: A2(
+											_elm_lang$html$Html$div,
+											{
+												ctor: '::',
+												_0: _elm_lang$html$Html_Attributes$id('4'),
+												_1: {
+													ctor: '::',
+													_0: _elm_lang$html$Html_Attributes$class('w3-button w3-container w3-cell w3-orange w3-border w3-hover-border-black'),
+													_1: {
+														ctor: '::',
+														_0: _elm_lang$html$Html_Attributes$style(
+															{
+																ctor: '::',
+																_0: {ctor: '_Tuple2', _0: 'width', _1: '33%'},
+																_1: {ctor: '[]'}
+															}),
+														_1: {
+															ctor: '::',
+															_0: _elm_lang$html$Html_Events$onClick(
+																A2(actionToMarkCell, 3, playerInTurn)),
+															_1: {ctor: '[]'}
+														}
+													}
+												}
+											},
+											{
+												ctor: '::',
+												_0: A2(
+													_elm_lang$html$Html$p,
+													{ctor: '[]'},
+													{
+														ctor: '::',
+														_0: _elm_lang$html$Html$text(
+															_user$project$Views$makeDisplayable(
+																A2(
+																	_elm_lang$core$Array$get,
+																	3,
+																	_elm_lang$core$Array$fromList(currentBoard)))),
+														_1: {ctor: '[]'}
+													}),
+												_1: {ctor: '[]'}
+											}),
+										_1: {
+											ctor: '::',
+											_0: A2(
+												_elm_lang$html$Html$div,
+												{
+													ctor: '::',
+													_0: _elm_lang$html$Html_Attributes$id('5'),
+													_1: {
+														ctor: '::',
+														_0: _elm_lang$html$Html_Attributes$class('w3-button w3-container w3-cell w3-orange w3-border w3-hover-border-black'),
+														_1: {
+															ctor: '::',
+															_0: _elm_lang$html$Html_Attributes$style(
+																{
+																	ctor: '::',
+																	_0: {ctor: '_Tuple2', _0: 'width', _1: '33%'},
+																	_1: {ctor: '[]'}
+																}),
+															_1: {
+																ctor: '::',
+																_0: _elm_lang$html$Html_Events$onClick(
+																	A2(actionToMarkCell, 4, playerInTurn)),
+																_1: {ctor: '[]'}
+															}
+														}
+													}
+												},
+												{
+													ctor: '::',
+													_0: A2(
+														_elm_lang$html$Html$p,
+														{ctor: '[]'},
+														{
+															ctor: '::',
+															_0: _elm_lang$html$Html$text(
+																_user$project$Views$makeDisplayable(
+																	A2(
+																		_elm_lang$core$Array$get,
+																		4,
+																		_elm_lang$core$Array$fromList(currentBoard)))),
+															_1: {ctor: '[]'}
+														}),
+													_1: {ctor: '[]'}
+												}),
+											_1: {
+												ctor: '::',
+												_0: A2(
+													_elm_lang$html$Html$div,
+													{
+														ctor: '::',
+														_0: _elm_lang$html$Html_Attributes$id('6'),
+														_1: {
+															ctor: '::',
+															_0: _elm_lang$html$Html_Attributes$class('w3-button w3-container w3-cell w3-orange w3-border w3-hover-border-black'),
+															_1: {
+																ctor: '::',
+																_0: _elm_lang$html$Html_Attributes$style(
+																	{
+																		ctor: '::',
+																		_0: {ctor: '_Tuple2', _0: 'width', _1: '33%'},
+																		_1: {ctor: '[]'}
+																	}),
+																_1: {
+																	ctor: '::',
+																	_0: _elm_lang$html$Html_Events$onClick(
+																		A2(actionToMarkCell, 5, playerInTurn)),
+																	_1: {ctor: '[]'}
+																}
+															}
+														}
+													},
+													{
+														ctor: '::',
+														_0: A2(
+															_elm_lang$html$Html$p,
+															{ctor: '[]'},
+															{
+																ctor: '::',
+																_0: _elm_lang$html$Html$text(
+																	_user$project$Views$makeDisplayable(
+																		A2(
+																			_elm_lang$core$Array$get,
+																			5,
+																			_elm_lang$core$Array$fromList(currentBoard)))),
+																_1: {ctor: '[]'}
+															}),
+														_1: {ctor: '[]'}
+													}),
+												_1: {ctor: '[]'}
+											}
+										}
+									}),
+								_1: {
+									ctor: '::',
+									_0: A2(
+										_elm_lang$html$Html$div,
+										{
+											ctor: '::',
+											_0: _elm_lang$html$Html_Attributes$class('w3-cell-row'),
+											_1: {ctor: '[]'}
+										},
+										{
+											ctor: '::',
+											_0: A2(
+												_elm_lang$html$Html$div,
+												{
+													ctor: '::',
+													_0: _elm_lang$html$Html_Attributes$id('7'),
+													_1: {
+														ctor: '::',
+														_0: _elm_lang$html$Html_Attributes$class('w3-button w3-container w3-cell w3-orange w3-border w3-hover-border-black'),
+														_1: {
+															ctor: '::',
+															_0: _elm_lang$html$Html_Attributes$style(
+																{
+																	ctor: '::',
+																	_0: {ctor: '_Tuple2', _0: 'width', _1: '33%'},
+																	_1: {ctor: '[]'}
+																}),
+															_1: {
+																ctor: '::',
+																_0: _elm_lang$html$Html_Events$onClick(
+																	A2(actionToMarkCell, 6, playerInTurn)),
+																_1: {ctor: '[]'}
+															}
+														}
+													}
+												},
+												{
+													ctor: '::',
+													_0: A2(
+														_elm_lang$html$Html$p,
+														{ctor: '[]'},
+														{
+															ctor: '::',
+															_0: _elm_lang$html$Html$text(
+																_user$project$Views$makeDisplayable(
+																	A2(
+																		_elm_lang$core$Array$get,
+																		6,
+																		_elm_lang$core$Array$fromList(currentBoard)))),
+															_1: {ctor: '[]'}
+														}),
+													_1: {ctor: '[]'}
+												}),
+											_1: {
+												ctor: '::',
+												_0: A2(
+													_elm_lang$html$Html$div,
+													{
+														ctor: '::',
+														_0: _elm_lang$html$Html_Attributes$id('8'),
+														_1: {
+															ctor: '::',
+															_0: _elm_lang$html$Html_Attributes$class('w3-button w3-container w3-cell w3-orange w3-border w3-hover-border-black'),
+															_1: {
+																ctor: '::',
+																_0: _elm_lang$html$Html_Attributes$style(
+																	{
+																		ctor: '::',
+																		_0: {ctor: '_Tuple2', _0: 'width', _1: '33%'},
+																		_1: {ctor: '[]'}
+																	}),
+																_1: {
+																	ctor: '::',
+																	_0: _elm_lang$html$Html_Events$onClick(
+																		A2(actionToMarkCell, 7, playerInTurn)),
+																	_1: {ctor: '[]'}
+																}
+															}
+														}
+													},
+													{
+														ctor: '::',
+														_0: A2(
+															_elm_lang$html$Html$p,
+															{ctor: '[]'},
+															{
+																ctor: '::',
+																_0: _elm_lang$html$Html$text(
+																	_user$project$Views$makeDisplayable(
+																		A2(
+																			_elm_lang$core$Array$get,
+																			7,
+																			_elm_lang$core$Array$fromList(currentBoard)))),
+																_1: {ctor: '[]'}
+															}),
+														_1: {ctor: '[]'}
+													}),
+												_1: {
+													ctor: '::',
+													_0: A2(
+														_elm_lang$html$Html$div,
+														{
+															ctor: '::',
+															_0: _elm_lang$html$Html_Attributes$id('9'),
+															_1: {
+																ctor: '::',
+																_0: _elm_lang$html$Html_Attributes$class('w3-button w3-container w3-cell w3-orange w3-border w3-hover-border-black'),
+																_1: {
+																	ctor: '::',
+																	_0: _elm_lang$html$Html_Attributes$style(
+																		{
+																			ctor: '::',
+																			_0: {ctor: '_Tuple2', _0: 'width', _1: '33%'},
+																			_1: {ctor: '[]'}
+																		}),
+																	_1: {
+																		ctor: '::',
+																		_0: _elm_lang$html$Html_Events$onClick(
+																			A2(actionToMarkCell, 8, playerInTurn)),
+																		_1: {ctor: '[]'}
+																	}
+																}
+															}
+														},
+														{
+															ctor: '::',
+															_0: A2(
+																_elm_lang$html$Html$p,
+																{ctor: '[]'},
+																{
+																	ctor: '::',
+																	_0: _elm_lang$html$Html$text(
+																		_user$project$Views$makeDisplayable(
+																			A2(
+																				_elm_lang$core$Array$get,
+																				8,
+																				_elm_lang$core$Array$fromList(currentBoard)))),
+																	_1: {ctor: '[]'}
+																}),
+															_1: {ctor: '[]'}
+														}),
+													_1: {ctor: '[]'}
+												}
+											}
+										}),
+									_1: {
+										ctor: '::',
+										_0: A2(
+											_elm_lang$html$Html$div,
+											{
+												ctor: '::',
+												_0: _elm_lang$html$Html_Attributes$class('w3-animate-fading'),
+												_1: {ctor: '[]'}
+											},
+											{
+												ctor: '::',
+												_0: _elm_lang$html$Html$text(
+													_user$project$Views$display_prompt(playerInTurn)),
+												_1: {ctor: '[]'}
+											}),
+										_1: {
+											ctor: '::',
+											_0: A2(
+												_elm_lang$html$Html$div,
+												{ctor: '[]'},
+												{ctor: '[]'}),
 											_1: {ctor: '[]'}
 										}
 									}
 								}
 							}
 						}),
-					A2(
-						_elm_lang$core$Basics_ops['++'],
-						A2(
-							_rundis$elm_bootstrap$Bootstrap_Grid_Internal$vAlignsToAttributes,
-							'align-self-',
-							{
-								ctor: '::',
-								_0: options.alignXs,
-								_1: {
-									ctor: '::',
-									_0: options.alignSm,
-									_1: {
-										ctor: '::',
-										_0: options.alignMd,
-										_1: {
-											ctor: '::',
-											_0: options.alignLg,
-											_1: {
-												ctor: '::',
-												_0: options.alignXl,
-												_1: {ctor: '[]'}
-											}
-										}
-									}
-								}
-							}),
-						options.attributes)))));
-};
-var _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Offset11 = {ctor: 'Offset11'};
-var _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Offset10 = {ctor: 'Offset10'};
-var _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Offset9 = {ctor: 'Offset9'};
-var _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Offset8 = {ctor: 'Offset8'};
-var _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Offset7 = {ctor: 'Offset7'};
-var _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Offset6 = {ctor: 'Offset6'};
-var _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Offset5 = {ctor: 'Offset5'};
-var _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Offset4 = {ctor: 'Offset4'};
-var _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Offset3 = {ctor: 'Offset3'};
-var _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Offset2 = {ctor: 'Offset2'};
-var _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Offset1 = {ctor: 'Offset1'};
-var _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Offset0 = {ctor: 'Offset0'};
-var _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Move12 = {ctor: 'Move12'};
-var _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Move11 = {ctor: 'Move11'};
-var _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Move10 = {ctor: 'Move10'};
-var _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Move9 = {ctor: 'Move9'};
-var _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Move8 = {ctor: 'Move8'};
-var _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Move7 = {ctor: 'Move7'};
-var _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Move6 = {ctor: 'Move6'};
-var _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Move5 = {ctor: 'Move5'};
-var _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Move4 = {ctor: 'Move4'};
-var _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Move3 = {ctor: 'Move3'};
-var _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Move2 = {ctor: 'Move2'};
-var _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Move1 = {ctor: 'Move1'};
-var _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Move0 = {ctor: 'Move0'};
-var _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Bottom = {ctor: 'Bottom'};
-var _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Middle = {ctor: 'Middle'};
-var _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Top = {ctor: 'Top'};
-var _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Between = {ctor: 'Between'};
-var _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Around = {ctor: 'Around'};
-var _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Right = {ctor: 'Right'};
-var _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Center = {ctor: 'Center'};
-var _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Left = {ctor: 'Left'};
-
-var _rundis$elm_bootstrap$Bootstrap_CDN$fontAwesome = A3(
-	_elm_lang$html$Html$node,
-	'link',
-	{
-		ctor: '::',
-		_0: _elm_lang$html$Html_Attributes$rel('stylesheet'),
-		_1: {
-			ctor: '::',
-			_0: _elm_lang$html$Html_Attributes$href('https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css'),
-			_1: {ctor: '[]'}
-		}
-	},
-	{ctor: '[]'});
-var _rundis$elm_bootstrap$Bootstrap_CDN$stylesheet = A3(
-	_elm_lang$html$Html$node,
-	'link',
-	{
-		ctor: '::',
-		_0: _elm_lang$html$Html_Attributes$rel('stylesheet'),
-		_1: {
-			ctor: '::',
-			_0: _elm_lang$html$Html_Attributes$href('https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css'),
-			_1: {ctor: '[]'}
-		}
-	},
-	{ctor: '[]'});
-
-var _rundis$elm_bootstrap$Bootstrap_Grid_Row$betweenXl = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$rowHAlign, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$XL, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Between);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Row$betweenLg = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$rowHAlign, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$LG, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Between);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Row$betweenMd = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$rowHAlign, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$MD, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Between);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Row$betweenSm = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$rowHAlign, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$SM, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Between);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Row$betweenXs = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$rowHAlign, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$XS, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Between);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Row$aroundXl = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$rowHAlign, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$XL, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Around);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Row$aroundLg = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$rowHAlign, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$LG, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Around);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Row$aroundMd = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$rowHAlign, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$MD, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Around);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Row$aroundSm = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$rowHAlign, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$SM, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Around);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Row$aroundXs = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$rowHAlign, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$XS, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Around);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Row$rightXl = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$rowHAlign, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$XL, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Right);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Row$rightLg = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$rowHAlign, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$LG, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Right);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Row$rightMd = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$rowHAlign, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$MD, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Right);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Row$rightSm = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$rowHAlign, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$SM, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Right);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Row$rightXs = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$rowHAlign, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$XS, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Right);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Row$centerXl = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$rowHAlign, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$XL, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Center);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Row$centerLg = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$rowHAlign, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$LG, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Center);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Row$centerMd = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$rowHAlign, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$MD, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Center);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Row$centerSm = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$rowHAlign, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$SM, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Center);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Row$centerXs = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$rowHAlign, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$XS, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Center);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Row$leftXl = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$rowHAlign, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$XL, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Left);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Row$leftLg = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$rowHAlign, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$LG, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Left);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Row$leftMd = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$rowHAlign, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$MD, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Left);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Row$leftSm = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$rowHAlign, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$SM, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Left);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Row$leftXs = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$rowHAlign, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$XS, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Left);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Row$bottomXl = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$rowVAlign, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$XL, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Bottom);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Row$bottomLg = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$rowVAlign, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$LG, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Bottom);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Row$bottomMd = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$rowVAlign, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$MD, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Bottom);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Row$bottomSm = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$rowVAlign, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$SM, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Bottom);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Row$bottomXs = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$rowVAlign, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$XS, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Bottom);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Row$middleXl = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$rowVAlign, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$XL, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Middle);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Row$middleLg = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$rowVAlign, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$LG, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Middle);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Row$middleMd = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$rowVAlign, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$MD, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Middle);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Row$middleSm = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$rowVAlign, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$SM, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Middle);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Row$middleXs = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$rowVAlign, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$XS, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Middle);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Row$topXl = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$rowVAlign, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$XL, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Top);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Row$topLg = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$rowVAlign, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$LG, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Top);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Row$topMd = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$rowVAlign, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$MD, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Top);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Row$topSm = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$rowVAlign, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$SM, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Top);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Row$topXs = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$rowVAlign, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$XS, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Top);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Row$attrs = function (attrs) {
-	return _rundis$elm_bootstrap$Bootstrap_Grid_Internal$RowAttrs(attrs);
-};
-
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$pushXl12 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$push, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$XL, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Move12);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$pushXl11 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$push, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$XL, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Move11);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$pushXl10 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$push, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$XL, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Move10);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$pushXl9 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$push, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$XL, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Move9);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$pushXl8 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$push, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$XL, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Move8);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$pushXl7 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$push, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$XL, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Move7);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$pushXl6 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$push, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$XL, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Move6);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$pushXl5 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$push, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$XL, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Move5);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$pushXl4 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$push, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$XL, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Move4);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$pushXl3 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$push, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$XL, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Move3);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$pushXl2 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$push, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$XL, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Move2);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$pushXl1 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$push, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$XL, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Move1);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$pushXl0 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$push, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$XL, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Move0);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$pushLg12 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$push, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$LG, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Move12);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$pushLg11 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$push, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$LG, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Move11);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$pushLg10 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$push, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$LG, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Move10);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$pushLg9 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$push, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$LG, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Move9);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$pushLg8 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$push, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$LG, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Move8);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$pushLg7 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$push, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$LG, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Move7);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$pushLg6 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$push, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$LG, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Move6);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$pushLg5 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$push, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$LG, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Move5);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$pushLg4 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$push, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$LG, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Move4);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$pushLg3 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$push, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$LG, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Move3);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$pushLg2 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$push, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$LG, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Move2);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$pushLg1 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$push, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$LG, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Move1);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$pushLg0 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$push, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$LG, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Move0);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$pushMd12 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$push, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$MD, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Move12);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$pushMd11 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$push, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$MD, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Move11);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$pushMd10 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$push, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$MD, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Move10);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$pushMd9 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$push, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$MD, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Move9);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$pushMd8 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$push, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$MD, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Move8);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$pushMd7 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$push, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$MD, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Move7);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$pushMd6 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$push, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$MD, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Move6);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$pushMd5 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$push, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$MD, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Move5);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$pushMd4 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$push, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$MD, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Move4);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$pushMd3 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$push, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$MD, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Move3);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$pushMd2 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$push, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$MD, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Move2);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$pushMd1 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$push, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$MD, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Move1);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$pushMd0 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$push, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$MD, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Move0);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$pushSm12 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$push, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$SM, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Move12);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$pushSm11 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$push, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$SM, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Move11);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$pushSm10 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$push, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$SM, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Move10);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$pushSm9 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$push, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$SM, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Move9);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$pushSm8 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$push, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$SM, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Move8);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$pushSm7 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$push, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$SM, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Move7);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$pushSm6 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$push, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$SM, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Move6);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$pushSm5 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$push, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$SM, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Move5);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$pushSm4 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$push, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$SM, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Move4);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$pushSm3 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$push, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$SM, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Move3);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$pushSm2 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$push, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$SM, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Move2);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$pushSm1 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$push, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$SM, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Move1);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$pushSm0 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$push, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$SM, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Move0);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$pushXs12 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$push, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$XS, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Move12);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$pushXs11 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$push, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$XS, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Move11);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$pushXs10 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$push, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$XS, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Move10);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$pushXs9 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$push, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$XS, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Move9);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$pushXs8 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$push, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$XS, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Move8);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$pushXs7 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$push, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$XS, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Move7);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$pushXs6 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$push, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$XS, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Move6);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$pushXs5 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$push, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$XS, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Move5);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$pushXs4 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$push, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$XS, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Move4);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$pushXs3 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$push, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$XS, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Move3);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$pushXs2 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$push, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$XS, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Move2);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$pushXs1 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$push, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$XS, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Move1);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$pushXs0 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$push, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$XS, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Move0);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$pullXl12 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$pull, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$XL, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Move12);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$pullXl11 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$pull, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$XL, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Move11);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$pullXl10 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$pull, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$XL, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Move10);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$pullXl9 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$pull, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$XL, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Move9);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$pullXl8 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$pull, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$XL, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Move8);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$pullXl7 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$pull, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$XL, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Move7);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$pullXl6 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$pull, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$XL, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Move6);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$pullXl5 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$pull, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$XL, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Move5);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$pullXl4 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$pull, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$XL, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Move4);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$pullXl3 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$pull, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$XL, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Move3);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$pullXl2 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$pull, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$XL, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Move2);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$pullXl1 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$pull, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$XL, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Move1);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$pullXl0 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$pull, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$XL, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Move0);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$pullLg12 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$pull, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$LG, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Move12);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$pullLg11 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$pull, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$LG, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Move11);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$pullLg10 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$pull, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$LG, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Move10);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$pullLg9 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$pull, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$LG, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Move9);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$pullLg8 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$pull, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$LG, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Move8);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$pullLg7 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$pull, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$LG, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Move7);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$pullLg6 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$pull, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$LG, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Move6);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$pullLg5 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$pull, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$LG, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Move5);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$pullLg4 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$pull, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$LG, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Move4);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$pullLg3 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$pull, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$LG, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Move3);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$pullLg2 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$pull, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$LG, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Move2);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$pullLg1 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$pull, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$LG, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Move1);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$pullLg0 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$pull, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$LG, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Move0);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$pullMd12 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$pull, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$MD, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Move12);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$pullMd11 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$pull, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$MD, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Move11);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$pullMd10 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$pull, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$MD, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Move10);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$pullMd9 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$pull, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$MD, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Move9);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$pullMd8 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$pull, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$MD, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Move8);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$pullMd7 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$pull, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$MD, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Move7);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$pullMd6 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$pull, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$MD, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Move6);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$pullMd5 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$pull, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$MD, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Move5);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$pullMd4 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$pull, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$MD, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Move4);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$pullMd3 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$pull, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$MD, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Move3);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$pullMd2 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$pull, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$MD, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Move2);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$pullMd1 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$pull, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$MD, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Move1);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$pullMd0 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$pull, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$MD, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Move0);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$pullSm12 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$pull, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$SM, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Move12);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$pullSm11 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$pull, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$SM, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Move11);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$pullSm10 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$pull, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$SM, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Move10);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$pullSm9 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$pull, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$SM, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Move9);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$pullSm8 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$pull, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$SM, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Move8);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$pullSm7 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$pull, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$SM, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Move7);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$pullSm6 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$pull, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$SM, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Move6);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$pullSm5 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$pull, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$SM, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Move5);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$pullSm4 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$pull, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$SM, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Move4);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$pullSm3 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$pull, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$SM, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Move3);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$pullSm2 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$pull, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$SM, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Move2);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$pullSm1 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$pull, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$SM, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Move1);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$pullSm0 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$pull, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$SM, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Move0);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$pullXs12 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$pull, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$XS, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Move12);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$pullXs11 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$pull, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$XS, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Move11);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$pullXs10 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$pull, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$XS, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Move10);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$pullXs9 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$pull, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$XS, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Move9);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$pullXs8 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$pull, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$XS, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Move8);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$pullXs7 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$pull, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$XS, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Move7);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$pullXs6 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$pull, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$XS, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Move6);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$pullXs5 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$pull, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$XS, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Move5);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$pullXs4 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$pull, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$XS, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Move4);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$pullXs3 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$pull, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$XS, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Move3);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$pullXs2 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$pull, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$XS, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Move2);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$pullXs1 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$pull, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$XS, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Move1);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$pullXs0 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$pull, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$XS, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Move0);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$offsetXl11 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$offset, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$XL, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Offset11);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$offsetXl10 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$offset, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$XL, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Offset10);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$offsetXl9 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$offset, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$XL, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Offset9);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$offsetXl8 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$offset, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$XL, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Offset8);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$offsetXl7 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$offset, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$XL, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Offset7);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$offsetXl6 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$offset, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$XL, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Offset6);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$offsetXl5 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$offset, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$XL, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Offset5);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$offsetXl4 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$offset, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$XL, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Offset4);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$offsetXl3 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$offset, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$XL, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Offset3);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$offsetXl2 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$offset, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$XL, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Offset2);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$offsetXl1 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$offset, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$XL, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Offset1);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$offsetXl0 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$offset, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$LG, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Offset0);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$offsetLg11 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$offset, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$LG, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Offset11);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$offsetLg10 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$offset, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$LG, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Offset10);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$offsetLg9 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$offset, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$LG, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Offset9);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$offsetLg8 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$offset, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$LG, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Offset8);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$offsetLg7 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$offset, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$LG, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Offset7);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$offsetLg6 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$offset, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$LG, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Offset6);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$offsetLg5 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$offset, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$LG, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Offset5);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$offsetLg4 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$offset, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$LG, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Offset4);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$offsetLg3 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$offset, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$LG, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Offset3);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$offsetLg2 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$offset, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$LG, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Offset2);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$offsetLg1 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$offset, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$LG, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Offset1);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$offsetLg0 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$offset, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$LG, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Offset0);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$offsetMd11 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$offset, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$MD, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Offset11);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$offsetMd10 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$offset, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$MD, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Offset10);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$offsetMd9 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$offset, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$MD, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Offset9);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$offsetMd8 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$offset, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$MD, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Offset8);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$offsetMd7 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$offset, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$MD, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Offset7);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$offsetMd6 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$offset, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$MD, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Offset6);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$offsetMd5 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$offset, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$MD, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Offset5);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$offsetMd4 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$offset, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$MD, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Offset4);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$offsetMd3 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$offset, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$MD, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Offset3);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$offsetMd2 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$offset, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$MD, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Offset2);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$offsetMd1 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$offset, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$MD, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Offset1);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$offsetMd0 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$offset, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$MD, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Offset0);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$offsetSm11 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$offset, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$SM, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Offset11);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$offsetSm10 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$offset, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$SM, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Offset10);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$offsetSm9 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$offset, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$SM, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Offset9);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$offsetSm8 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$offset, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$SM, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Offset8);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$offsetSm7 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$offset, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$SM, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Offset7);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$offsetSm6 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$offset, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$SM, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Offset6);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$offsetSm5 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$offset, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$SM, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Offset5);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$offsetSm4 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$offset, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$SM, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Offset4);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$offsetSm3 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$offset, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$SM, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Offset3);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$offsetSm2 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$offset, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$SM, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Offset2);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$offsetSm1 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$offset, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$SM, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Offset1);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$offsetSm0 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$offset, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$SM, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Offset0);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$offsetXs11 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$offset, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$XS, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Offset11);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$offsetXs10 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$offset, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$XS, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Offset10);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$offsetXs9 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$offset, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$XS, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Offset9);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$offsetXs8 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$offset, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$XS, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Offset8);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$offsetXs7 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$offset, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$XS, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Offset7);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$offsetXs6 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$offset, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$XS, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Offset6);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$offsetXs5 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$offset, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$XS, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Offset5);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$offsetXs4 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$offset, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$XS, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Offset4);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$offsetXs3 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$offset, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$XS, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Offset3);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$offsetXs2 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$offset, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$XS, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Offset2);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$offsetXs1 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$offset, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$XS, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Offset1);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$xlAuto = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$width, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$XL, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$ColAuto);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$xl12 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$width, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$XL, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Col12);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$xl11 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$width, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$XL, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Col11);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$xl10 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$width, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$XL, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Col10);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$xl9 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$width, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$XL, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Col9);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$xl8 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$width, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$XL, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Col8);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$xl7 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$width, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$XL, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Col7);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$xl6 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$width, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$XL, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Col6);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$xl5 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$width, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$XL, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Col5);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$xl4 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$width, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$XL, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Col4);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$xl3 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$width, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$XL, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Col3);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$xl2 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$width, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$XL, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Col2);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$xl1 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$width, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$XL, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Col1);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$xl = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$width, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$XL, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Col);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$lgAuto = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$width, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$LG, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$ColAuto);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$lg12 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$width, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$LG, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Col12);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$lg11 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$width, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$LG, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Col11);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$lg10 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$width, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$LG, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Col10);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$lg9 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$width, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$LG, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Col9);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$lg8 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$width, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$LG, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Col8);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$lg7 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$width, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$LG, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Col7);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$lg6 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$width, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$LG, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Col6);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$lg5 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$width, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$LG, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Col5);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$lg4 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$width, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$LG, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Col4);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$lg3 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$width, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$LG, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Col3);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$lg2 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$width, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$LG, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Col2);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$lg1 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$width, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$LG, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Col1);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$lg = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$width, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$LG, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Col);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$mdAuto = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$width, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$MD, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$ColAuto);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$md12 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$width, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$MD, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Col12);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$md11 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$width, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$MD, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Col11);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$md10 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$width, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$MD, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Col10);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$md9 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$width, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$MD, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Col9);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$md8 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$width, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$MD, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Col8);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$md7 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$width, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$MD, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Col7);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$md6 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$width, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$MD, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Col6);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$md5 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$width, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$MD, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Col5);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$md4 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$width, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$MD, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Col4);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$md3 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$width, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$MD, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Col3);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$md2 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$width, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$MD, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Col2);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$md1 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$width, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$MD, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Col1);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$md = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$width, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$MD, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Col);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$smAuto = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$width, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$XS, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$ColAuto);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$sm12 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$width, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$SM, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Col12);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$sm11 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$width, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$SM, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Col11);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$sm10 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$width, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$SM, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Col10);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$sm9 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$width, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$SM, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Col9);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$sm8 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$width, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$SM, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Col8);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$sm7 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$width, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$SM, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Col7);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$sm6 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$width, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$SM, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Col6);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$sm5 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$width, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$SM, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Col5);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$sm4 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$width, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$SM, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Col4);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$sm3 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$width, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$SM, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Col3);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$sm2 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$width, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$SM, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Col2);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$sm1 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$width, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$SM, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Col1);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$sm = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$width, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$SM, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Col);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$xsAuto = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$width, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$XS, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$ColAuto);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$xs12 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$width, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$XS, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Col12);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$xs11 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$width, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$XS, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Col11);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$xs10 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$width, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$XS, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Col10);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$xs9 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$width, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$XS, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Col9);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$xs8 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$width, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$XS, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Col8);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$xs7 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$width, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$XS, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Col7);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$xs6 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$width, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$XS, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Col6);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$xs5 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$width, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$XS, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Col5);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$xs4 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$width, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$XS, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Col4);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$xs3 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$width, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$XS, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Col3);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$xs2 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$width, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$XS, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Col2);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$xs1 = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$width, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$XS, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Col1);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$xs = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$width, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$XS, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Col);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$bottomXl = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$colVAlign, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$XL, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Bottom);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$bottomLg = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$colVAlign, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$LG, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Bottom);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$bottomMd = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$colVAlign, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$MD, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Bottom);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$bottomSm = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$colVAlign, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$SM, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Bottom);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$bottomXs = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$colVAlign, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$XS, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Bottom);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$middleXl = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$colVAlign, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$XL, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Middle);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$middleLg = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$colVAlign, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$LG, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Middle);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$middleMd = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$colVAlign, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$MD, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Middle);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$middleSm = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$colVAlign, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$SM, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Middle);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$middleXs = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$colVAlign, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$XS, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Middle);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$topXl = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$colVAlign, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$XL, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Top);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$topLg = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$colVAlign, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$LG, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Top);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$topMd = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$colVAlign, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$MD, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Top);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$topSm = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$colVAlign, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$SM, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Top);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$topXs = A2(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$colVAlign, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$XS, _rundis$elm_bootstrap$Bootstrap_Grid_Internal$Top);
-var _rundis$elm_bootstrap$Bootstrap_Grid_Col$attrs = function (attrs) {
-	return _rundis$elm_bootstrap$Bootstrap_Grid_Internal$ColAttrs(attrs);
-};
-
-var _rundis$elm_bootstrap$Bootstrap_Grid$renderCol = function (column) {
-	var _p0 = column;
-	switch (_p0.ctor) {
-		case 'Column':
-			return A2(
-				_elm_lang$html$Html$div,
-				_rundis$elm_bootstrap$Bootstrap_Grid_Internal$colAttributes(_p0._0.options),
-				_p0._0.children);
-		case 'ColBreak':
-			return _p0._0;
-		default:
-			return A3(
-				_elm_lang$html$Html_Keyed$node,
-				'div',
-				_rundis$elm_bootstrap$Bootstrap_Grid_Internal$colAttributes(_p0._0.options),
-				_p0._0.children);
-	}
-};
-var _rundis$elm_bootstrap$Bootstrap_Grid$keyedRow = F2(
-	function (options, keyedCols) {
-		return A3(
-			_elm_lang$html$Html_Keyed$node,
-			'div',
-			_rundis$elm_bootstrap$Bootstrap_Grid_Internal$rowAttributes(options),
-			A2(
-				_elm_lang$core$List$map,
-				function (_p1) {
-					var _p2 = _p1;
-					return {
-						ctor: '_Tuple2',
-						_0: _p2._0,
-						_1: _rundis$elm_bootstrap$Bootstrap_Grid$renderCol(_p2._1)
-					};
-				},
-				keyedCols));
+					_1: {ctor: '[]'}
+				}
+			});
 	});
-var _rundis$elm_bootstrap$Bootstrap_Grid$row = F2(
-	function (options, cols) {
-		return A2(
-			_elm_lang$html$Html$div,
-			_rundis$elm_bootstrap$Bootstrap_Grid_Internal$rowAttributes(options),
-			A2(_elm_lang$core$List$map, _rundis$elm_bootstrap$Bootstrap_Grid$renderCol, cols));
-	});
-var _rundis$elm_bootstrap$Bootstrap_Grid$simpleRow = function (cols) {
+var _user$project$Views$waiting_to_start_screen = function (startTheGame) {
 	return A2(
-		_rundis$elm_bootstrap$Bootstrap_Grid$row,
-		{ctor: '[]'},
-		cols);
-};
-var _rundis$elm_bootstrap$Bootstrap_Grid$containerFluid = F2(
-	function (attributes, children) {
-		return A2(
-			_elm_lang$html$Html$div,
-			A2(
-				_elm_lang$core$Basics_ops['++'],
+		_elm_lang$html$Html$div,
+		{
+			ctor: '::',
+			_0: _elm_lang$html$Html_Attributes$class('w3-display-middle w3-xxxlarge'),
+			_1: {
+				ctor: '::',
+				_0: _elm_lang$html$Html_Events$onClick(startTheGame),
+				_1: {ctor: '[]'}
+			}
+		},
+		{
+			ctor: '::',
+			_0: A2(
+				_elm_lang$html$Html$div,
 				{
 					ctor: '::',
-					_0: _elm_lang$html$Html_Attributes$class('container-fluid'),
-					_1: {ctor: '[]'}
+					_0: _elm_lang$html$Html_Attributes$id('1'),
+					_1: {
+						ctor: '::',
+						_0: _elm_lang$html$Html_Attributes$class('w3-button w3-container w3-cell w3-orange w3-border w3-hover-border-black'),
+						_1: {ctor: '[]'}
+					}
 				},
-				attributes),
-			children);
-	});
-var _rundis$elm_bootstrap$Bootstrap_Grid$container = F2(
-	function (attributes, children) {
-		return A2(
-			_elm_lang$html$Html$div,
-			A2(
-				_elm_lang$core$Basics_ops['++'],
 				{
 					ctor: '::',
-					_0: _elm_lang$html$Html_Attributes$class('container'),
+					_0: A2(
+						_elm_lang$html$Html$p,
+						{ctor: '[]'},
+						{
+							ctor: '::',
+							_0: _elm_lang$html$Html$text('Start Game'),
+							_1: {ctor: '[]'}
+						}),
 					_1: {ctor: '[]'}
-				},
-				attributes),
-			children);
-	});
-var _rundis$elm_bootstrap$Bootstrap_Grid$KeyedColumn = function (a) {
-	return {ctor: 'KeyedColumn', _0: a};
+				}),
+			_1: {ctor: '[]'}
+		});
 };
-var _rundis$elm_bootstrap$Bootstrap_Grid$keyedCol = F2(
-	function (options, children) {
-		return _rundis$elm_bootstrap$Bootstrap_Grid$KeyedColumn(
-			{options: options, children: children});
-	});
-var _rundis$elm_bootstrap$Bootstrap_Grid$ColBreak = function (a) {
-	return {ctor: 'ColBreak', _0: a};
-};
-var _rundis$elm_bootstrap$Bootstrap_Grid$colBreak = function (attributes) {
-	return _rundis$elm_bootstrap$Bootstrap_Grid$ColBreak(
-		A2(
-			_elm_lang$html$Html$div,
-			A2(
-				_elm_lang$core$Basics_ops['++'],
-				{
-					ctor: '::',
-					_0: _elm_lang$html$Html_Attributes$class('w-100'),
-					_1: {ctor: '[]'}
-				},
-				attributes),
-			{ctor: '[]'}));
-};
-var _rundis$elm_bootstrap$Bootstrap_Grid$Column = function (a) {
-	return {ctor: 'Column', _0: a};
-};
-var _rundis$elm_bootstrap$Bootstrap_Grid$col = F2(
-	function (options, children) {
-		return _rundis$elm_bootstrap$Bootstrap_Grid$Column(
-			{options: options, children: children});
-	});
-
 var _user$project$Views$mode_menu_screen = F3(
 	function (humanVHumanAction, humanVComputerAction, computerVComputerAction) {
 		return A2(
@@ -14252,17 +13273,20 @@ var _user$project$Views$welcome_screen = function (actionOnClick) {
 		});
 };
 
-var _user$project$GameLoop$playScreen = function (players) {
-	return A2(
-		_elm_lang$html$Html$div,
-		{ctor: '[]'},
-		{
-			ctor: '::',
-			_0: _elm_lang$html$Html$text(
-				_elm_lang$core$Basics$toString(players)),
-			_1: {ctor: '[]'}
-		});
+var _user$project$GameLoop$subscriptions = function (model) {
+	return _elm_lang$core$Platform_Sub$none;
 };
+var _user$project$GameLoop$playScreen = F3(
+	function (playerInTurn, actionOnClick, currentBoard) {
+		return A2(
+			_elm_lang$html$Html$div,
+			{ctor: '[]'},
+			{
+				ctor: '::',
+				_0: A3(_user$project$Views$game_play_screen, playerInTurn, actionOnClick, currentBoard),
+				_1: {ctor: '[]'}
+			});
+	});
 var _user$project$GameLoop$view = function (model) {
 	return A2(
 		_elm_lang$html$Html$div,
@@ -14273,9 +13297,307 @@ var _user$project$GameLoop$view = function (model) {
 			_1: {ctor: '[]'}
 		});
 };
-var _user$project$GameLoop$GameLoop = F2(
+var _user$project$GameLoop$getPlayerInTurn = function (gameLoop) {
+	return _elm_lang$core$Native_Utils.eq(
+		A2(
+			_elm_lang$core$Basics_ops['%'],
+			_elm_lang$core$List$length(
+				A2(
+					_elm_lang$core$List$filter,
+					function (cellValue) {
+						return !_elm_lang$core$Native_Utils.eq(cellValue, '');
+					},
+					gameLoop.board)),
+			2),
+		0) ? gameLoop.players.player1.piece : gameLoop.players.player2.piece;
+};
+var _user$project$GameLoop$markBoard = F3(
+	function (position, piece, board) {
+		return _elm_lang$core$Array$toList(
+			A3(
+				_elm_lang$core$Array$set,
+				position,
+				piece,
+				_elm_lang$core$Array$fromList(board)));
+	});
+var _user$project$GameLoop$justValue = function (justElement) {
+	var _p0 = justElement;
+	if (_p0.ctor === 'Just') {
+		return _p0._0;
+	} else {
+		return '';
+	}
+};
+var _user$project$GameLoop$getAt = F2(
+	function (xs, index) {
+		return _elm_lang$core$List$head(
+			A2(_elm_lang$core$List$drop, index, xs));
+	});
+var _user$project$GameLoop$isBoardWon = function (board) {
+	var winningCombos = {
+		ctor: '::',
+		_0: {
+			ctor: '::',
+			_0: _user$project$GameLoop$justValue(
+				A2(_user$project$GameLoop$getAt, board, 0)),
+			_1: {
+				ctor: '::',
+				_0: _user$project$GameLoop$justValue(
+					A2(_user$project$GameLoop$getAt, board, 1)),
+				_1: {
+					ctor: '::',
+					_0: _user$project$GameLoop$justValue(
+						A2(_user$project$GameLoop$getAt, board, 2)),
+					_1: {ctor: '[]'}
+				}
+			}
+		},
+		_1: {
+			ctor: '::',
+			_0: {
+				ctor: '::',
+				_0: _user$project$GameLoop$justValue(
+					A2(_user$project$GameLoop$getAt, board, 0)),
+				_1: {
+					ctor: '::',
+					_0: _user$project$GameLoop$justValue(
+						A2(_user$project$GameLoop$getAt, board, 3)),
+					_1: {
+						ctor: '::',
+						_0: _user$project$GameLoop$justValue(
+							A2(_user$project$GameLoop$getAt, board, 6)),
+						_1: {ctor: '[]'}
+					}
+				}
+			},
+			_1: {
+				ctor: '::',
+				_0: {
+					ctor: '::',
+					_0: _user$project$GameLoop$justValue(
+						A2(_user$project$GameLoop$getAt, board, 0)),
+					_1: {
+						ctor: '::',
+						_0: _user$project$GameLoop$justValue(
+							A2(_user$project$GameLoop$getAt, board, 4)),
+						_1: {
+							ctor: '::',
+							_0: _user$project$GameLoop$justValue(
+								A2(_user$project$GameLoop$getAt, board, 8)),
+							_1: {ctor: '[]'}
+						}
+					}
+				},
+				_1: {
+					ctor: '::',
+					_0: {
+						ctor: '::',
+						_0: _user$project$GameLoop$justValue(
+							A2(_user$project$GameLoop$getAt, board, 3)),
+						_1: {
+							ctor: '::',
+							_0: _user$project$GameLoop$justValue(
+								A2(_user$project$GameLoop$getAt, board, 4)),
+							_1: {
+								ctor: '::',
+								_0: _user$project$GameLoop$justValue(
+									A2(_user$project$GameLoop$getAt, board, 5)),
+								_1: {ctor: '[]'}
+							}
+						}
+					},
+					_1: {
+						ctor: '::',
+						_0: {
+							ctor: '::',
+							_0: _user$project$GameLoop$justValue(
+								A2(_user$project$GameLoop$getAt, board, 1)),
+							_1: {
+								ctor: '::',
+								_0: _user$project$GameLoop$justValue(
+									A2(_user$project$GameLoop$getAt, board, 4)),
+								_1: {
+									ctor: '::',
+									_0: _user$project$GameLoop$justValue(
+										A2(_user$project$GameLoop$getAt, board, 7)),
+									_1: {ctor: '[]'}
+								}
+							}
+						},
+						_1: {
+							ctor: '::',
+							_0: {
+								ctor: '::',
+								_0: _user$project$GameLoop$justValue(
+									A2(_user$project$GameLoop$getAt, board, 6)),
+								_1: {
+									ctor: '::',
+									_0: _user$project$GameLoop$justValue(
+										A2(_user$project$GameLoop$getAt, board, 4)),
+									_1: {
+										ctor: '::',
+										_0: _user$project$GameLoop$justValue(
+											A2(_user$project$GameLoop$getAt, board, 2)),
+										_1: {ctor: '[]'}
+									}
+								}
+							},
+							_1: {
+								ctor: '::',
+								_0: {
+									ctor: '::',
+									_0: _user$project$GameLoop$justValue(
+										A2(_user$project$GameLoop$getAt, board, 6)),
+									_1: {
+										ctor: '::',
+										_0: _user$project$GameLoop$justValue(
+											A2(_user$project$GameLoop$getAt, board, 7)),
+										_1: {
+											ctor: '::',
+											_0: _user$project$GameLoop$justValue(
+												A2(_user$project$GameLoop$getAt, board, 8)),
+											_1: {ctor: '[]'}
+										}
+									}
+								},
+								_1: {
+									ctor: '::',
+									_0: {
+										ctor: '::',
+										_0: _user$project$GameLoop$justValue(
+											A2(_user$project$GameLoop$getAt, board, 2)),
+										_1: {
+											ctor: '::',
+											_0: _user$project$GameLoop$justValue(
+												A2(_user$project$GameLoop$getAt, board, 5)),
+											_1: {
+												ctor: '::',
+												_0: _user$project$GameLoop$justValue(
+													A2(_user$project$GameLoop$getAt, board, 8)),
+												_1: {ctor: '[]'}
+											}
+										}
+									},
+									_1: {ctor: '[]'}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	};
+	var isWonByO = A2(
+		_elm_lang$core$List$any,
+		function (row) {
+			return _elm_lang$core$Native_Utils.eq(
+				row,
+				{
+					ctor: '::',
+					_0: 'O',
+					_1: {
+						ctor: '::',
+						_0: 'O',
+						_1: {
+							ctor: '::',
+							_0: 'O',
+							_1: {ctor: '[]'}
+						}
+					}
+				});
+		},
+		winningCombos);
+	var isWonByX = A2(
+		_elm_lang$core$List$any,
+		function (row) {
+			return _elm_lang$core$Native_Utils.eq(
+				row,
+				{
+					ctor: '::',
+					_0: 'X',
+					_1: {
+						ctor: '::',
+						_0: 'X',
+						_1: {
+							ctor: '::',
+							_0: 'X',
+							_1: {ctor: '[]'}
+						}
+					}
+				});
+		},
+		winningCombos);
+	var _p1 = {ctor: '_Tuple2', _0: isWonByX, _1: isWonByO};
+	if (_p1._0 === true) {
+		return {ctor: '_Tuple3', _0: true, _1: 'X', _2: board};
+	} else {
+		if (_p1._1 === true) {
+			return {ctor: '_Tuple3', _0: true, _1: 'O', _2: board};
+		} else {
+			return {ctor: '_Tuple3', _0: false, _1: '', _2: board};
+		}
+	}
+};
+var _user$project$GameLoop$split = F2(
+	function (i, list) {
+		var _p2 = A2(_elm_lang$core$List$take, i, list);
+		if (_p2.ctor === '[]') {
+			return {ctor: '[]'};
+		} else {
+			return {
+				ctor: '::',
+				_0: _p2,
+				_1: A2(
+					_user$project$GameLoop$split,
+					i,
+					A2(_elm_lang$core$List$drop, i, list))
+			};
+		}
+	});
+var _user$project$GameLoop$Player = F3(
+	function (a, b, c) {
+		return {name: a, piece: b, kind: c};
+	});
+var _user$project$GameLoop$GameLoop = F4(
+	function (a, b, c, d) {
+		return {currentView: a, players: b, board: c, winner: d};
+	});
+var _user$project$GameLoop$Computer = {ctor: 'Computer'};
+var _user$project$GameLoop$twoComputerPlayers = {
+	player1: A3(_user$project$GameLoop$Player, 'Player1', 'X', _user$project$GameLoop$Computer),
+	player2: A3(_user$project$GameLoop$Player, 'Player2', 'O', _user$project$GameLoop$Computer)
+};
+var _user$project$GameLoop$Human = {ctor: 'Human'};
+var _user$project$GameLoop$twoHumanPlayers = {
+	player1: A3(_user$project$GameLoop$Player, 'Player1', 'X', _user$project$GameLoop$Human),
+	player2: A3(_user$project$GameLoop$Player, 'Player2', 'O', _user$project$GameLoop$Human)
+};
+var _user$project$GameLoop$mixedPlayers = {
+	player1: A3(_user$project$GameLoop$Player, 'Player1', 'X', _user$project$GameLoop$Human),
+	player2: A3(_user$project$GameLoop$Player, 'Player2', 'O', _user$project$GameLoop$Computer)
+};
+var _user$project$GameLoop$DoNotSetWinner = {ctor: 'DoNotSetWinner'};
+var _user$project$GameLoop$SetWinner = function (a) {
+	return {ctor: 'SetWinner', _0: a};
+};
+var _user$project$GameLoop$CheckForWin = {ctor: 'CheckForWin'};
+var _user$project$GameLoop$InvalidMove = {ctor: 'InvalidMove'};
+var _user$project$GameLoop$ValidateMove = F2(
 	function (a, b) {
-		return {currentView: a, players: b};
+		return {ctor: 'ValidateMove', _0: a, _1: b};
+	});
+var _user$project$GameLoop$TakeTurn = F2(
+	function (a, b) {
+		return {ctor: 'TakeTurn', _0: a, _1: b};
+	});
+var _user$project$GameLoop$BeginTurns = {ctor: 'BeginTurns'};
+var _user$project$GameLoop$waitingToStartScreen = A2(
+	_elm_lang$html$Html$div,
+	{ctor: '[]'},
+	{
+		ctor: '::',
+		_0: _user$project$Views$waiting_to_start_screen(_user$project$GameLoop$BeginTurns),
+		_1: {ctor: '[]'}
 	});
 var _user$project$GameLoop$SetPlayersCvC = {ctor: 'SetPlayersCvC'};
 var _user$project$GameLoop$SetPlayersHvC = {ctor: 'SetPlayersHvC'};
@@ -14297,155 +13619,124 @@ var _user$project$GameLoop$welcomeScreen = A2(
 		_0: _user$project$Views$welcome_screen(_user$project$GameLoop$SetMode),
 		_1: {ctor: '[]'}
 	});
-var _user$project$GameLoop$initialViewInGameLoop = {currentView: _user$project$GameLoop$welcomeScreen, players: _elm_lang$core$Maybe$Nothing};
-var _user$project$GameLoop$model = _user$project$GameLoop$initialViewInGameLoop;
-var _user$project$GameLoop$update = F2(
-	function (msg, model) {
-		var _p0 = msg;
-		switch (_p0.ctor) {
-			case 'BeginPlay':
-				return _elm_lang$core$Native_Utils.update(
-					model,
-					{currentView: _user$project$GameLoop$welcomeScreen});
-			case 'SetMode':
-				return _elm_lang$core$Native_Utils.update(
-					model,
-					{currentView: _user$project$GameLoop$modeMenuScreen});
-			case 'SetPlayersHvH':
-				return _elm_lang$core$Native_Utils.update(
-					model,
-					{
-						players: _elm_lang$core$Maybe$Just(
-							{
-								ctor: '::',
-								_0: 'Human',
-								_1: {
-									ctor: '::',
-									_0: 'Human',
-									_1: {ctor: '[]'}
-								}
-							}),
-						currentView: _user$project$GameLoop$playScreen(
-							{
-								ctor: '::',
-								_0: 'Human',
-								_1: {
-									ctor: '::',
-									_0: 'Human',
-									_1: {ctor: '[]'}
-								}
-							})
-					});
-			case 'SetPlayersHvC':
-				return _elm_lang$core$Native_Utils.update(
-					model,
-					{
-						players: _elm_lang$core$Maybe$Just(
-							{
-								ctor: '::',
-								_0: 'Human',
-								_1: {
-									ctor: '::',
-									_0: 'Computer',
-									_1: {ctor: '[]'}
-								}
-							}),
-						currentView: _user$project$GameLoop$playScreen(
-							{
-								ctor: '::',
-								_0: 'Human',
-								_1: {
-									ctor: '::',
-									_0: 'Computer',
-									_1: {ctor: '[]'}
-								}
-							})
-					});
-			default:
-				return _elm_lang$core$Native_Utils.update(
-					model,
-					{
-						players: _elm_lang$core$Maybe$Just(
-							{
-								ctor: '::',
-								_0: 'Computer',
-								_1: {
-									ctor: '::',
-									_0: 'Computer',
-									_1: {ctor: '[]'}
-								}
-							}),
-						currentView: _user$project$GameLoop$playScreen(
-							{
-								ctor: '::',
-								_0: 'Computer',
-								_1: {
-									ctor: '::',
-									_0: 'Computer',
-									_1: {ctor: '[]'}
-								}
-							})
-					});
-		}
-	});
-var _user$project$GameLoop$main = _elm_lang$html$Html$beginnerProgram(
-	{model: _user$project$GameLoop$model, view: _user$project$GameLoop$view, update: _user$project$GameLoop$update})();
-var _user$project$GameLoop$BeginPlay = {ctor: 'BeginPlay'};
-
-var _user$project$Prompt$toSetUpPlayers = 'Set the game mode by choosing each player\'s type:';
-var _user$project$Prompt$String = {ctor: 'String'};
-
-var _user$project$Main$viewOptions = A2(
-	_elm_lang$html$Html$div,
-	{
-		ctor: '::',
-		_0: _elm_lang$html$Html_Attributes$class('options'),
-		_1: {ctor: '[]'}
+var _user$project$GameLoop$initialViewInGameLoop = {
+	currentView: _user$project$GameLoop$welcomeScreen,
+	players: {
+		player1: A3(_user$project$GameLoop$Player, 'Player1', 'X', _user$project$GameLoop$Human),
+		player2: A3(_user$project$GameLoop$Player, 'Player2', 'O', _user$project$GameLoop$Human)
 	},
-	{
-		ctor: '::',
-		_0: A2(
-			_elm_lang$html$Html$div,
-			{
-				ctor: '::',
-				_0: _elm_lang$html$Html_Attributes$class('options-header'),
-				_1: {ctor: '[]'}
-			},
-			{
-				ctor: '::',
-				_0: _elm_lang$html$Html$text('Options'),
-				_1: {ctor: '[]'}
-			}),
-		_1: {
-			ctor: '::',
-			_0: A2(
-				_elm_lang$html$Html$div,
-				{
-					ctor: '::',
-					_0: _elm_lang$html$Html_Attributes$class('options-prompt'),
-					_1: {ctor: '[]'}
-				},
-				{
-					ctor: '::',
-					_0: _elm_lang$html$Html$text(_user$project$Prompt$toSetUpPlayers),
-					_1: {ctor: '[]'}
-				}),
-			_1: {ctor: '[]'}
+	board: A2(_elm_lang$core$List$repeat, 9, ''),
+	winner: _elm_lang$core$Maybe$Nothing
+};
+var _user$project$GameLoop$init = {ctor: '_Tuple2', _0: _user$project$GameLoop$initialViewInGameLoop, _1: _elm_lang$core$Platform_Cmd$none};
+var _user$project$GameLoop$update = F2(
+	function (msg, gameLoop) {
+		var _p3 = msg;
+		switch (_p3.ctor) {
+			case 'BeginPlay':
+				return {
+					ctor: '_Tuple2',
+					_0: _elm_lang$core$Native_Utils.update(
+						gameLoop,
+						{currentView: _user$project$GameLoop$welcomeScreen}),
+					_1: _elm_lang$core$Platform_Cmd$none
+				};
+			case 'SetMode':
+				return {
+					ctor: '_Tuple2',
+					_0: _elm_lang$core$Native_Utils.update(
+						gameLoop,
+						{currentView: _user$project$GameLoop$modeMenuScreen}),
+					_1: _elm_lang$core$Platform_Cmd$none
+				};
+			case 'SetPlayersHvH':
+				return {
+					ctor: '_Tuple2',
+					_0: _elm_lang$core$Native_Utils.update(
+						gameLoop,
+						{players: _user$project$GameLoop$twoHumanPlayers, currentView: _user$project$GameLoop$waitingToStartScreen}),
+					_1: _elm_lang$core$Platform_Cmd$none
+				};
+			case 'SetPlayersHvC':
+				return {
+					ctor: '_Tuple2',
+					_0: _elm_lang$core$Native_Utils.update(
+						gameLoop,
+						{players: _user$project$GameLoop$mixedPlayers, currentView: _user$project$GameLoop$waitingToStartScreen}),
+					_1: _elm_lang$core$Platform_Cmd$none
+				};
+			case 'SetPlayersCvC':
+				return {
+					ctor: '_Tuple2',
+					_0: _elm_lang$core$Native_Utils.update(
+						gameLoop,
+						{players: _user$project$GameLoop$twoComputerPlayers, currentView: _user$project$GameLoop$waitingToStartScreen}),
+					_1: _elm_lang$core$Platform_Cmd$none
+				};
+			case 'BeginTurns':
+				return {
+					ctor: '_Tuple2',
+					_0: _elm_lang$core$Native_Utils.update(
+						gameLoop,
+						{
+							currentView: A3(
+								_user$project$GameLoop$playScreen,
+								_user$project$GameLoop$getPlayerInTurn(gameLoop),
+								_user$project$GameLoop$TakeTurn,
+								gameLoop.board)
+						}),
+					_1: _elm_lang$core$Platform_Cmd$none
+				};
+			case 'TakeTurn':
+				var _p5 = _p3._0;
+				var _p4 = _p3._1;
+				return {
+					ctor: '_Tuple2',
+					_0: _elm_lang$core$Native_Utils.update(
+						gameLoop,
+						{
+							board: A3(_user$project$GameLoop$markBoard, _p5, _p4, gameLoop.board),
+							currentView: A3(
+								_user$project$GameLoop$playScreen,
+								_user$project$GameLoop$getPlayerInTurn(gameLoop),
+								_user$project$GameLoop$ValidateMove,
+								A3(_user$project$GameLoop$markBoard, _p5, _p4, gameLoop.board))
+						}),
+					_1: _elm_lang$core$Platform_Cmd$none
+				};
+			case 'ValidateMove':
+				return A3(_user$project$GameLoop$runValidation, _p3._0, gameLoop, _p3._1);
+			case 'InvalidMove':
+				return {ctor: '_Tuple2', _0: gameLoop, _1: _elm_lang$core$Platform_Cmd$none};
+			case 'CheckForWin':
+				return _user$project$GameLoop$checkBoardForWinningCombination(gameLoop);
+			case 'SetWinner':
+				return {
+					ctor: '_Tuple2',
+					_0: _elm_lang$core$Native_Utils.update(
+						gameLoop,
+						{
+							winner: _elm_lang$core$Maybe$Just(_p3._0)
+						}),
+					_1: _elm_lang$core$Platform_Cmd$none
+				};
+			default:
+				return {ctor: '_Tuple2', _0: gameLoop, _1: _elm_lang$core$Platform_Cmd$none};
 		}
 	});
-var _user$project$Main$emptyBoard = _elm_lang$core$Array$fromList(
-	{
-		ctor: '::',
-		_0: '',
-		_1: {
+var _user$project$GameLoop$checkBoardForWinningCombination = function (gameLoop) {
+	var board = gameLoop.board;
+	return _elm_lang$core$Native_Utils.eq(
+		gameLoop.board,
+		{
 			ctor: '::',
-			_0: '',
+			_0: 'X',
 			_1: {
 				ctor: '::',
-				_0: '',
+				_0: 'X',
 				_1: {
 					ctor: '::',
-					_0: '',
+					_0: 'X',
 					_1: {
 						ctor: '::',
 						_0: '',
@@ -14461,7 +13752,11 @@ var _user$project$Main$emptyBoard = _elm_lang$core$Array$fromList(
 									_1: {
 										ctor: '::',
 										_0: '',
-										_1: {ctor: '[]'}
+										_1: {
+											ctor: '::',
+											_0: '',
+											_1: {ctor: '[]'}
+										}
 									}
 								}
 							}
@@ -14469,297 +13764,34 @@ var _user$project$Main$emptyBoard = _elm_lang$core$Array$fromList(
 					}
 				}
 			}
-		}
-	});
-var _user$project$Main$setPlayers = F2(
-	function (player1, player2) {
-		return {
-			ctor: '::',
-			_0: player1,
-			_1: {
-				ctor: '::',
-				_0: player2,
-				_1: {ctor: '[]'}
-			}
-		};
-	});
-var _user$project$Main$Game = F2(
-	function (a, b) {
-		return {players: a, board: b};
-	});
-var _user$project$Main$update = F2(
-	function (msg, model) {
-		var _p0 = msg;
-		switch (_p0.ctor) {
-			case 'New':
-				return A2(
-					_user$project$Main$Game,
-					model.players,
-					A2(_elm_lang$core$Array$repeat, 9, ''));
-			case 'Fill':
-				return A2(
-					_user$project$Main$Game,
-					model.players,
-					A2(_elm_lang$core$Array$repeat, 9, 'X'));
-			default:
-				return A2(
-					_user$project$Main$Game,
-					model.players,
-					A3(_elm_lang$core$Array$set, _p0._0, _p0._1, model.board));
-		}
-	});
-var _user$project$Main$setBoard = F2(
-	function (game, newBoard) {
-		return A2(_user$project$Main$Game, game.players, newBoard);
-	});
-var _user$project$Main$Computer = {ctor: 'Computer'};
-var _user$project$Main$Human = {ctor: 'Human'};
-var _user$project$Main$model = A2(
-	_user$project$Main$Game,
-	{
-		ctor: '::',
-		_0: _user$project$Main$Human,
-		_1: {
-			ctor: '::',
-			_0: _user$project$Main$Human,
-			_1: {ctor: '[]'}
-		}
-	},
-	A2(_elm_lang$core$Array$repeat, 9, ''));
-var _user$project$Main$Mark = F2(
-	function (a, b) {
-		return {ctor: 'Mark', _0: a, _1: b};
-	});
-var _user$project$Main$renderCell = F3(
-	function (position, board, value) {
-		return A2(
-			_elm_lang$html$Html$div,
-			{ctor: '[]'},
-			{
-				ctor: '::',
-				_0: A2(
-					_elm_lang$html$Html$button,
-					{
-						ctor: '::',
-						_0: _elm_lang$html$Html_Events$onClick(
-							A2(_user$project$Main$Mark, position, value)),
-						_1: {ctor: '[]'}
-					},
-					{
-						ctor: '::',
-						_0: _elm_lang$html$Html$text(
-							_elm_lang$core$Basics$toString(position)),
-						_1: {ctor: '[]'}
-					}),
-				_1: {ctor: '[]'}
-			});
-	});
-var _user$project$Main$viewBoard = function (board) {
-	return A2(
-		_elm_lang$html$Html$div,
-		{
-			ctor: '::',
-			_0: _elm_lang$html$Html_Attributes$class('board'),
-			_1: {ctor: '[]'}
-		},
-		{
-			ctor: '::',
-			_0: A2(
-				_rundis$elm_bootstrap$Bootstrap_Grid$container,
-				{ctor: '[]'},
-				{
-					ctor: '::',
-					_0: A2(
-						_rundis$elm_bootstrap$Bootstrap_Grid$row,
-						{ctor: '[]'},
-						{
-							ctor: '::',
-							_0: A2(
-								_rundis$elm_bootstrap$Bootstrap_Grid$col,
-								{ctor: '[]'},
-								{
-									ctor: '::',
-									_0: A3(
-										_user$project$Main$renderCell,
-										0,
-										board,
-										_elm_lang$core$Basics$toString(
-											A2(_elm_lang$core$Array$get, 0, board))),
-									_1: {ctor: '[]'}
-								}),
-							_1: {
-								ctor: '::',
-								_0: A2(
-									_rundis$elm_bootstrap$Bootstrap_Grid$col,
-									{ctor: '[]'},
-									{
-										ctor: '::',
-										_0: A3(
-											_user$project$Main$renderCell,
-											1,
-											board,
-											_elm_lang$core$Basics$toString(
-												A2(_elm_lang$core$Array$get, 1, board))),
-										_1: {ctor: '[]'}
-									}),
-								_1: {
-									ctor: '::',
-									_0: A2(
-										_rundis$elm_bootstrap$Bootstrap_Grid$col,
-										{ctor: '[]'},
-										{
-											ctor: '::',
-											_0: A3(
-												_user$project$Main$renderCell,
-												2,
-												board,
-												_elm_lang$core$Basics$toString(
-													A2(_elm_lang$core$Array$get, 2, board))),
-											_1: {ctor: '[]'}
-										}),
-									_1: {
-										ctor: '::',
-										_0: _rundis$elm_bootstrap$Bootstrap_Grid$colBreak(
-											{ctor: '[]'}),
-										_1: {
-											ctor: '::',
-											_0: A2(
-												_rundis$elm_bootstrap$Bootstrap_Grid$col,
-												{ctor: '[]'},
-												{
-													ctor: '::',
-													_0: A3(
-														_user$project$Main$renderCell,
-														3,
-														board,
-														_elm_lang$core$Basics$toString(
-															A2(_elm_lang$core$Array$get, 3, board))),
-													_1: {ctor: '[]'}
-												}),
-											_1: {
-												ctor: '::',
-												_0: A2(
-													_rundis$elm_bootstrap$Bootstrap_Grid$col,
-													{ctor: '[]'},
-													{
-														ctor: '::',
-														_0: A3(
-															_user$project$Main$renderCell,
-															4,
-															board,
-															_elm_lang$core$Basics$toString(
-																A2(_elm_lang$core$Array$get, 4, board))),
-														_1: {ctor: '[]'}
-													}),
-												_1: {
-													ctor: '::',
-													_0: A2(
-														_rundis$elm_bootstrap$Bootstrap_Grid$col,
-														{ctor: '[]'},
-														{
-															ctor: '::',
-															_0: A3(
-																_user$project$Main$renderCell,
-																5,
-																board,
-																_elm_lang$core$Basics$toString(
-																	A2(_elm_lang$core$Array$get, 5, board))),
-															_1: {ctor: '[]'}
-														}),
-													_1: {
-														ctor: '::',
-														_0: _rundis$elm_bootstrap$Bootstrap_Grid$colBreak(
-															{ctor: '[]'}),
-														_1: {
-															ctor: '::',
-															_0: A2(
-																_rundis$elm_bootstrap$Bootstrap_Grid$col,
-																{ctor: '[]'},
-																{
-																	ctor: '::',
-																	_0: A3(
-																		_user$project$Main$renderCell,
-																		6,
-																		board,
-																		_elm_lang$core$Basics$toString(
-																			A2(_elm_lang$core$Array$get, 6, board))),
-																	_1: {ctor: '[]'}
-																}),
-															_1: {
-																ctor: '::',
-																_0: A2(
-																	_rundis$elm_bootstrap$Bootstrap_Grid$col,
-																	{ctor: '[]'},
-																	{
-																		ctor: '::',
-																		_0: A3(
-																			_user$project$Main$renderCell,
-																			7,
-																			board,
-																			_elm_lang$core$Basics$toString(
-																				A2(_elm_lang$core$Array$get, 7, board))),
-																		_1: {ctor: '[]'}
-																	}),
-																_1: {
-																	ctor: '::',
-																	_0: A2(
-																		_rundis$elm_bootstrap$Bootstrap_Grid$col,
-																		{ctor: '[]'},
-																		{
-																			ctor: '::',
-																			_0: A3(
-																				_user$project$Main$renderCell,
-																				8,
-																				board,
-																				_elm_lang$core$Basics$toString(
-																					A2(_elm_lang$core$Array$get, 8, board))),
-																			_1: {ctor: '[]'}
-																		}),
-																	_1: {
-																		ctor: '::',
-																		_0: _rundis$elm_bootstrap$Bootstrap_Grid$colBreak(
-																			{ctor: '[]'}),
-																		_1: {ctor: '[]'}
-																	}
-																}
-															}
-														}
-													}
-												}
-											}
-										}
-									}
-								}
-							}
-						}),
-					_1: {ctor: '[]'}
-				}),
-			_1: {ctor: '[]'}
-		});
+		}) ? A2(
+		_user$project$GameLoop$update,
+		_user$project$GameLoop$SetWinner(gameLoop.players.player1),
+		gameLoop) : A2(_user$project$GameLoop$update, _user$project$GameLoop$DoNotSetWinner, gameLoop);
 };
-var _user$project$Main$view = function (model) {
-	return A2(
-		_elm_lang$html$Html$div,
-		{ctor: '[]'},
-		{
-			ctor: '::',
-			_0: _user$project$Main$viewOptions,
-			_1: {
-				ctor: '::',
-				_0: _user$project$Main$viewBoard(model.board),
-				_1: {ctor: '[]'}
-			}
-		});
-};
-var _user$project$Main$main = _elm_lang$html$Html$beginnerProgram(
-	{model: _user$project$Main$model, view: _user$project$Main$view, update: _user$project$Main$update})();
-var _user$project$Main$Fill = {ctor: 'Fill'};
-var _user$project$Main$New = {ctor: 'New'};
+var _user$project$GameLoop$runValidation = F3(
+	function (position, gameLoop, piece) {
+		var currentBoardAsArray = _elm_lang$core$Array$fromList(gameLoop.board);
+		var currentValueAtPosition = A2(_elm_lang$core$Array$get, position, currentBoardAsArray);
+		return _elm_lang$core$Native_Utils.eq(
+			currentValueAtPosition,
+			_elm_lang$core$Maybe$Just('')) ? A2(
+			_user$project$GameLoop$update,
+			A2(_user$project$GameLoop$TakeTurn, position, piece),
+			gameLoop) : A2(_user$project$GameLoop$update, _user$project$GameLoop$InvalidMove, gameLoop);
+	});
+var _user$project$GameLoop$main = _elm_lang$html$Html$program(
+	{init: _user$project$GameLoop$init, view: _user$project$GameLoop$view, update: _user$project$GameLoop$update, subscriptions: _user$project$GameLoop$subscriptions})();
+var _user$project$GameLoop$BeginPlay = {ctor: 'BeginPlay'};
+
+var _user$project$Main$model = _user$project$GameLoop$GameLoop;
+var _user$project$Main$main = _elm_lang$html$Html$program(
+	{init: _user$project$GameLoop$init, view: _user$project$GameLoop$view, update: _user$project$GameLoop$update, subscriptions: _user$project$GameLoop$subscriptions})();
 
 var Elm = {};
 Elm['Main'] = Elm['Main'] || {};
 if (typeof _user$project$Main$main !== 'undefined') {
-    _user$project$Main$main(Elm['Main'], 'Main', {"types":{"unions":{"Main.Msg":{"args":[],"tags":{"Mark":["Int","String"],"New":[],"Fill":[]}}},"aliases":{},"message":"Main.Msg"},"versions":{"elm":"0.18.0"}});
+    _user$project$Main$main(Elm['Main'], 'Main', {"types":{"unions":{"GameLoop.PlayerKind":{"args":[],"tags":{"Computer":[],"Human":[]}},"GameLoop.Msg":{"args":[],"tags":{"CheckForWin":[],"DoNotSetWinner":[],"BeginPlay":[],"TakeTurn":["Int","String"],"SetMode":[],"SetPlayersCvC":[],"SetPlayersHvH":[],"ValidateMove":["Int","String"],"SetPlayersHvC":[],"InvalidMove":[],"SetWinner":["GameLoop.Player"],"BeginTurns":[]}}},"aliases":{"GameLoop.Player":{"args":[],"type":"{ name : String, piece : String, kind : GameLoop.PlayerKind }"}},"message":"GameLoop.Msg"},"versions":{"elm":"0.18.0"}});
 }
 
 if (typeof define === "function" && define['amd'])

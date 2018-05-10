@@ -16,7 +16,7 @@ gameLoopTest : Test
 gameLoopTest =
     describe "GameLoop"
         [ describe "BeginPlay..."
-            [ test "The initialViewInGameLoop, displays the welcomeScreen." <|
+            [ test "Displays the welcomeScreen." <|
                 let
                     gameLoop =
                         GameLoop.initialViewInGameLoop
@@ -35,8 +35,11 @@ gameLoopTest =
                     gameLoopAtStart =
                         GameLoop.initialViewInGameLoop
 
-                    gameLoop =
+                    returned =
                         update SetMode gameLoopAtStart
+
+                    ( gameLoop, command ) =
+                        returned
                 in
                     \() -> Expect.equal modeMenuScreen gameLoop.currentView
             , test "When the user hits the `Human Vs. Human` button the Players are set to Human Human." <|
@@ -57,5 +60,198 @@ gameLoopTest =
                         |> Query.fromHtml
                         |> Event.simulate (Event.click)
                         |> Event.expect (SetPlayersCvC)
+            ]
+        , describe "BeginTurns..."
+            [ test "Begins the first turn with prompt for the first player." <|
+                let
+                    gameLoopAtStart =
+                        GameLoop.initialViewInGameLoop
+
+                    gameLoopWithPlayersSetHvC =
+                        update SetPlayersHvC gameLoopAtStart
+
+                    ( gameLoopAfterPlayersSet, commandRun ) =
+                        gameLoopWithPlayersSetHvC
+
+                    gameLoopPromptingForMove =
+                        update BeginTurns gameLoopAfterPlayersSet
+
+                    ( gameLoop, command ) =
+                        gameLoopPromptingForMove
+                in
+                    \() -> Expect.equal (playScreen "X" GameLoop.TakeTurn gameLoop.board) gameLoop.currentView
+            , test "Begins the first turn with an empty board." <|
+                let
+                    gameLoopAtStart =
+                        GameLoop.initialViewInGameLoop
+
+                    gameLoopWithPlayersSetHvC =
+                        update SetPlayersHvC gameLoopAtStart
+
+                    ( gameLoop, command ) =
+                        gameLoopWithPlayersSetHvC
+
+                    gameLoopAtFirstTurn =
+                        update BeginTurns gameLoop
+
+                    newBoard =
+                        List.repeat 9 ""
+                in
+                    \() -> Expect.equal newBoard gameLoop.board
+            ]
+        , describe "TakeTurn..."
+            [ test "Updates the board." <|
+                let
+                    gameLoopAtStart =
+                        GameLoop.initialViewInGameLoop
+
+                    model =
+                        update (TakeTurn 0 "X") gameLoopAtStart
+
+                    ( gameLoop, cmd ) =
+                        model
+                in
+                    \() -> Expect.equal [ "X", "", "", "", "", "", "", "", "" ] gameLoop.board
+            , test "begins the first turn with an empty board." <|
+                let
+                    gameLoopAtStart =
+                        GameLoop.initialViewInGameLoop
+
+                    newBoard =
+                        List.repeat 9 ""
+                in
+                    \() -> Expect.equal newBoard gameLoopAtStart.board
+            , test "getPlayerInTurn returns Player1 when no moves have been made" <|
+                let
+                    gameLoopAtStart =
+                        GameLoop.initialViewInGameLoop
+                in
+                    \() -> Expect.equal (getPlayerInTurn gameLoopAtStart) "X"
+            , test "getPlayerInTurn returns Player2 when one move has been made" <|
+                let
+                    gameLoopAtStart =
+                        GameLoop.initialViewInGameLoop
+
+                    model =
+                        update (TakeTurn 0 "X") gameLoopAtStart
+
+                    ( gameLoop, cmd ) =
+                        model
+                in
+                    \() -> Expect.equal (getPlayerInTurn gameLoop) "O"
+            , test "getPlayerInTurn returns Player1 when two moves have been made" <|
+                let
+                    gameLoopAtStart =
+                        GameLoop.initialViewInGameLoop
+
+                    modelAfterOneMove =
+                        update (TakeTurn 0 "X") gameLoopAtStart
+
+                    ( gameLoopAfterFirstMove, cmd1 ) =
+                        modelAfterOneMove
+
+                    modelAfterTwoMoves =
+                        update (TakeTurn 8 "O") gameLoopAfterFirstMove
+
+                    ( gameLoop, cmd2 ) =
+                        modelAfterTwoMoves
+                in
+                    \() -> Expect.equal "X" (getPlayerInTurn gameLoop)
+            ]
+        , describe "ValidateMove"
+            [ test "does not update the board when user clicks on a cell that is already taken" <|
+                let
+                    gameLoopAtStart =
+                        GameLoop.initialViewInGameLoop
+
+                    modelAfterOneMove =
+                        update (TakeTurn 0 "X") gameLoopAtStart
+
+                    ( gameLoopAfterFirstMove, cmd1 ) =
+                        modelAfterOneMove
+
+                    modelAfterValidation =
+                        update (ValidateMove 0 "O") gameLoopAfterFirstMove
+
+                    ( gameLoopAfterInvalidSecondMove, cmd2 ) =
+                        modelAfterValidation
+                in
+                    \() -> Expect.equal gameLoopAfterFirstMove gameLoopAfterInvalidSecondMove
+            , test "does update the board when user clicks on a cell that is vacant" <|
+                let
+                    gameLoopAtStart =
+                        GameLoop.initialViewInGameLoop
+
+                    modelAfterOneMove =
+                        update (TakeTurn 0 "X") gameLoopAtStart
+
+                    ( gameLoopAfterFirstMove, cmd1 ) =
+                        modelAfterOneMove
+
+                    modelAfterValidation =
+                        update (ValidateMove 1 "O") gameLoopAfterFirstMove
+
+                    ( gameLoopAfterValidSecondMove, cmd2 ) =
+                        modelAfterValidation
+                in
+                    \() -> Expect.notEqual gameLoopAfterFirstMove gameLoopAfterValidSecondMove
+            , test "runValidation returns TakeTurn for move on vacant cell" <|
+                let
+                    gameLoopAtStart =
+                        GameLoop.initialViewInGameLoop
+
+                    gameLoopAfterValidMove =
+                        (update (TakeTurn 5 "X") gameLoopAtStart)
+                in
+                    \() -> Expect.equal gameLoopAfterValidMove (GameLoop.runValidation 5 gameLoopAtStart "X")
+            , describe "Win Possibilities"
+                [ test "isBoardWon returns (True, winningPiece, board) if board matches win combination" <|
+                    let
+                        wonBoardFirstRowX =
+                            [ "X", "X", "X", "", "", "", "", "", "" ]
+
+                        wonBoardFirstRowO =
+                            [ "O", "O", "O", "", "", "", "", "", "" ]
+
+                        wonBoardSecondRowX =
+                            [ "", "", "", "X", "X", "X", "", "", "" ]
+
+                        wonBoardThirdRowO =
+                            [ "", "", "", "X", "X", "", "O", "O", "O" ]
+
+                        wonBoardFirstColX =
+                            [ "X", "", "", "X", "O", "O", "X", "", "" ]
+
+                        wonBoardDTLRO =
+                            [ "O", "X", "", "X", "O", "O", "", "", "O" ]
+
+                        expected =
+                            [ ( True, "X", wonBoardFirstRowX )
+                            , ( True, "O", wonBoardFirstRowO )
+                            , ( True, "X", wonBoardSecondRowX )
+                            , ( True, "O", wonBoardThirdRowO )
+                            , ( True, "X", wonBoardFirstColX )
+                            , ( True, "O", wonBoardDTLRO )
+                            ]
+
+                        actual =
+                            [ (isBoardWon wonBoardFirstRowX)
+                            , (isBoardWon wonBoardFirstRowO)
+                            , (isBoardWon wonBoardSecondRowX)
+                            , (isBoardWon wonBoardThirdRowO)
+                            , (isBoardWon wonBoardFirstColX)
+                            , (isBoardWon wonBoardDTLRO)
+                            ]
+                    in
+                        \() ->
+                            Expect.equal expected actual
+                , test "isBoardWon returns (False, \"\", board) if board does not match a win combination" <|
+                    let
+                        unWonBoard =
+                            [ "", "", "", "", "X", "", "", "", "O" ]
+                    in
+                        \() ->
+                            Expect.equal ( False, "", unWonBoard ) (isBoardWon unWonBoard)
+                ]
             ]
         ]
