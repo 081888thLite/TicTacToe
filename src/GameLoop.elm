@@ -16,7 +16,7 @@ main =
 
 
 
---model
+--Model
 
 
 type PlayerKind

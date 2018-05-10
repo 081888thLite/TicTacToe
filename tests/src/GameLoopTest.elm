@@ -204,20 +204,6 @@ gameLoopTest =
                         (update (TakeTurn 5 "X") gameLoopAtStart)
                 in
                     \() -> Expect.equal gameLoopAfterValidMove (GameLoop.runValidation 5 gameLoopAtStart "X")
-            ]
-        , describe "CheckForWin"
-            [ test "sets winner when board has winning combination" <|
-                let
-                    gameLoopAtStart =
-                        GameLoop.initialViewInGameLoop
-
-                    gameLoopWithWinningBoard =
-                        { gameLoopAtStart | board = [ "X", "X", "X", "", "", "", "", "", "" ] }
-
-                    ( gameLoopAfterCheckingForWinner, cmd1 ) =
-                        update CheckForWin gameLoopWithWinningBoard
-                in
-                    \() -> Expect.equal (Just gameLoopWithWinningBoard.players.player1) gameLoopWithWinningBoard.winner
             , describe "Win Possibilities"
                 [ test "isBoardWon returns (True, winningPiece, board) if board matches win combination" <|
                     let
@@ -267,20 +253,5 @@ gameLoopTest =
                         \() ->
                             Expect.equal ( False, "", unWonBoard ) (isBoardWon unWonBoard)
                 ]
-
-            --, test "When the playerInTurn is a Human a prompt for a move is displayed." <|
-            --    \() ->
-            --        Html.input [ onClick SetPlayersHvH ] []
-            --            |> Query.fromHtml
-            --            |> Event.simulate (Event.click)
-            --            |> Query.fromHtml
-            --            |> Query.contains [ div [] [ "Human click on a cell to place your marker." ] ]
-            --, test "When the playerInTurn is a Computer a prompt to wait is displayed." <|
-            --    \() ->
-            --        Html.input [ onClick SetPlayersHvC ] []
-            --            |> Query.fromHtml
-            --            |> Event.simulate (Event.click)
-            --            |> Query.fromHtml
-            --            |> Query.contains [ div [] [ "The computer player is thinking..." ] ]
             ]
         ]
