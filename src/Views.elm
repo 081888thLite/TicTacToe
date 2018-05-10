@@ -77,8 +77,8 @@ waiting_to_start_screen startTheGame =
 
 game_play_screen playerInTurn actionToMarkCell currentBoard =
     div []
-        [ p
-            [ class "w3-display-topmiddle w3-jumbo" ]
+        [ div
+            [ class "w3-display-topmiddle w3-jumbo w3-margin" ]
             [ text "TicTacToe" ]
         , div
             [ class "w3-display-middle w3-xxxlarge" ]
@@ -87,71 +87,98 @@ game_play_screen playerInTurn actionToMarkCell currentBoard =
                 [ div
                     [ id "1"
                     , class "w3-button w3-container w3-cell w3-orange w3-border w3-hover-border-black"
+                    , style [ ( "width", "33%" ) ]
                     , onClick (actionToMarkCell 0 playerInTurn)
                     ]
                     [ p
                         []
-                        [ text (toString ((Array.get 0 (currentBoard |> Array.fromList)))) ]
+                        [ text ((Array.get 0 (currentBoard |> Array.fromList) |> makeDisplayable)) ]
                     ]
                 , div
                     [ id "2"
                     , class "w3-button w3-container w3-cell w3-orange w3-border w3-hover-border-black"
+                    , style [ ( "width", "33%" ) ]
                     , onClick (actionToMarkCell 1 playerInTurn)
                     ]
                     [ p
                         []
-                        [ text (toString ((Array.get 1 (currentBoard |> Array.fromList)))) ]
+                        [ text ((Array.get 1 (currentBoard |> Array.fromList) |> makeDisplayable)) ]
                     ]
                 , div
                     [ id "3"
                     , class "w3-button w3-container w3-cell w3-orange w3-border w3-hover-border-black"
+                    , style [ ( "width", "33%" ) ]
                     , onClick (actionToMarkCell 2 playerInTurn)
                     ]
                     [ p
                         []
-                        [ text (toString ((Array.get 2 (currentBoard |> Array.fromList)))) ]
+                        [ text ((Array.get 2 (currentBoard |> Array.fromList) |> makeDisplayable)) ]
                     ]
                 ]
             , div
                 [ class "w3-cell-row" ]
                 [ div
-                    [ class "w3-button w3-container w3-cell w3-orange w3-border w3-hover-border-black" ]
+                    [ id "4"
+                    , class "w3-button w3-container w3-cell w3-orange w3-border w3-hover-border-black"
+                    , style [ ( "width", "33%" ) ]
+                    , onClick (actionToMarkCell 3 playerInTurn)
+                    ]
                     [ p
                         []
-                        [ text "Cell 4" ]
+                        [ text ((Array.get 3 (currentBoard |> Array.fromList) |> makeDisplayable)) ]
                     ]
                 , div
-                    [ class "w3-button w3-container w3-cell w3-orange w3-border w3-hover-border-black" ]
+                    [ id "5"
+                    , class "w3-button w3-container w3-cell w3-orange w3-border w3-hover-border-black"
+                    , style [ ( "width", "33%" ) ]
+                    , onClick (actionToMarkCell 4 playerInTurn)
+                    ]
                     [ p
                         []
-                        [ text "Cell 5" ]
+                        [ text ((Array.get 4 (currentBoard |> Array.fromList) |> makeDisplayable)) ]
                     ]
                 , div
-                    [ class "w3-button w3-container w3-cell w3-orange w3-border w3-hover-border-black" ]
+                    [ id "6"
+                    , class "w3-button w3-container w3-cell w3-orange w3-border w3-hover-border-black"
+                    , style [ ( "width", "33%" ) ]
+                    , onClick (actionToMarkCell 5 playerInTurn)
+                    ]
                     [ p
                         []
-                        [ text "Cell 6" ]
+                        [ text ((Array.get 5 (currentBoard |> Array.fromList) |> makeDisplayable)) ]
                     ]
                 ]
             , div
                 [ class "w3-cell-row" ]
                 [ div
-                    [ class "w3-button w3-container w3-cell w3-orange w3-border w3-hover-border-black" ]
+                    [ id "7"
+                    , class "w3-button w3-container w3-cell w3-orange w3-border w3-hover-border-black"
+                    , style [ ( "width", "33%" ) ]
+                    , onClick (actionToMarkCell 6 playerInTurn)
+                    ]
                     [ p
                         []
-                        [ text "Cell 7" ]
+                        [ text ((Array.get 6 (currentBoard |> Array.fromList) |> makeDisplayable)) ]
                     ]
                 , div
-                    [ class "w3-button w3-container w3-cell w3-orange w3-border w3-hover-border-black" ]
+                    [ id "8"
+                    , class "w3-button w3-container w3-cell w3-orange w3-border w3-hover-border-black"
+                    , style [ ( "width", "33%" ) ]
+                    , onClick (actionToMarkCell 7 playerInTurn)
+                    ]
                     [ p
                         []
-                        [ text "Cell 8" ]
+                        [ text ((Array.get 7 (currentBoard |> Array.fromList) |> makeDisplayable)) ]
                     ]
                 , div
-                    [ class "w3-button w3-container w3-cell w3-orange w3-border w3-hover-border-black" ]
+                    [ id "9"
+                    , class "w3-button w3-container w3-cell w3-orange w3-border w3-hover-border-black"
+                    , style [ ( "width", "33%" ) ]
+                    , onClick (actionToMarkCell 8 playerInTurn)
+                    ]
                     [ p
                         []
-                        [ text "Cell 9" ]
+                        [ text ((Array.get 8 (currentBoard |> Array.fromList) |> makeDisplayable)) ]
                     ]
                 ]
             , div
@@ -162,6 +189,18 @@ game_play_screen playerInTurn actionToMarkCell currentBoard =
                 []
             ]
         ]
+
+
+makeDisplayable justElement =
+    case justElement of
+        Just element ->
+            if element == "" then
+                "_"
+            else
+                element
+
+        Nothing ->
+            ""
 
 
 display_prompt playerInTurn =
