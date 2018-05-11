@@ -27,7 +27,15 @@ elm-make src/Main.elm --output index.js --debug
 elm-reactor
 ```
 
-4. Now open up your browser and navigate to `http://localhost:8000`
+4. Now open up your browser and navigate to `http://localhost:8000/index.html`
+
+## To Run the Test
+
+1. To run the test you may need to download the `elm-test` package first by running `elm-package install elm-community/elm-test`
+
+_(Hit `y` + Enter when you are prompted: May I add that to elm-package.json for you?)_
+
+2. Then run `elm-test`
 
 ### That's all there is to it!
 
